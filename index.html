@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Diomandé Abou Johan alias DEV.D.A.J, fondateur d'AbouDev Labs et créateur de TermChat. Développeur Full-Stack en Côte d'Ivoire."
+    >
+
+    <meta
+        name="keywords"
+        content="DEV.D.A.J, Diomandé Abou Johan, AbouDev Labs, TermChat, développeur Côte d'Ivoire, San Pedro, daboujohan-hub"
+    >
+
+    <meta name="author" content="Diomandé Abou Johan - DEV.D.A.J">
+
+    <meta name="theme-color" content="#0f172a">
+
+    <title>
+        DEV.D.A.J — Diomandé Abou Johan | AbouDev Labs
+    </title>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .container {
+            width: min(100% - 32px, 900px);
+            margin: auto;
+        }
+
+        header {
+            padding: 80px 0 50px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            margin-bottom: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            color: var(--primary);
+            background: rgba(56, 189, 248, 0.08);
+
+            font-size: 0.9rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 7vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            color: var(--muted);
+            font-size: clamp(1rem, 3vw, 1.35rem);
+            font-weight: 400;
+        }
+
+        main {
+            padding-bottom: 60px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project {
+            display: block;
+            margin-top: 15px;
+            padding: 18px;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .project strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 16px;
+
+            border-radius: 10px;
+            border: 1px solid var(--border);
+
+            background: var(--bg);
+            color: var(--text);
+
+            transition: 0.2s ease;
+        }
+
+        .button:hover {
+            background: var(--primary);
+            color: #020617;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 55px 0 35px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .links {
+                flex-direction: column;
+            }
+
+            .button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <span class="badge">
+                🇨🇮 Développeur ivoirien
+            </span>
+
+            <h1>
+                DEV.D.A.J
+            </h1>
+
+            <h2>
+                Diomandé Abou Johan
+                <br>
+                Fondateur d'AbouDev Labs · Créateur de TermChat
+            </h2>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section class="card">
+                <h3>👋 À propos</h3>
+
+                <p>
+                    Je suis <strong>Diomandé Abou Johan</strong>,
+                    alias <strong>DEV.D.A.J</strong>
+                    (<strong>daboujohan-hub</strong>),
+                    développeur Full-Stack basé à
+                    <strong>San Pedro, Côte d'Ivoire</strong>.
+                </p>
+
+                <p>
+                    Je développe des projets orientés technologie,
+                    informatique, intelligence artificielle et
+                    communication numérique.
+                </p>
+            </section>
+
+            <section class="card">
+                <h3>🚀 Projet phare</h3>
+
+                <div class="project">
+                    <strong>TermChat by DEV.D.A.J</strong>
+
+                    <p>
+                        Projet de messagerie orienté terminal,
+                        avec des mécanismes de sécurité tels que
+                        TLS, authentification sécurisée et
+                        chiffrement des données.
+                    </p>
+
+                    <a
+                        href="https://github.com/daboujohan-hub/termchat"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Voir le projet sur GitHub →
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3>🧑‍💻 AbouDev Labs</h3>
+
+                <p>
+                    <strong>AbouDev Labs</strong> est l'espace de
+                    développement associé à mes projets et
+                    expérimentations technologiques.
+                </p>
+
+                <p>
+                    Identité :
+                    <strong>DEV.D.A.J</strong>
+                </p>
+            </section>
+
+            <section class="card">
+                <h3>🔗 Liens</h3>
+
+                <div class="links">
+
+                    <a
+                        class="button"
+                        href="https://github.com/daboujohan-hub"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub
+                    </a>
+
+                    <a
+                        class="button"
+                        href="mailto:daboujohan@gmail.com"
+                    >
+                        Email
+                    </a>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 DEV.D.A.J — Diomandé Abou Johan · AbouDev Labs 🇨🇮
+        </div>
+    </footer>
+
+</body>
+</html>

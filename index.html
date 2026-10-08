@@ -1,319 +1,190 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Diomandé Abou Johan alias DEV.D.A.J, fondateur d'AbouDev Labs, créateur de TermChat et VITE API. Développeur Full-Stack en Côte d'Ivoire.">
+<meta name="author" content="Diomandé Abou Johan - DEV.D.A.J">
+<meta name="theme-color" content="#0b1120">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DEV.D.A.J — Diomandé Abou Johan | AbouDev Labs">
+<meta property="og:description" content="Développeur Full-Stack ivoirien. TermChat, VITE API, applications sur mesure. Le code est notre chemin.">
+<meta property="og:image" content="https://daboujohan-hub.github.io/assets/img/affiche-demain.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>DEV.D.A.J — Diomandé Abou Johan | AbouDev Labs</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --bg:#0b1120; --card:#131c31; --text:#f8fafc; --muted:#aab6cb;
+  --green:#22c55e; --orange:#f77f00; --border:#243049;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+a{color:var(--green);text-decoration:none}
+.container{width:min(100% - 32px,760px);margin:auto}
 
-    <meta
-        name="description"
-        content="Diomandé Abou Johan alias DEV.D.A.J, fondateur d'AbouDev Labs et créateur de TermChat. Développeur Full-Stack en Côte d'Ivoire."
-    >
+.flag{display:flex;height:5px}
+.flag i{flex:1}
+.flag i:nth-child(1){background:var(--orange)}
+.flag i:nth-child(2){background:#fff}
+.flag i:nth-child(3){background:var(--green)}
 
-    <meta
-        name="keywords"
-        content="DEV.D.A.J, Diomandé Abou Johan, AbouDev Labs, TermChat, développeur Côte d'Ivoire, San Pedro, daboujohan-hub"
-    >
+header{padding:64px 0 36px;text-align:center}
+.badge{display:inline-block;padding:6px 14px;margin-bottom:18px;border:1px solid var(--border);border-radius:999px;font-size:.85rem;color:var(--muted);background:rgba(255,255,255,.03)}
+h1{font-size:clamp(2.4rem,9vw,4rem);line-height:1.05;letter-spacing:2px;margin-bottom:14px}
+h1 span{color:var(--green)}
+.sub{color:var(--muted);font-size:1.05rem}
+.sub b{color:var(--text);font-weight:600}
 
-    <meta name="author" content="Diomandé Abou Johan - DEV.D.A.J">
+section{margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px}
+.card h3{margin-bottom:14px;font-size:1.1rem}
+.card p{color:var(--muted);margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.card strong{color:var(--text)}
 
-    <meta name="theme-color" content="#0f172a">
 
-    <title>
-        DEV.D.A.J — Diomandé Abou Johan | AbouDev Labs
-    </title>
 
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f8fafc;
-            --muted: #cbd5e1;
-            --primary: #38bdf8;
-            --primary-hover: #0ea5e9;
-            --border: #334155;
-        }
+.project{padding:18px;margin-top:14px;border-radius:16px;border:1px solid var(--border);background:var(--bg)}
+.project:first-of-type{margin-top:0}
+.project strong{display:block;font-size:1.05rem;margin-bottom:6px}
+.project p{margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tags span{font-size:.75rem;padding:3px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery img{width:100%;height:100%;object-fit:cover;border-radius:14px;border:1px solid var(--border);display:block}
+.gallery a.wide{grid-column:1/-1}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.button{display:block;text-align:center;padding:13px 10px;border-radius:14px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-weight:500;transition:.2s}
+.button:hover{transform:translateY(-2px);border-color:var(--green)}
+.button.wa{grid-column:1/-1;background:var(--green);color:#052e16;border-color:var(--green);font-weight:700}
 
-        body {
-            font-family:
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
-
-        .container {
-            width: min(100% - 32px, 900px);
-            margin: auto;
-        }
-
-        header {
-            padding: 80px 0 50px;
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 14px;
-            margin-bottom: 20px;
-
-            border: 1px solid var(--border);
-            border-radius: 999px;
-
-            color: var(--primary);
-            background: rgba(56, 189, 248, 0.08);
-
-            font-size: 0.9rem;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 7vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 18px;
-        }
-
-        h2 {
-            color: var(--muted);
-            font-size: clamp(1rem, 3vw, 1.35rem);
-            font-weight: 400;
-        }
-
-        main {
-            padding-bottom: 60px;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 28px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-            color: var(--primary);
-        }
-
-        .card p {
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .project {
-            display: block;
-            margin-top: 15px;
-            padding: 18px;
-
-            border: 1px solid var(--border);
-            border-radius: 14px;
-
-            background: rgba(15, 23, 42, 0.6);
-        }
-
-        .project strong {
-            display: block;
-            color: var(--text);
-            margin-bottom: 6px;
-        }
-
-        .links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 16px;
-
-            border-radius: 10px;
-            border: 1px solid var(--border);
-
-            background: var(--bg);
-            color: var(--text);
-
-            transition: 0.2s ease;
-        }
-
-        .button:hover {
-            background: var(--primary);
-            color: #020617;
-            text-decoration: none;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 25px 0;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 600px) {
-            header {
-                padding: 55px 0 35px;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .links {
-                flex-direction: column;
-            }
-
-            .button {
-                text-align: center;
-            }
-        }
-    </style>
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pills span{padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg);font-size:.9rem}
+.services{display:grid;gap:12px}
+.service{padding:16px;border-radius:16px;border:1px solid var(--border);background:var(--bg)}
+.service b{display:block;margin-bottom:4px}
+.service p{margin:0}
+.cta{margin-top:16px}
+.videos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.videos figure{margin:0}
+.videos video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0b1120;border:1px solid var(--border);display:block}
+.videos figcaption{margin-top:6px;font-size:.85rem;color:var(--muted);text-align:center}
+footer{border-top:1px solid var(--border);padding:24px 0 34px;text-align:center;color:var(--muted);font-size:.85rem}
+@media (min-width:600px){
+  .links{grid-template-columns:repeat(3,1fr)}
+  .button.wa{grid-column:auto}
+}
+</style>
 </head>
 
 <body>
+<div class="flag"><i></i><i></i><i></i></div>
 
-    <header>
-        <div class="container">
+<header>
+  <div class="container">
+    <span class="badge">🇨🇮 Développeur ivoirien · San Pedro</span>
+    <h1>DEV.D.A.J<span>.</span></h1>
+    <p class="sub"><b>Diomandé Abou Johan</b><br>Fondateur d'AbouDev Labs · Créateur de TermChat</p>
+  </div>
+</header>
 
-            <span class="badge">
-                🇨🇮 Développeur ivoirien
-            </span>
+<main class="container">
 
-            <h1>
-                DEV.D.A.J
-            </h1>
+  <section class="card">
+    <h3>👋 À propos</h3>
+    <p>Je suis <strong>Diomandé Abou Johan</strong>, alias <strong>DEV.D.A.J</strong> (<strong>daboujohan-hub</strong>), développeur Full-Stack basé à <strong>San Pedro, Côte d'Ivoire</strong>.</p>
+    <p>Je développe des projets autour de la technologie, de l'intelligence artificielle et de la communication numérique. <strong>Le code est notre chemin.</strong></p>
+  </section>
 
-            <h2>
-                Diomandé Abou Johan
-                <br>
-                Fondateur d'AbouDev Labs · Créateur de TermChat
-            </h2>
+  <section class="card">
+    <h3>💼 Je développe pour vous</h3>
+    <div class="services">
+      <div class="service"><b>📱 Applications mobiles</b><p>Android et iOS avec React Native / Expo.</p></div>
+      <div class="service"><b>🌐 Sites web</b><p>Sites et pages rapides, propres, adaptés au téléphone.</p></div>
+      <div class="service"><b>⚙️ API et serveurs</b><p>Back-end, bases de données, paiements mobiles.</p></div>
+    </div>
+    <a class="button wa cta" href="https://wa.me/2250565961287?text=Bonjour%2C%20je%20viens%20de%20votre%20site%20DEV.D.A.J%20et%20j%27ai%20un%20projet." target="_blank" rel="noopener noreferrer">Parler de mon projet sur WhatsApp</a>
+  </section>
 
-        </div>
-    </header>
+  <section class="card">
+    <h3>🛠️ Compétences</h3>
+    <div class="pills">
+      <span>Python</span><span>JavaScript</span><span>HTML / CSS</span>
+      <span>React Native</span><span>Expo</span><span>Firebase</span>
+      <span>API REST</span><span>Linux</span>
+    </div>
+  </section>
 
-    <main>
-        <div class="container">
+  <section class="card">
+    <h3>🚀 Projets</h3>
 
-            <section class="card">
-                <h3>👋 À propos</h3>
+    <div class="project">
+      <strong>TermChat</strong>
+      <div class="tags"><span>Messagerie</span><span>TLS</span><span>Terminal</span></div>
+      <p>Messagerie orientée terminal, avec TLS, authentification sécurisée et chiffrement des données.</p>
+      <a href="https://github.com/daboujohan-hub/termchat" target="_blank" rel="noopener noreferrer">Voir sur GitHub →</a>
+    </div>
 
-                <p>
-                    Je suis <strong>Diomandé Abou Johan</strong>,
-                    alias <strong>DEV.D.A.J</strong>
-                    (<strong>daboujohan-hub</strong>),
-                    développeur Full-Stack basé à
-                    <strong>San Pedro, Côte d'Ivoire</strong>.
-                </p>
+    <div class="project">
+      <strong>VITE API</strong>
+      <div class="tags"><span>Wave</span><span>Orange Money</span><span>Moov</span><span>MTN</span></div>
+      <p>API de paiement mobile pour les développeurs, avec sandbox gratuit.</p>
+      <a href="https://viteapi.onrender.com" target="_blank" rel="noopener noreferrer">Voir VITE API →</a>
+    </div>
+    <div class="project">
+      <strong>LIRA</strong>
+      <div class="tags"><span>Intelligence artificielle</span><span>Assistant</span></div>
+      <p>Mon assistant d'intelligence artificielle, développé par AbouDev Labs.</p>
+    </div>
+  </section>
 
-                <p>
-                    Je développe des projets orientés technologie,
-                    informatique, intelligence artificielle et
-                    communication numérique.
-                </p>
-            </section>
+  <section class="card">
+    <h3>🖼️ Affiches</h3>
+    <div class="gallery">
+      <a href="assets/img/affiche-demain.jpg" target="_blank"><img src="assets/img/affiche-demain.jpg" alt="DEMAIN 25.10 — Le code est notre chemin" loading="lazy"></a>
+      <a href="assets/img/je-cherche-demain.jpg" target="_blank"><img src="assets/img/je-cherche-demain.jpg" alt="Je cherche ce qu'il me faut demain" loading="lazy"></a>
+      <a href="assets/img/vite-api-v2.jpg" target="_blank"><img src="assets/img/vite-api-v2.jpg" alt="VITE API" loading="lazy"></a>
+      <a href="assets/img/vite-api-v3.jpg" target="_blank" class="wide"><img src="assets/img/vite-api-v3.jpg" alt="VITE API v3.0 — nouvelles fonctionnalités" loading="lazy"></a>
+    </div>
+  </section>
 
-            <section class="card">
-                <h3>🚀 Projet phare</h3>
+  <section class="card" id="videos">
+    <h3>🎥 Vidéos</h3>
+    <div class="videos">
+      <figure>
+        <video controls playsinline preload="metadata" src="assets/videos/video-1.mp4#t=0.1" onerror="this.parentNode.style.display='none'"></video>
+        <figcaption>Vidéo 1</figcaption>
+      </figure>
+      <figure>
+        <video controls playsinline preload="metadata" src="assets/videos/video-2.mp4#t=0.1" onerror="this.parentNode.style.display='none'"></video>
+        <figcaption>Vidéo 2</figcaption>
+      </figure>
+    </div>
+  </section>
 
-                <div class="project">
-                    <strong>TermChat by DEV.D.A.J</strong>
+  <section class="card">
+    <h3>🧑‍💻 AbouDev Labs</h3>
+    <p><strong>AbouDev Labs</strong> est l'espace de développement associé à mes projets et expérimentations technologiques. Identité : <strong>DEV.D.A.J</strong>.</p>
+  </section>
 
-                    <p>
-                        Projet de messagerie orienté terminal,
-                        avec des mécanismes de sécurité tels que
-                        TLS, authentification sécurisée et
-                        chiffrement des données.
-                    </p>
+  <section class="card">
+    <h3>🔗 Me contacter</h3>
+    <div class="links">
+      <a class="button wa" href="https://wa.me/2250565961287?text=Bonjour%2C%20je%20viens%20de%20votre%20site%20DEV.D.A.J" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="button" href="https://github.com/daboujohan-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="button" href="https://www.tiktok.com/@aboujohan.dev" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a class="button" href="https://facebook.com/profile.php?id=61575741733606" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="button" href="mailto:daboujohan@gmail.com">Email</a>
+    </div>
+  </section>
 
-                    <a
-                        href="https://github.com/daboujohan-hub/termchat"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Voir le projet sur GitHub →
-                    </a>
-                </div>
-            </section>
+</main>
 
-            <section class="card">
-                <h3>🧑‍💻 AbouDev Labs</h3>
-
-                <p>
-                    <strong>AbouDev Labs</strong> est l'espace de
-                    développement associé à mes projets et
-                    expérimentations technologiques.
-                </p>
-
-                <p>
-                    Identité :
-                    <strong>DEV.D.A.J</strong>
-                </p>
-            </section>
-
-            <section class="card">
-                <h3>🔗 Liens</h3>
-
-                <div class="links">
-
-                    <a
-                        class="button"
-                        href="https://github.com/daboujohan-hub"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </a>
-
-                    <a
-                        class="button"
-                        href="mailto:daboujohan@gmail.com"
-                    >
-                        Email
-                    </a>
-
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            © 2026 DEV.D.A.J — Diomandé Abou Johan · AbouDev Labs 🇨🇮
-        </div>
-    </footer>
+<footer>© 2026 DEV.D.A.J — Diomandé Abou Johan · AbouDev Labs 🇨🇮</footer>
 
 </body>
 </html>

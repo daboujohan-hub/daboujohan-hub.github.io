@@ -56,6 +56,71 @@ h2{font-size:clamp(1.5rem,5vw,2.1rem);margin:0 0 6px;letter-spacing:-.03em}
 footer{padding:26px 0 40px;color:var(--muted);font-size:.88rem;text-align:center}
 .float{position:fixed;right:14px;bottom:14px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.7rem;border:2px solid rgba(255,255,255,.8);box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:20}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+
+.phwrap{text-align:center}
+.ph{position:relative;width:min(290px,84vw);height:580px;margin:0 auto;border:9px solid #1b2347;border-radius:44px;background:#050816;overflow:hidden;box-shadow:0 24px 70px rgba(109,93,252,.35)}
+.nt{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#000;border-radius:14px;z-index:30}
+.sb{position:absolute;top:11px;left:22px;right:22px;display:flex;justify-content:space-between;font-size:.7rem;font-weight:700;z-index:29}
+.hb{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:100px;height:4px;border-radius:4px;background:#e6e9ff;opacity:.7;z-index:30}
+.sc{position:absolute;inset:0;padding:50px 14px 28px;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transition:opacity .45s;background:#0a1030;text-align:left}
+.sc.on{opacity:1}
+.w1{background:linear-gradient(160deg,#2b1f7a,#0e6b73 60%,#071a2e);align-items:center}
+.ck{font-size:3.2rem;font-weight:800;line-height:1;margin-top:18px}
+.dt{font-size:.8rem;opacity:.8;margin-bottom:26px}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px;width:100%}
+.ap{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.62rem}
+.ap i{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,.16);font-size:1.5rem;font-style:normal}
+.ap.au i{background:linear-gradient(135deg,var(--teal),var(--violet))}
+.hd{display:flex;align-items:center;gap:10px;padding:8px 4px}
+.hd b{display:block}
+.hd small{color:var(--teal);font-size:.72rem}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--teal),var(--violet));font-size:1.2rem}
+.av.g{background:#25d366}
+.bb{max-width:86%;padding:10px 12px;border-radius:16px;font-size:.84rem;line-height:1.45}
+.bb.ai{background:#1a2346;border-bottom-left-radius:4px}
+.bb.me{background:var(--violet);margin-left:auto;border-bottom-right-radius:4px}
+.bb.ok{background:#14532d;border:1px solid #22c55e}
+.bb.msg{background:#14532d;border:1px solid #22c55e;max-width:94%}
+.bb.msg u{color:#9ff;word-break:break-all}
+.wv{display:flex;gap:4px;align-items:center;justify-content:center;height:60px;margin-top:6px}
+.wv i{width:5px;height:12px;border-radius:3px;background:var(--teal);animation:wv 1s infinite ease-in-out}
+.wv i:nth-child(2n){animation-delay:.15s}
+.wv i:nth-child(3n){animation-delay:.3s}
+.wv i:nth-child(5n){animation-delay:.45s}
+@keyframes wv{50%{height:46px}}
+.mic{margin:auto auto 6px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:1.5rem;background:linear-gradient(135deg,var(--teal),var(--violet));box-shadow:0 0 0 6px rgba(45,224,196,.15)}
+.rd{font-size:.8rem;color:var(--teal);text-align:center}
+.alert{margin-top:10px;background:#3a0f1a;border:1px solid var(--red);border-radius:18px;padding:18px 14px;text-align:center}
+.alert .sh{font-size:2.6rem}
+.alert h3{margin:6px 0 4px;color:#ffb4bc;font-size:1.3rem}
+.alert p{margin:0;font-size:.9rem}
+.dim{opacity:.5}
+.chip{align-self:flex-start;background:#1a2346;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:.8rem}
+.end{align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 35%,#1d2a6b,#050816 70%)}
+.end .lg{width:96px;height:96px;border-radius:26px;display:grid;place-items:center;font-size:3rem;background:linear-gradient(135deg,var(--teal),var(--violet))}
+.end h3{margin:14px 0 4px;font-size:1.6rem}
+.end p{margin:0;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
+.chips span{font-size:.72rem;background:#1a2346;padding:6px 10px;border-radius:999px}
+.ty{display:flex;gap:5px;padding:12px 14px;background:#1a2346;border-radius:16px;width:62px}
+.ty i{width:8px;height:8px;border-radius:50%;background:var(--muted);animation:ty 1s infinite}
+.ty i:nth-child(2){animation-delay:.2s}
+.ty i:nth-child(3){animation-delay:.4s}
+@keyframes ty{50%{transform:translateY(-5px);opacity:.4}}
+.r1,.r2,.r3{opacity:0;transform:translateY(8px);transition:.4s}
+.s1 .r1,.s2 .r2,.s3 .r3{opacity:1;transform:none}
+.s3 .r2{display:none}
+.sc.on .rise{animation:rise .6s .5s both}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.sc.on .pop{animation:popin .5s .3s both}
+@keyframes popin{from{opacity:0;transform:scale(.7)}}
+.fg{position:absolute;z-index:40;font-size:34px;opacity:0;left:50%;top:70%;transition:left .9s ease,top .9s ease,opacity .3s,transform .2s;pointer-events:none;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}
+.fg.show{opacity:1}
+.fg.tap{transform:scale(.75)}
+.pu{animation:pu 1.1s infinite;border-radius:16px}
+.mic.pu{border-radius:50%}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(45,224,196,.8)}100%{box-shadow:0 0 0 14px rgba(45,224,196,0)}}
+.cp{min-height:3em;margin:14px auto 0;max-width:290px;font-weight:700}
 </style>
 </head>
 <body>
@@ -74,11 +139,65 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.88rem;text-align:center
       </div>
       <p class="note" id="voixMsg" hidden></p>
     </div>
-    <div class="phone" aria-hidden="true">
-      <div class="bubble b1">🎙️ <b>AURA</b> : Bonjour ! Que veux-tu que je lise ou que j'explique ?</div>
-      <div class="bubble b2">💬 <b>WhatsApp</b> : « Clique ici pour gagner un cadeau 🎁 » http://cadeau-gratuit.com</div>
-      <div class="bubble b3">⚠️ <b>Attention !</b> Ce lien peut être dangereux. Ne clique pas dessus.</div>
-      <div class="bubble b4">🎤 Appuie et parle</div>
+    <div class="phwrap">
+      <div class="ph" id="ph" aria-hidden="true">
+        <div class="nt"></div>
+        <div class="sb"><span>10:30</span><span>📶 🔋</span></div>
+
+        <section class="sc w1 on" id="a1">
+          <div class="ck">10:30</div><div class="dt">Vendredi 16 octobre</div>
+          <div class="apps">
+            <div class="ap"><i>📞</i>Appels</div>
+            <div class="ap"><i>💬</i>WhatsApp</div>
+            <div class="ap"><i>📷</i>Photos</div>
+            <div class="ap"><i>🎵</i>TikTok</div>
+            <div class="ap"><i>▶️</i>Vidéos</div>
+            <div class="ap"><i>🌐</i>Internet</div>
+            <div class="ap"><i>⚙️</i>Réglages</div>
+            <div class="ap au" id="tIcon"><i>😊</i>AURA</div>
+          </div>
+        </section>
+
+        <section class="sc" id="a2">
+          <div class="hd"><span class="av">😊</span><div><b>AURA</b><small>En écoute…</small></div></div>
+          <div class="bb ai rise">Bonjour ! Que veux-tu que je lise ou que je t'explique ?</div>
+          <div class="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="mic">🎤</div>
+        </section>
+
+        <section class="sc" id="a3">
+          <div class="hd"><span class="av g">💬</span><div><b>WhatsApp</b><small>Nouveau message</small></div></div>
+          <div class="bb msg rise">Message de +225 07 00 00 00 00 :<br>« Clique ici pour gagner un cadeau 🎁 »<br><u>http://cadeau-gratuit.com</u></div>
+          <div class="rd">🔊 AURA lit le message…</div>
+          <div class="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </section>
+
+        <section class="sc" id="a4">
+          <div class="alert pop"><div class="sh">🛡️</div><h3>Attention !</h3><p>Ce lien peut être dangereux.<br>Ne clique pas dessus.</p></div>
+          <div class="bb msg dim">« Clique ici pour gagner un cadeau 🎁 »</div>
+          <div class="chip">📖 Lis le message</div>
+          <div class="chip">☝️ Dois-je cliquer ?</div>
+        </section>
+
+        <section class="sc" id="a5">
+          <div class="hd"><span class="av">😊</span><div><b>AURA</b><small>En écoute…</small></div></div>
+          <div class="bb me r1">Dois-je cliquer ?</div>
+          <div class="ty r2"><i></i><i></i><i></i></div>
+          <div class="bb ai ok r3">✅ Non. Ne clique pas. Supprime ce message.</div>
+          <div class="mic" id="tMic">🎤</div>
+        </section>
+
+        <section class="sc end" id="a6">
+          <div class="lg">😊</div>
+          <h3>AURA TALK</h3>
+          <p>Ta voix. Ton guide.<br>Ta sécurité.</p>
+          <div class="chips"><span>🗣️ Parle naturellement</span><span>👨‍👩‍👧 Pour tous</span></div>
+        </section>
+
+        <div class="fg" id="fg">👆</div>
+        <div class="hb"></div>
+      </div>
+      <p class="cp" id="cap"></p>
     </div>
   </div>
 
@@ -156,5 +275,6 @@ btn.onclick = () => {
   parle = true; btn.classList.add('talking'); btn.textContent = '⏹ Arrêter'; un();
 };
 </script>
+<script src="demo.js?v=1"></script>
 </body>
 </html>

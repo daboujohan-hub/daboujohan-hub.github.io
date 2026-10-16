@@ -1,24 +1,31 @@
 [
   {
+    "nom": "AURA TALK",
+    "icone": "🎙️",
+    "texte": "Assistant vocal pour comprendre le téléphone sans savoir lire : maquette animée et parlée.",
+    "lien": "https://daboujohan-hub.github.io/aura-talk/",
+    "statut": "Bientôt"
+  },
+  {
     "nom": "AWA KITS CI",
     "icone": "💄",
-    "statut": "En développement",
-    "texte": "Boutique en ligne pour vendeuse de cosmétiques : la vendeuse change photos, vidéos et prix depuis son téléphone. Maquette parlée disponible.",
+    "statut": "Bientôt",
+    "texte": "Boutique en ligne pour vendeuse de cosmétiques : maquette animée et parlée.",
     "lien": "https://daboujohan-hub.github.io/maquettes/awa-kits/"
   },
   {
     "nom": "TermChat",
     "icone": "💬",
-    "statut": "Disponible",
+    "statut": "Bientôt",
     "texte": "Messagerie mondiale pour développeurs.",
     "lien": "https://github.com/daboujohan-hub/termchat"
   },
   {
     "nom": "VITE API",
     "icone": "💳",
-    "statut": "En développement",
-    "texte": "API de paiement mobile (Wave, Orange Money, Moov, MTN).",
-    "lien": ""
+    "statut": "Bientôt",
+    "texte": "API de paiement mobile (Wave, Orange Money, Moov, MTN) : maquette animée et parlée.",
+    "lien": "https://daboujohan-hub.github.io/vite-demo/"
   },
   {
     "nom": "LIRA",

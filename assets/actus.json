@@ -1,6 +1,11 @@
 [
   {
     "date": "2026-10-16",
+    "titre": "Trois maquettes animées en ligne",
+    "texte": "VITE API, AURA TALK et Awa Kits CI : touche un projet pour voir et écouter la démo."
+  },
+  {
+    "date": "2026-10-16",
     "titre": "Maquette Awa Kits CI en ligne",
     "texte": "Démo parlée d'une boutique en ligne pour vendeuse de cosmétiques. Touche le projet pour l'écouter."
   },
@@ -8,15 +13,5 @@
     "date": "2026-10-16",
     "titre": "Mon site évolue",
     "texte": "Les actualités se modifient depuis mon terminal"
-  },
-  {
-    "date": "2026-10-16",
-    "titre": "Nouvelle version de VITE API",
-    "texte": "La v3.0 arrive avec 20 fonctionnalités."
-  },
-  {
-    "date": "2026-10-10",
-    "titre": "TermChat évolue",
-    "texte": "Nouvelles fonctions en préparation."
   }
 ]

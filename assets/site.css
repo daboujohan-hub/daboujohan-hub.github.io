@@ -1,0 +1,13 @@
+.brand{white-space:nowrap}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.actus-list{display:grid;gap:12px;margin-top:14px}
+.actu{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--surface-2)}
+.actu time{font-size:.76rem;color:var(--green);font-weight:700}
+.actu b{display:block;margin-top:2px}
+.actu p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 16px;-webkit-overflow-scrolling:touch}
+.carousel .project{flex:0 0 min(82%,340px);scroll-snap-align:start}
+.badge{align-self:flex-start;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;border:1px solid var(--line)}
+.badge.dispo{color:var(--green);border-color:var(--green)}
+.badge.dev{color:var(--orange);border-color:var(--orange)}
+.badge.bientot{color:var(--muted)}

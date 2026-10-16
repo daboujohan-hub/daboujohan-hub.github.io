@@ -1,0 +1,5 @@
+[
+  { "nom": "TermChat", "icone": "💬", "statut": "Disponible", "texte": "Messagerie mondiale pour développeurs.", "lien": "https://github.com/daboujohan-hub/termchat" },
+  { "nom": "VITE API", "icone": "💳", "statut": "En développement", "texte": "API de paiement mobile (Wave, Orange Money, Moov, MTN).", "lien": "" },
+  { "nom": "LIRA", "icone": "🤖", "statut": "Bientôt", "texte": "Mon projet d'intelligence artificielle.", "lien": "" }
+]

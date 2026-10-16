@@ -89,6 +89,7 @@
     @media(max-width:650px){.container{width:min(calc(100% - 28px),var(--max))}.nav{min-height:66px}.menu-btn{display:inline-flex}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;padding:16px 22px 20px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:11px 0}.hero{padding:48px 0 28px}.hero-grid{gap:22px}h1{font-size:clamp(2.7rem,14vw,4.2rem)}.section-head{align-items:start;flex-direction:column}.about-grid,.project-grid,.service-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px 8px}.stat span{font-size:.72rem}.card{padding:20px}.contact-links{grid-template-columns:1fr 1fr}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
   <div class="flag" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -117,19 +118,9 @@
             <a class="btn" href="#contact">Parler d'un projet</a>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Présentation technique">
-          <div class="terminal-top" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="code-line"><b>const</b> developer = {</div>
-          <div class="code-line">&nbsp;&nbsp;nom: <em>"DEV.D.A.J"</em>,</div>
-          <div class="code-line">&nbsp;&nbsp;studio: <em>"AbouDev Labs"</em>,</div>
-          <div class="code-line">&nbsp;&nbsp;focus: [<em>"Mobile"</em>, <em>"Web"</em>, <em>"API"</em>, <em>"IA"</em>],</div>
-          <div class="code-line">&nbsp;&nbsp;origine: <em>"Côte d'Ivoire"</em></div>
-          <div class="code-line">};<span style="color:var(--green)"> _</span></div>
-          <div class="stats">
-            <div class="stat"><b>TermChat</b><span>Messagerie</span></div>
-            <div class="stat"><b>DonneDev</b><span>Projet personnel</span></div>
-            <div class="stat"><b>LIRA</b><span>Projet IA</span></div>
-          </div>
+        <aside class="hero-panel" aria-label="Actualités">
+          <div class="kicker">📰 Actualités</div>
+          <div id="actusList" class="actus-list"><p class="muted">Chargement…</p></div>
         </aside>
       </div>
     </section>
@@ -137,36 +128,7 @@
     <section id="projets">
       <div class="container">
         <div class="section-head"><div><div class="kicker">Réalisations</div><h2>Mes projets</h2></div><p class="section-intro">Mes projets personnels, présentés honnêtement selon leur état actuel. Certains sont encore en développement : consulte les dépôts pour suivre leur évolution.</p></div>
-        <div class="project-grid">
-          <article class="project">
-            <div class="project-icon" aria-hidden="true">📱</div>
-            <h3>TermuCaTApp</h3>
-            <p>Projet personnel en développement. Consulte le dépôt pour suivre le code et son évolution.</p>
-            <div class="tags"><span class="tag">Application</span><span class="tag">En développement</span></div>
-            <div class="project-links"><a class="text-link" href="https://github.com/daboujohan-hub/TermuCaTApp" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub ↗</a></div>
-          </article>
-          <article class="project">
-            <div class="project-icon" aria-hidden="true">💬</div>
-            <h3>TermChat</h3>
-            <p>Projet personnel de messagerie. Le dépôt présente le code et les informations disponibles sur le projet.</p>
-            <div class="tags"><span class="tag">Messagerie</span><span class="tag">Projet personnel</span></div>
-            <div class="project-links"><a class="text-link" href="https://github.com/daboujohan-hub/termchat" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub ↗</a></div>
-          </article>
-          <article class="project">
-            <div class="project-icon" aria-hidden="true">🧑‍💻</div>
-            <h3>DonneDev</h3>
-            <p>Projet personnel en cours de développement. Les détails seront précisés à mesure que le dépôt sera documenté.</p>
-            <div class="tags"><span class="tag">Projet personnel</span><span class="tag">En développement</span></div>
-            <div class="project-links"><a class="text-link" href="https://github.com/daboujohan-hub/DonneDev" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub ↗</a></div>
-          </article>
-          <article class="project">
-            <div class="project-icon" aria-hidden="true">🌳</div>
-            <h3>Abou-Johan-Baobab-V0.0</h3>
-            <p>Projet personnel en version initiale. Consulte le dépôt pour voir les éléments réellement publiés.</p>
-            <div class="tags"><span class="tag">Version 0.0</span><span class="tag">Projet personnel</span></div>
-            <div class="project-links"><a class="text-link" href="https://github.com/daboujohan-hub/Abou-Johan-Baobab-V0.0" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub ↗</a></div>
-          </article>
-        </div>
+        <div class="carousel" id="carousel"></div>
       </div>
     </section>
 
@@ -296,5 +258,6 @@
       window.location.href = mailto;
     });
   </script>
+  <script src="assets/site.js"></script>
 </body>
 </html>

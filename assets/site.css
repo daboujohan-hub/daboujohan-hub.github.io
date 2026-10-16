@@ -11,3 +11,4 @@
 .badge.dispo{color:var(--green);border-color:var(--green)}
 .badge.dev{color:var(--orange);border-color:var(--orange)}
 .badge.bientot{color:var(--muted)}
+.stat span{display:block;line-height:1.3}

@@ -1,5 +1,30 @@
 [
-  { "nom": "TermChat", "icone": "💬", "statut": "Disponible", "texte": "Messagerie mondiale pour développeurs.", "lien": "https://github.com/daboujohan-hub/termchat" },
-  { "nom": "VITE API", "icone": "💳", "statut": "En développement", "texte": "API de paiement mobile (Wave, Orange Money, Moov, MTN).", "lien": "" },
-  { "nom": "LIRA", "icone": "🤖", "statut": "Bientôt", "texte": "Mon projet d'intelligence artificielle.", "lien": "" }
+  {
+    "nom": "AWA KITS CI",
+    "icone": "💄",
+    "statut": "En développement",
+    "texte": "Boutique en ligne pour vendeuse de cosmétiques : la vendeuse change photos, vidéos et prix depuis son téléphone. Maquette parlée disponible.",
+    "lien": "https://daboujohan-hub.github.io/maquettes/awa-kits/"
+  },
+  {
+    "nom": "TermChat",
+    "icone": "💬",
+    "statut": "Disponible",
+    "texte": "Messagerie mondiale pour développeurs.",
+    "lien": "https://github.com/daboujohan-hub/termchat"
+  },
+  {
+    "nom": "VITE API",
+    "icone": "💳",
+    "statut": "En développement",
+    "texte": "API de paiement mobile (Wave, Orange Money, Moov, MTN).",
+    "lien": ""
+  },
+  {
+    "nom": "LIRA",
+    "icone": "🤖",
+    "statut": "Bientôt",
+    "texte": "Mon projet d'intelligence artificielle.",
+    "lien": ""
+  }
 ]

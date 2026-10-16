@@ -1,5 +1,12 @@
 [
   {
+    "nom": "DIOMANDÉ",
+    "icone": "🏠",
+    "statut": "En cours",
+    "texte": "Application privée pour une famille : discussions, vidéos de 24h, souvenirs, événements. Démo animée et parlée.",
+    "lien": "https://daboujohan-hub.github.io/diomande-demo/"
+  },
+  {
     "nom": "AURA TALK",
     "icone": "🎙️",
     "texte": "Assistant vocal pour comprendre le téléphone sans savoir lire : maquette animée et parlée.",

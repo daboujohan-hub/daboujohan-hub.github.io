@@ -1,0 +1,8 @@
+[
+  { "icone": "🛍️", "nom": "Boutique en ligne", "texte": "Ta boutique avec photos, vidéos, prix et commandes sur WhatsApp. Tu modifies tout depuis ton téléphone.", "delai": "3 à 7 jours" },
+  { "icone": "🌐", "nom": "Site vitrine / portfolio", "texte": "Un site propre pour présenter ton activité, adapté au téléphone.", "delai": "2 à 5 jours" },
+  { "icone": "📱", "nom": "Application mobile", "texte": "Application Android pour ton entreprise, ton école ou ta famille.", "delai": "Sur devis" },
+  { "icone": "💳", "nom": "Paiement mobile", "texte": "Intégration Wave, Orange Money, Moov et MTN dans ton site ou ton application.", "delai": "Sur devis" },
+  { "icone": "💬", "nom": "Messagerie / communauté", "texte": "Une messagerie privée pour ton équipe ou ta communauté.", "delai": "Sur devis" },
+  { "icone": "🤖", "nom": "Assistant IA", "texte": "Un assistant intelligent qui répond à tes clients à ta place.", "delai": "Sur devis" }
+]

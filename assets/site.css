@@ -12,3 +12,14 @@
 .badge.dev{color:var(--orange);border-color:var(--orange)}
 .badge.bientot{color:var(--muted)}
 .stat span{display:block;line-height:1.3}
+
+.cat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cat-card{display:flex;flex-direction:column;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:20px}
+.cat-card h3{margin:12px 0 6px;font-size:1.15rem}
+.cat-card p{margin:0 0 14px;color:var(--muted)}
+.cat-card .meta{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.cat-card .btn{margin-top:auto}
+.cat-other textarea{width:100%;min-height:90px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);padding:10px 12px;border-radius:12px;margin-bottom:12px}
+.cat-note{margin-top:18px;color:var(--muted);font-size:.9rem;text-align:center}
+@media(max-width:850px){.cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.cat-grid{grid-template-columns:1fr}}

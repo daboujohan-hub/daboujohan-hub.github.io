@@ -97,7 +97,7 @@
     <nav class="nav container" aria-label="Navigation principale">
       <a class="brand" href="#accueil" aria-label="DEV.D.A.J, accueil"><span class="brand-mark">DAJ</span><span>ABOUDEV <span style="color:var(--green)">LABS</span></span></a>
       <div class="nav-links" id="navLinks">
-        <a href="#accueil">Accueil</a><a href="#projets">Projets</a><a href="#apropos">À propos</a><a href="#competences">Compétences</a><a href="#services">Services</a><a href="#contact">Contact</a>
+        <a href="#accueil">Accueil</a><a href="#projets">Projets</a><a href="#apropos">À propos</a><a href="#competences">Compétences</a><a href="#services">Services</a><a href="#catalogue">Commander</a><a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Activer le thème clair" title="Changer de thème">☼</button>
@@ -171,6 +171,14 @@
           <article class="service"><div class="emoji" aria-hidden="true">🖥️</div><h3>Sites web</h3><p>Pages de présentation, portfolios et interfaces adaptées aux petits et grands écrans.</p></article>
           <article class="service"><div class="emoji" aria-hidden="true">🔧</div><h3>API et outils</h3><p>Conception de services web, scripts d'automatisation et intégrations techniques.</p></article>
         </div>
+      </div>
+    </section>
+
+        <section id="catalogue">
+      <div class="container">
+        <div class="section-head"><div><div class="kicker">Commander un projet</div><h2>Ce que je peux faire pour toi</h2></div><p class="section-intro">Choisis une idée, touche le bouton : ta demande arrive sur mon WhatsApp, déjà écrite. Je réalise le projet moi-même ou avec mon équipe, et je reste ton seul contact du début à la fin.</p></div>
+        <div class="cat-grid" id="catGrid"><p class="muted">Chargement…</p></div>
+        <p class="cat-note">Réponse rapide sur WhatsApp · Devis gratuit · Paiement à la livraison du projet</p>
       </div>
     </section>
 
@@ -264,6 +272,7 @@
     });
   </script>
   <script src="assets/site.js"></script>
+  <script src="assets/catalogue.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="assets/stats.js"></script>

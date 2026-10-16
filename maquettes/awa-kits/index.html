@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWA KITS CI — Maquette | DEV.D.A.J</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="flag"><span></span><span></span><span></span></div>
+  <main class="wrap">
+    <header class="top">
+      <h1>AWA KITS CI</h1>
+      <p>Voici comment ta boutique va fonctionner</p>
+    </header>
+
+    <div class="phone" id="phone">
+      <div class="notch"></div>
+
+      <section class="screen dark" id="s-live">
+        <span class="live-badge">🔴 LIVE</span>
+        <div class="live-video"><div><div class="avatar">💄</div><p>Awa présente le Kit Teint Métisse…</p></div></div>
+        <div class="comments">
+          <p><b>Mariam</b> C'est combien le kit ? 😍</p>
+          <p><b>Aïcha</b> Je veux commander !</p>
+        </div>
+        <button class="link-btn" id="tapSite">🔗 Commander sur www.awakits.ci</button>
+      </section>
+
+      <section class="screen" id="s-home">
+        <div class="bar"><span>👑 AWA KITS CI</span><span>🛒</span></div>
+        <div class="hero"><h3>Kit Teint Métisse</h3><p>Éclat naturel · 100% naturel</p><div class="big-emoji">🧴✨</div></div>
+        <h4>Nos produits</h4>
+        <div class="grid">
+          <div class="card" id="tapSerum"><div class="ph">🧴</div><b>Sérum Éclat</b><span class="price" data-price></span></div>
+          <div class="card"><div class="ph">🧼</div><b>Savon éclaircissant</b><span class="price">3 000 FCFA</span></div>
+        </div>
+        <div class="livebox">🔴 LIVE EN COURS · Regarder maintenant</div>
+        <div class="toast" id="toastHome">✨ Prix mis à jour en direct</div>
+      </section>
+
+      <section class="screen" id="s-prod">
+        <div class="bar"><span>← Retour</span><span>👑 AWA KITS CI</span></div>
+        <div class="photo">🧴</div>
+        <div class="video">▶ Vidéo du produit</div>
+        <h3>Sérum Éclat Teint Métisse</h3>
+        <span class="price big" data-price></span>
+        <div class="qty">Quantité : <b>− 1 +</b></div>
+        <button class="wa" id="tapWa">💬 Commander sur WhatsApp</button>
+      </section>
+
+      <section class="screen wa-screen" id="s-wa">
+        <div class="wa-top">🟢 Awa Kits CI</div>
+        <div id="chat"></div>
+      </section>
+
+      <section class="screen" id="s-admin">
+        <div class="bar"><span>✨ Tableau de bord</span><span>Awa</span></div>
+        <h4>✏️ Modifier le produit</h4>
+        <span class="lbl">Photo / Vidéo</span><div class="input">📷 Choisir un fichier</div>
+        <span class="lbl">Nom du produit</span><div class="input">Sérum Éclat Teint Métisse</div>
+        <span class="lbl">Prix FCFA</span><div class="input" id="adminPrice">8500</div>
+        <span class="lbl">Stock</span><div class="input">12</div>
+        <button class="save" id="tapSave">✅ Enregistrer</button>
+        <div class="toast" id="toastAdmin">✔ Enregistré !</div>
+      </section>
+
+      <div class="finger" id="finger">👆</div>
+    </div>
+
+    <section class="caption"><b id="capTitle"></b><p id="capText"></p></section>
+    <nav class="controls">
+      <button id="btnPrev" aria-label="Étape précédente">⏮</button>
+      <button id="btnPlay" class="primary">▶ Lancer la démo</button>
+      <button id="btnNext" aria-label="Étape suivante">⏭</button>
+    </nav>
+    <div class="dots" id="dots"></div>
+    <footer>Réalisé par DEV.D.A.J · AbouDev Labs 🇨🇮</footer>
+  </main>
+  <script src="demo.js"></script>
+</body>
+</html>

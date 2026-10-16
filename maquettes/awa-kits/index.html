@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AWA KITS CI — Maquette | DEV.D.A.J</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <div class="flag"><span></span><span></span><span></span></div>
@@ -13,6 +13,7 @@
       <h1>AWA KITS CI</h1>
       <p>Voici comment ta boutique va fonctionner</p>
     </header>
+    <div id="err" class="err" hidden></div>
 
     <div class="phone" id="phone">
       <div class="notch"></div>
@@ -46,7 +47,16 @@
         <h3>Sérum Éclat Teint Métisse</h3>
         <span class="price big" data-price></span>
         <div class="qty">Quantité : <b>− 1 +</b></div>
+        <button class="cart" id="tapCart">🛒 Ajouter au panier</button>
+      </section>
+
+      <section class="screen" id="s-cart">
+        <div class="bar"><span>← Boutique</span><span>🛒 Mon panier</span></div>
+        <div class="row"><span class="ph2">🧴</span><div><b>Sérum Éclat Teint Métisse</b><small>Quantité : 1</small></div><span class="price" data-price></span></div>
+        <div class="line"><span>Livraison Abidjan</span><b>1 000 FCFA</b></div>
+        <div class="line total"><span>Total</span><b data-total></b></div>
         <button class="wa" id="tapWa">💬 Commander sur WhatsApp</button>
+        <p class="note">Paiement à la livraison</p>
       </section>
 
       <section class="screen wa-screen" id="s-wa">
@@ -54,15 +64,41 @@
         <div id="chat"></div>
       </section>
 
-      <section class="screen" id="s-admin">
+      <section class="screen" id="s-dash">
         <div class="bar"><span>✨ Tableau de bord</span><span>Awa</span></div>
-        <h4>✏️ Modifier le produit</h4>
+        <div class="stats3">
+          <div class="st"><small>CA du jour</small><b data-total></b></div>
+          <div class="st"><small>Commandes</small><b>1</b></div>
+          <div class="st"><small>Stock</small><b>11</b></div>
+        </div>
+        <h4>🔔 Nouvelle commande</h4>
+        <div class="order"><b>Mariam K.</b><small>1 × Sérum Éclat · <span data-total></span></small><span class="badge wait">🟡 En attente</span></div>
+        <div class="tabs"><span>🏠 Accueil</span><span>🧴 Produits</span><span class="act" id="tapOrders">📦 Commandes</span></div>
+      </section>
+
+      <section class="screen" id="s-orders">
+        <div class="bar"><span>📦 Commandes</span><span>Awa</span></div>
+        <div class="order"><b>Mariam K. · Abidjan</b><small>1 × Sérum Éclat · <span data-total></span></small><span class="badge wait" id="status">🟡 En attente</span><button class="mini" id="tapDeliver">✅ Marquer comme livrée</button></div>
+        <div class="order"><b>Aïcha D. · Bouaké</b><small>1 × Savon éclaircissant · 4 000 FCFA</small><span class="badge ok">🟢 Livrée</span></div>
+        <div class="toast" id="toastOrders">✔ Statut mis à jour</div>
+      </section>
+
+      <section class="screen" id="s-admin">
+        <div class="bar"><span>✨ Modifier le produit</span><span>Awa</span></div>
         <span class="lbl">Photo / Vidéo</span><div class="input">📷 Choisir un fichier</div>
         <span class="lbl">Nom du produit</span><div class="input">Sérum Éclat Teint Métisse</div>
         <span class="lbl">Prix FCFA</span><div class="input" id="adminPrice">8500</div>
-        <span class="lbl">Stock</span><div class="input">12</div>
+        <span class="lbl">Stock</span><div class="input">11</div>
         <button class="save" id="tapSave">✅ Enregistrer</button>
         <div class="toast" id="toastAdmin">✔ Enregistré !</div>
+      </section>
+
+      <section class="screen" id="s-contact">
+        <div class="bar"><span>← Retour</span><span>📞 Contact</span></div>
+        <div class="ct">💬<div><b>WhatsApp</b><small>Réponse rapide, 7j/7</small></div></div>
+        <div class="ct">🎵<div><b>TikTok</b><small>Tes lives chaque semaine</small></div></div>
+        <div class="ct">📍<div><b>Abidjan</b><small>Livraison partout en Côte d'Ivoire</small></div></div>
+        <div class="ct">⏰<div><b>Horaires</b><small>8h – 20h, tous les jours</small></div></div>
       </section>
 
       <div class="finger" id="finger">👆</div>
@@ -77,6 +113,17 @@
     <div class="dots" id="dots"></div>
     <footer>Réalisé par DEV.D.A.J · AbouDev Labs 🇨🇮</footer>
   </main>
-  <script src="demo.js"></script>
+  <script>
+    window.addEventListener('error', function (e) {
+      var b = document.getElementById('err');
+      if (!b) return;
+      var t = e.target;
+      b.hidden = false;
+      b.textContent = (t && t.tagName === 'SCRIPT')
+        ? 'Fichier introuvable : ' + t.getAttribute('src')
+        : 'Erreur : ' + e.message + ' (ligne ' + e.lineno + ')';
+    }, true);
+  </script>
+  <script src="demo.js?v=2"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ fetch('assets/projets.json').then(r => r.json()).then(list => {
     const cls = p.statut === 'Disponible' ? 'dispo' : p.statut === 'Bientôt' ? 'bientot' : 'dev';
     c.append(el('span', 'badge ' + cls, p.statut), el('div', 'project-icon', p.icone), el('h3', '', p.nom), el('p', '', p.texte));
     if (p.lien) {
-      const a = el('a', 'text-link', 'Découvrir ↗');
+      const a = el('a', 'text-link', 'Voir la démo ▶');
       a.href = p.lien; a.target = '_blank'; a.rel = 'noopener noreferrer';
       const w = el('div', 'project-links');
       w.append(a);

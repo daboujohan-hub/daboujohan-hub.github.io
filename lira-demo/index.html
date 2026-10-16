@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0716">
+<meta name="description" content="LIRA : une intelligence artificielle qui t'aide en français. Par DEV.D.A.J, AbouDev Labs.">
+<title>LIRA — Démo | DEV.D.A.J</title>
+<style>
+:root{--bg:#0b0716;--card:#161026;--line:#2e2250;--acc:#c084fc;--on:#1a0630;--muted:#b5a6d6;--text:#f6f0ff;--glow:rgba(192,132,252,.2);--o:#ff922b;--pu:rgba(192,132,252,.8);--pu0:rgba(192,132,252,0)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 80% -10%,var(--glow),transparent 45%),var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+.flag{height:5px;display:flex}.flag span{flex:1}.flag span:nth-child(1){background:#f58220}.flag span:nth-child(2){background:#fff}.flag span:nth-child(3){background:#159447}
+.wrap{width:min(calc(100% - 32px),980px);margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-weight:900;font-size:1.25rem;letter-spacing:.03em}.logo b{color:var(--acc)}
+.badge{font-size:.78rem;border:1px solid var(--o);color:var(--o);padding:4px 10px;border-radius:999px;font-weight:700}
+.hero{padding:22px 0;display:grid;gap:26px}
+@media(min-width:800px){.hero{grid-template-columns:1.1fr .9fr;align-items:center}}
+h1{font-size:clamp(2.2rem,8vw,3.9rem);line-height:1.04;margin:0 0 12px;letter-spacing:-.04em}
+h1 span{color:var(--acc)}
+.lead{color:var(--muted);font-size:1.1rem;margin:0 0 18px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font-weight:800;font-size:1rem;cursor:pointer;font-family:inherit}
+.btn.main{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.btn.wa{background:#25d366;color:#052b16;border-color:#25d366}
+.note{color:var(--muted);font-size:.85rem;margin-top:12px}
+.phwrap{text-align:center}
+.ph{position:relative;width:min(290px,84vw);height:580px;margin:0 auto;border:9px solid var(--line);border-radius:44px;background:var(--bg);overflow:hidden;box-shadow:0 24px 70px var(--glow)}
+.nt{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#000;border-radius:14px;z-index:30}
+.sb{position:absolute;top:11px;left:22px;right:22px;display:flex;justify-content:space-between;font-size:.7rem;font-weight:700;z-index:29}
+.hb{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:100px;height:4px;border-radius:4px;background:#fff;opacity:.6;z-index:30}
+.sc{position:absolute;inset:0;padding:50px 14px 28px;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transition:opacity .45s;background:var(--bg);text-align:left}
+.sc.on{opacity:1}
+.hd{display:flex;align-items:center;gap:10px;padding:6px 4px}
+.hd b{display:inline}
+.hd small{display:block;color:var(--acc);font-size:.72rem}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--on);font-size:1.1rem;font-weight:900}
+.bx{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-size:.88rem}
+.bx small{display:block;color:var(--muted);font-size:.72rem}
+.term{background:#020509;border:1px solid var(--line);border-radius:14px;padding:12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;line-height:1.7}
+.ln.ok{color:var(--acc)}
+.bb{max-width:90%;padding:10px 12px;border-radius:16px;font-size:.84rem;line-height:1.45}
+.bb small{display:block;font-size:.68rem;color:var(--acc);margin-bottom:2px}
+.bb.ai{background:var(--card);border-bottom-left-radius:4px}
+.bb.me{background:var(--acc);color:var(--on);margin-left:auto;border-bottom-right-radius:4px}
+.bb.me small{color:var(--on);opacity:.7}
+.inp{margin-top:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;min-height:44px;font-size:.88rem}
+.inp span::after{content:"|";animation:bl 1s infinite}
+@keyframes bl{50%{opacity:0}}
+.pb{border:0;border-radius:14px;padding:13px;background:var(--acc);color:var(--on);font-weight:800;font-size:.95rem;font-family:inherit}
+.ty{display:flex;gap:5px;padding:12px 14px;background:var(--card);border-radius:16px;width:62px}
+.ty i{width:8px;height:8px;border-radius:50%;background:var(--muted);animation:ty 1s infinite}
+.ty i:nth-child(2){animation-delay:.2s}.ty i:nth-child(3){animation-delay:.4s}
+@keyframes ty{50%{transform:translateY(-5px);opacity:.4}}
+.ty:has(+ .bb.show){display:none}
+.rv,.rw{opacity:0;transform:translateY(8px);transition:.4s}
+.rv.show,.rw.show{opacity:1;transform:none}
+.ctr{align-items:center;justify-content:center;text-align:center}
+.globe{font-size:4.2rem}
+.sc.on .globe{animation:popin .6s both}
+.flags{display:flex;gap:10px;font-size:1.7rem;margin:8px 0}
+.sc.on .flags span{animation:popin .5s both}
+.flags span:nth-child(2){animation-delay:.3s!important}.flags span:nth-child(3){animation-delay:.6s!important}.flags span:nth-child(4){animation-delay:.9s!important}.flags span:nth-child(5){animation-delay:1.2s!important}.flags span:nth-child(6){animation-delay:1.5s!important}
+@keyframes popin{from{opacity:0;transform:scale(.5)}}
+.ctr h3{margin:6px 0 0;font-size:1.4rem}.ctr p{margin:0;color:var(--muted)}
+.end{align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 35%,var(--glow),var(--bg) 70%)}
+.end .lg{width:92px;height:92px;border-radius:26px;display:grid;place-items:center;font-size:2.6rem;background:var(--acc);color:var(--on);font-weight:900}
+.end h3{margin:12px 0 2px;font-size:1.6rem}.end p{margin:0;color:var(--muted);font-size:.9rem}
+.fg{position:absolute;z-index:40;font-size:34px;opacity:0;left:50%;top:70%;transition:left .9s ease,top .9s ease,opacity .3s,transform .2s;pointer-events:none;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}
+.fg.show{opacity:1}.fg.tap{transform:scale(.75)}
+.pu{animation:pu 1.1s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 var(--pu)}100%{box-shadow:0 0 0 14px var(--pu0)}}
+.cp{min-height:3em;margin:14px auto 0;max-width:290px;font-weight:700}
+.blk{padding:26px 0}
+h2{font-size:clamp(1.5rem,5vw,2.1rem);margin:0 0 6px;letter-spacing:-.03em}
+.sub{color:var(--muted);margin:0 0 16px}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.card .ic{font-size:1.8rem}
+.card h3{margin:8px 0 4px;font-size:1.05rem}
+.card p{margin:0;color:var(--muted);font-size:.92rem}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.links .btn{font-size:.92rem;padding:12px 8px}
+footer{padding:26px 0 40px;color:var(--muted);font-size:.88rem;text-align:center}
+.float{position:fixed;right:14px;bottom:14px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.7rem;border:2px solid rgba(255,255,255,.8);box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:20}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.rv,.rw{opacity:1;transform:none}}
+
+</style>
+</head>
+<body>
+<div class="flag"><span></span><span></span><span></span></div>
+<div class="wrap">
+  <div class="top"><div class="logo">✨ <b>LIRA</b></div><span class="badge">Bientôt disponible</span></div>
+  <div class="hero">
+    <div>
+      <h1>Une IA qui t'aide <span>en français.</span></h1>
+      <p class="lead">LIRA est conçue pour répondre à tes questions simplement et t'aider à écrire, sans jargon.</p>
+      <div class="btns">
+        <button class="btn main" id="btnVoix" type="button">🔊 Écouter la démo parlée</button>
+        <a class="btn wa" id="waMain" href="#" target="_blank" rel="noopener noreferrer">💬 Me prévenir sur WhatsApp</a>
+      </div>
+      <p class="note" id="voixMsg" hidden></p>
+      <p class="note">Démonstration : simulation avec des exemples. Le projet n'est pas encore sorti.</p>
+    </div>
+    <div class="phwrap">
+      <div class="ph" id="ph" aria-hidden="true">
+        <div class="nt"></div>
+        <div class="sb"><span>10:30</span><span>📶 🔋</span></div>
+        <section class="sc on" id="a1">
+          <div class="hd"><span class="av">✨</span><div><b>LIRA</b><small>Intelligence artificielle</small></div></div>
+          <div class="bb ai rv">Bonjour ! Pose-moi ta question. 😊</div>
+          <div class="inp"><span id="lType"></span></div>
+          <button class="pb" id="lSend" type="button">Envoyer ➤</button>
+        </section>
+        <section class="sc" id="a2">
+          <div class="hd"><span class="av">✨</span><div><b>LIRA</b><small>Intelligence artificielle</small></div></div>
+          <div class="bb me rv"><small>toi</small>C'est quoi une API ?</div>
+          <div class="ty rv"><i></i><i></i><i></i></div>
+          <div class="bb ai rv"><small>LIRA</small>Une API, c'est comme un serveur dans un restaurant : il prend ta demande, la porte à la cuisine, et te rapporte la réponse. 🍽️</div>
+        </section>
+        <section class="sc" id="a3">
+          <div class="hd"><span class="av">✨</span><div><b>LIRA</b><small>Intelligence artificielle</small></div></div>
+          <div class="bb ai">Une autre question ?</div>
+          <div class="bb me rw"><small>toi</small>Écris un message pour mon client</div>
+          <div class="bb ai rw"><small>LIRA</small>Bonjour ! Merci pour votre commande. Elle sera livrée demain. N'hésitez pas à me contacter. 🙏</div>
+          <div class="inp"><span id="lType2"></span></div>
+          <button class="pb" id="lSend2" type="button">Envoyer ➤</button>
+        </section>
+        <section class="sc end" id="a4">
+          <div class="lg">✨</div><h3>LIRA</h3><p>L'IA qui t'aide en français<br>Par AbouDev Labs 🇨🇮</p>
+        </section>
+        <div class="fg" id="fg">👆</div>
+        <div class="hb"></div>
+      </div>
+      <p class="cp" id="cap"></p>
+    </div>
+  </div>
+  <section class="blk">
+    <h2>Ce que LIRA est conçu pour faire</h2>
+    <p class="sub">Aperçu du projet, la version finale peut évoluer.</p>
+    <div class="grid"><div class="card"><div class="ic">💬</div><h3>Répond simplement</h3><p>Des explications claires, avec des exemples de la vie de tous les jours.</p></div><div class="card"><div class="ic">✍️</div><h3>Aide à écrire</h3><p>Messages, réponses aux clients, textes courts.</p></div><div class="card"><div class="ic">🇫🇷</div><h3>En français</h3><p>Pensée pour parler comme nous.</p></div><div class="card"><div class="ic">🇨🇮</div><h3>Fait en Côte d'Ivoire</h3><p>Un projet d'AbouDev Labs.</p></div></div>
+  </section>
+  <section class="blk" id="contact">
+    <div class="contact">
+      <h2>Contacte-moi</h2>
+      <p class="sub">Pour être prévenu à la sortie, tester ou proposer ton aide, écris-moi.</p>
+      <div class="links">
+        <a class="btn wa" id="waLink" href="#" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        <a class="btn" href="https://www.tiktok.com/@aboujohan.dev" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
+        <a class="btn" href="https://facebook.com/profile.php?id=61575741733606" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+        <a class="btn" href="https://github.com/daboujohan-hub" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+        <a class="btn" href="mailto:daboujohan@gmail.com">✉️ Email</a>
+        <a class="btn" href="../">🌐 Mon portfolio</a>
+      </div>
+    </div>
+  </section>
+  <footer>© <span id="an">2026</span> LIRA · Réalisé par DEV.D.A.J · AbouDev Labs 🇨🇮</footer>
+</div>
+<a class="float" id="waFloat" href="#" target="_blank" rel="noopener noreferrer" aria-label="Écrire sur WhatsApp">💬</a>
+<script>
+var NUM = '2250565961287';
+var wa = function (t) { return 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(t); };
+document.getElementById('waMain').href = wa("Bonjour DEV.D.A.J, je veux être prévenu(e) quand LIRA sera disponible.");
+document.getElementById('waLink').href = wa("Bonjour DEV.D.A.J, je viens de la page LIRA.");
+document.getElementById('waFloat').href = wa("Bonjour DEV.D.A.J, je viens de la page LIRA.");
+document.getElementById('an').textContent = new Date().getFullYear();
+</script>
+<script src="demo.js?v=1"></script>
+</body>
+</html>

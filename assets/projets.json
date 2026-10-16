@@ -17,8 +17,8 @@
     "nom": "TermChat",
     "icone": "💬",
     "statut": "Bientôt",
-    "texte": "Messagerie mondiale pour développeurs.",
-    "lien": "https://github.com/daboujohan-hub/termchat"
+    "texte": "Messagerie pour développeurs, utilisable depuis le terminal : démo animée et parlée.",
+    "lien": "https://daboujohan-hub.github.io/termchat-demo/"
   },
   {
     "nom": "VITE API",
@@ -31,7 +31,7 @@
     "nom": "LIRA",
     "icone": "🤖",
     "statut": "Bientôt",
-    "texte": "Mon projet d'intelligence artificielle.",
-    "lien": ""
+    "texte": "Intelligence artificielle qui répond et aide à écrire en français : démo animée et parlée.",
+    "lien": "https://daboujohan-hub.github.io/lira-demo/"
   }
 ]

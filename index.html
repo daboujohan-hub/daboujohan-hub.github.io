@@ -120,6 +120,11 @@
         </div>
         <aside class="hero-panel" aria-label="Actualités">
           <div class="kicker">📰 Actualités</div>
+          <div class="stats" id="statsBox">
+            <div class="stat"><b id="statVisiteurs">–</b><span>visiteurs / 7 jours</span></div>
+            <div class="stat"><b id="statMinutes">–</b><span>minutes passées</span></div>
+            <div class="stat"><b id="statMoy">–</b><span>min par visite</span></div>
+          </div>
           <div id="actusList" class="actus-list"><p class="muted">Chargement…</p></div>
         </aside>
       </div>
@@ -259,5 +264,8 @@
     });
   </script>
   <script src="assets/site.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="assets/stats.js"></script>
 </body>
 </html>

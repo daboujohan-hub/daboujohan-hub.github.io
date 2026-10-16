@@ -2,7 +2,7 @@ import os, subprocess
 
 MOI = os.path.abspath(__file__)
 os.chdir(os.path.dirname(MOI))
-URL = "https://daboujohan-hub.github.io/assets/identite.jpg"
+URL = "https://daboujohan-hub.github.io/assets/identite.png"
 
 def lire(f):
     with open(f, encoding="utf-8") as fh:
@@ -25,18 +25,18 @@ else:
 
 # 2. Photos
 h = lire("index.html")
-moi = os.path.exists("assets/moi.jpg")
-ident = os.path.exists("assets/identite.jpg")
-print("photo moi.jpg :", "trouvée" if moi else "ABSENTE")
-print("image identite.jpg :", "trouvée" if ident else "ABSENTE")
+moi = os.path.exists("assets/moi.png")
+ident = os.path.exists("assets/identite.png")
+print("photo moi.png :", "trouvée" if moi else "ABSENTE")
+print("image identite.png :", "trouvée" if ident else "ABSENTE")
 
 if moi and 'class="moi"' not in h:
     a = "<h3>👋 Mon parcours</h3>"
     if a in h:
-        h = h.replace(a, '<img class="moi" src="assets/moi.jpg" alt="Diomandé Abou Johan, DEV.D.A.J" width="120" height="120">' + a, 1)
+        h = h.replace(a, '<img class="moi" src="assets/moi.png" alt="Diomandé Abou Johan, DEV.D.A.J" width="120" height="120">' + a, 1)
 if ident and 'id="identite"' not in h:
     b = '<section id="competences">'
-    sec = ('<section id="identite"><div class="container"><img class="banniere" src="assets/identite.jpg" '
+    sec = ('<section id="identite"><div class="container"><img class="banniere" src="assets/identite.png" '
            'alt="DEV.D.A.J — AbouDev Labs" loading="lazy"></div></section>\n\n    ')
     if b in h:
         h = h.replace(b, sec + b, 1)

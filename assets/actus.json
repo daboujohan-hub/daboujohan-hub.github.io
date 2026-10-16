@@ -1,4 +1,17 @@
 [
-  { "date": "2026-10-16", "titre": "Nouvelle version de VITE API", "texte": "La v3.0 arrive avec 20 fonctionnalités." },
-  { "date": "2026-10-10", "titre": "TermChat évolue", "texte": "Nouvelles fonctions en préparation." }
+  {
+    "date": "2026-10-16",
+    "titre": "Mon site évolue",
+    "texte": "Les actualités se modifient depuis mon terminal"
+  },
+  {
+    "date": "2026-10-16",
+    "titre": "Nouvelle version de VITE API",
+    "texte": "La v3.0 arrive avec 20 fonctionnalités."
+  },
+  {
+    "date": "2026-10-10",
+    "titre": "TermChat évolue",
+    "texte": "Nouvelles fonctions en préparation."
+  }
 ]

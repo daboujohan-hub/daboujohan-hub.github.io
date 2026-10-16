@@ -35,3 +35,9 @@
 .etape p{margin:0;color:var(--muted);font-size:.92rem}
 @media(max-width:850px){.etapes{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.etapes{grid-template-columns:1fr}}
+
+#statsBox{display:none}
+#statsBox.show{display:grid}
+.moi{display:block;width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid var(--green);margin:0 0 14px}
+.banniere{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow)}
+#identite{padding:10px 0 20px}

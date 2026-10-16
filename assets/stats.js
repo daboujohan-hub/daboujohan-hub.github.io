@@ -40,5 +40,6 @@ const FIREBASE_CONFIG = {
     document.getElementById('statVisiteurs').textContent = v;
     document.getElementById('statMinutes').textContent = Math.round(sec / 60);
     document.getElementById('statMoy').textContent = v ? (sec / 60 / v).toFixed(1) : '0';
+    if (v >= 20) document.getElementById('statsBox').classList.add('show');
   }).catch(() => {});
 })();

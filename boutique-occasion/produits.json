@@ -10,7 +10,7 @@
   {
     "id": 2,
     "nom": "Casquette (exemple)",
-    "prix": 1500,
+    "prix": 2000,
     "etat": "Comme neuve",
     "photo": "",
     "vendu": false

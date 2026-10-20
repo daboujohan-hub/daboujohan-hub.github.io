@@ -1,0 +1,8 @@
+[
+  { "id": 1, "nom": "T-shirt (exemple)", "prix": 1000, "etat": "Bon état", "photo": "", "vendu": false },
+  { "id": 2, "nom": "Casquette (exemple)", "prix": 1500, "etat": "Comme neuve", "photo": "", "vendu": false },
+  { "id": 3, "nom": "Chaussures (exemple)", "prix": 2500, "etat": "Bon état", "photo": "", "vendu": false },
+  { "id": 4, "nom": "Sac à dos (exemple)", "prix": 4000, "etat": "Très bon état", "photo": "", "vendu": false },
+  { "id": 5, "nom": "Écouteurs (exemple)", "prix": 7500, "etat": "Testés, fonctionnent", "photo": "", "vendu": false },
+  { "id": 6, "nom": "Téléphone (exemple)", "prix": 15000, "etat": "Bon état", "photo": "", "vendu": true }
+]

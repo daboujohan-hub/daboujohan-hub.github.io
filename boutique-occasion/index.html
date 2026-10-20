@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f9d58">
+<title>Boutique d'occasion</title>
+<style>
+:root{--bg:#f7f7f4;--card:#fff;--text:#1d2327;--muted:#6b7280;--line:#e5e7eb;--acc:#0f9d58;--on:#fff;--price:#c2410c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(calc(100% - 28px),1000px);margin:0 auto}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:18px 0 14px}
+h1{margin:0;font-size:1.5rem;letter-spacing:-.02em}
+.sl{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px}
+.bar input{flex:1 1 180px;padding:11px 13px;border-radius:12px;border:1px solid var(--line);font:inherit;background:var(--card)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px}
+.chip{flex:0 0 auto;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font:inherit;font-size:.88rem;cursor:pointer}
+.chip.on{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.err{background:#b3261e;color:#fff;padding:10px 14px;border-radius:12px;margin:12px 0;font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.ph{aspect-ratio:1;background:#eef0ee;display:grid;place-items:center;font-size:2.6rem;width:100%;object-fit:cover}
+.body{padding:11px 12px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.nom{font-weight:700;font-size:.95rem;line-height:1.3}
+.etat{font-size:.78rem;color:var(--muted)}
+.prix{font-size:1.1rem;font-weight:800;color:var(--price);margin:2px 0 8px}
+.btn{display:block;text-align:center;padding:10px 8px;border-radius:11px;font-weight:700;font-size:.88rem;border:1px solid var(--acc);color:var(--acc);margin-top:6px}
+.btn.main{background:var(--acc);color:var(--on)}
+.card.vendu .ph,.card.vendu .nom,.card.vendu .prix{opacity:.45}
+.vb{position:absolute;top:10px;left:10px;background:#111;color:#fff;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.vide{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0}
+footer{margin:30px 0 90px;padding:18px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--acc);font-weight:700}
+.float{position:fixed;right:14px;bottom:14px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.7rem;border:2px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1 id="nom">Boutique</h1>
+  <p class="sl" id="slogan"></p>
+</div></header>
+<main class="wrap">
+  <div id="err" class="err" hidden></div>
+  <div class="bar"><input id="q" type="search" placeholder="Chercher un article…" aria-label="Chercher"></div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="liste"><div class="vide">Chargement…</div></div>
+</main>
+<footer class="wrap">
+  <div id="pied"></div>
+  <div style="margin-top:8px">Site réalisé par <a href="https://daboujohan-hub.github.io/" target="_blank" rel="noopener noreferrer">DEV.D.A.J · AbouDev Labs 🇨🇮</a> —
+  <a href="https://wa.me/2250565961287?text=Bonjour%20DEV.D.A.J%2C%20je%20veux%20une%20boutique%20comme%20celle-ci." target="_blank" rel="noopener noreferrer">besoin d'une boutique ?</a></div>
+</footer>
+<a class="float" id="wa" href="#" target="_blank" rel="noopener noreferrer" aria-label="Écrire sur WhatsApp">💬</a>
+<script>
+(function () {
+  function $(i) { return document.getElementById(i); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x) e.textContent = x; return e; }
+  var NUM = '', DATA = [], tranche = 0;
+  var TR = [
+    { l: 'Tout', min: 0, max: 1e12 },
+    { l: "Jusqu'à 2 000", min: 0, max: 2000 },
+    { l: '2 000 – 5 000', min: 2001, max: 5000 },
+    { l: 'Plus de 5 000', min: 5001, max: 1e12 }
+  ];
+  function fmt(n) { return Number(n).toLocaleString('fr-FR').replace(/[\u202f\u00a0]/g, ' ') + ' FCFA'; }
+  function wa(msg) { return 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(msg); }
+
+  Promise.all([
+    fetch('boutique.json').then(function (r) { return r.json(); }),
+    fetch('produits.json?t=' + Date.now()).then(function (r) { return r.json(); })
+  ]).then(function (r) { init(r[0], r[1]); })
+    .catch(function () { $('liste').textContent = 'La boutique arrive bientôt. Reviens dans un moment.'; });
+
+  function init(cfg, items) {
+    document.title = cfg.nom;
+    $('nom').textContent = cfg.nom;
+    $('slogan').textContent = cfg.slogan || '';
+    $('pied').textContent = cfg.nom + (cfg.ville ? ' · ' + cfg.ville : '') + ' · Articles d\'occasion, pièces uniques';
+    NUM = String(cfg.whatsapp || '').replace(/\D/g, '');
+    if (!/^\d{10,15}$/.test(NUM)) {
+      $('err').hidden = false;
+      $('err').textContent = 'Numéro WhatsApp à renseigner dans boutique.json';
+    }
+    $('wa').href = wa('Bonjour, je viens de votre boutique en ligne.');
+    DATA = items;
+    TR.forEach(function (t, i) {
+      var b = el('button', 'chip' + (i === 0 ? ' on' : ''), t.l);
+      b.type = 'button';
+      b.onclick = function () {
+        tranche = i;
+        document.querySelectorAll('.chip').forEach(function (c, k) { c.classList.toggle('on', k === i); });
+        draw();
+      };
+      $('chips').appendChild(b);
+    });
+    $('q').oninput = draw;
+    draw();
+  }
+
+  function draw() {
+    var t = TR[tranche], q = $('q').value.trim().toLowerCase();
+    var L = DATA.filter(function (p) {
+      return p.prix >= t.min && p.prix <= t.max && (!q || String(p.nom).toLowerCase().indexOf(q) !== -1);
+    }).sort(function (a, b) {
+      return (a.vendu ? 1 : 0) - (b.vendu ? 1 : 0) || a.prix - b.prix;
+    });
+    var box = $('liste');
+    box.textContent = '';
+    if (!L.length) { box.appendChild(el('div', 'vide', 'Aucun article dans cette sélection.')); return; }
+    L.forEach(function (p) {
+      var c = el('article', 'card' + (p.vendu ? ' vendu' : ''));
+      var ph = el('div', 'ph', '🛍️');
+      if (p.photo) {
+        var im = document.createElement('img');
+        im.className = 'ph';
+        im.loading = 'lazy';
+        im.alt = p.nom;
+        im.src = 'photos/' + p.photo;
+        im.onerror = function () { im.replaceWith(el('div', 'ph', '🛍️')); };
+        c.appendChild(im);
+      } else { c.appendChild(ph); }
+      if (p.vendu) c.appendChild(el('span', 'vb', 'VENDU'));
+      var b = el('div', 'body');
+      b.appendChild(el('div', 'nom', p.nom));
+      b.appendChild(el('div', 'etat', 'Occasion · ' + (p.etat || 'Bon état')));
+      b.appendChild(el('div', 'prix', fmt(p.prix)));
+      if (!p.vendu) {
+        var a1 = el('a', 'btn main', '💬 Je le veux');
+        a1.href = wa('Bonjour, je suis intéressé(e) par : ' + p.nom + ' (' + fmt(p.prix) + '). Est-il encore disponible ?');
+        var a2 = el('a', 'btn', 'Discuter le prix');
+        a2.href = wa('Bonjour, pour : ' + p.nom + ' (' + fmt(p.prix) + '). Puis-je discuter le prix ?');
+        [a1, a2].forEach(function (a) { a.target = '_blank'; a.rel = 'noopener noreferrer'; b.appendChild(a); });
+      }
+      c.appendChild(b);
+      box.appendChild(c);
+    });
+  }
+})();
+</script>
+</body>
+</html>

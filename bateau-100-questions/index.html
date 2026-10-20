@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Bateau des 100 Questions</title>
+<style>
+:root{color-scheme:dark;--bg:#06224a;--card:#0b2f63;--line:#1d5cb0;--ac:#1e7cff;--ok:#19c36b;--ko:#f0444b;--gold:#ffc83d;--tx:#eaf3ff;--mu:#9db9de;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--tx);background:linear-gradient(#0a4a9a,#06224a 60%);min-height:100vh}
+header{padding:14px 16px 8px;text-align:center}
+h1{margin:0;font-size:22px}h1 span{color:var(--gold)}
+.sea{position:relative;height:34px;margin:10px auto 0;max-width:900px;border-radius:17px;background:#0a3a7c;overflow:hidden;border:1px solid var(--line)}
+#bar{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#1e7cff,#19c36b);transition:width .6s}
+#boat{position:absolute;top:2px;left:0;font-size:24px;transition:left .6s;transform:translateX(-50%)}
+main{display:grid;gap:12px;padding:10px 12px 30px;max-width:1000px;margin:auto}
+@media(min-width:800px){main{grid-template-columns:2fr 1fr}.col2{grid-column:2;grid-row:1/4}}
+.card{background:rgba(11,47,99,.92);border:1px solid var(--line);border-radius:16px;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;background:var(--ac);margin:-14px -14px 12px;padding:10px 14px;border-radius:15px 15px 0 0;font-weight:700}
+#q{font-size:20px;font-weight:700;margin:6px 0 12px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:13px;border-radius:12px;border:1px solid var(--line);background:#0a2a58;color:var(--tx);font-size:17px}
+.opt.on{border-color:var(--gold);background:#17407f}.opt.good{background:#0d6b3d;border-color:var(--ok)}.opt.bad{background:#7a1f27;border-color:var(--ko)}
+.row{display:flex;gap:8px;margin-top:10px}
+.btn{flex:1;padding:13px;border:0;border-radius:12px;color:#fff;font-size:16px;font-weight:700}
+.b1{background:var(--ac)}.b2{background:var(--ok)}
+.tabs{display:flex;gap:8px;margin-bottom:10px}.tabs button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0a2a58;color:var(--tx);font-size:15px}.tabs .act{background:var(--ac)}
+.mu{color:var(--mu)}.okt{color:#5dff9b;font-weight:700}h4{margin:4px 0;color:var(--gold)}
+textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--line);background:#0a2a58;color:var(--tx);padding:10px;font-size:15px}
+.cm{border-top:1px solid var(--line);padding:8px 0;font-size:14px}.cm b{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:10px}
+.grid button{aspect-ratio:1;border:0;border-radius:50%;background:#7b8797;color:#fff;font-size:10px;padding:0}
+.grid .g{background:var(--ok)}.grid .r{background:var(--ko)}.grid .cur{background:var(--gold);color:#000}
+.cat{display:flex;justify-content:space-between;width:100%;padding:10px;margin:4px 0;border-radius:10px;border:1px solid var(--line);background:#0a2a58;color:var(--tx);font-size:15px}
+.leg span{display:inline-block;width:12px;height:12px;border-radius:50%;margin:0 6px 0 10px}
+#fx{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,10,30,.55);z-index:9;pointer-events:none;text-align:center}
+#dancer{font-size:110px;animation:dance .5s infinite alternate}
+@keyframes dance{from{transform:rotate(-14deg) translateY(0)}to{transform:rotate(14deg) translateY(-24px) scale(1.1)}}
+.stu{position:absolute;bottom:16%;left:0;font-size:44px;white-space:nowrap;animation:walk 2.6s linear forwards}
+@keyframes walk{from{transform:translateX(-120%)}to{transform:translateX(110vw)}}
+#fxt{font-size:26px;font-weight:800;color:var(--gold)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#000c;padding:10px 16px;border-radius:20px;display:none;z-index:10}
+#bil{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:11;padding:16px}
+#bil .card{max-width:420px;text-align:center}
+.big{font-size:48px;font-weight:800;color:var(--gold)}
+.pill{background:#0a2a58;border:1px solid var(--line);color:var(--tx);border-radius:20px;padding:6px 12px;font-size:14px}
+.top2{display:flex;justify-content:flex-end;max-width:1000px;margin:auto}
+.modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:12;padding:14px}
+.modal .card{width:100%;max-width:440px;max-height:88vh;overflow:auto}
+.modal input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0a2a58;color:var(--tx);font-size:16px}
+.av{font-size:26px;width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:#0a2a58;margin:3px;padding:0}.av.on{border-color:var(--gold);background:#17407f}
+.lbr{display:flex;justify-content:space-between;padding:8px;border-radius:8px;font-size:14px}.lbr.first{background:#17407f;border:1px solid var(--gold)}
+.bdg{font-style:normal;font-size:11px;background:#7b5a00;color:#ffe08a;border-radius:8px;padding:2px 6px;margin-left:4px}
+.lk{background:none;border:0;color:#7db7ff;text-decoration:underline;font-size:13px;padding:0}
+.pol h4{margin:12px 0 2px}.pol p,.pol li{font-size:14px;margin:2px 0}.cert{background:#3a2d00;border:1px solid var(--gold);border-radius:10px;padding:10px;font-size:13px;margin:10px 0}
+.b3{background:#27406b}.b4{background:var(--ko)}
+</style></head><body>
+<header><div class="top2"><button id="ub" class="pill">👤 Créer mon compte</button></div>
+<h1>🚢 Le Bateau des <span>100 Questions</span></h1>
+<div class="mu" style="font-size:13px">Apprendre • Réfléchir • Progresser</div>
+<div class="sea"><div id="bar"></div><div id="boat">⛵</div></div></header>
+<main>
+<div class="card" id="qc">
+ <div class="top"><span id="cat"></span><span>Question <i id="num">1</i> / 100</span></div>
+ <div id="q"></div><div id="opts"></div>
+ <div class="row"><button class="btn b1" id="val">▶ Valider ma réponse</button><button class="btn b2" id="see">💡 Voir l’explication</button></div>
+</div>
+<div class="card">
+ <div class="tabs"><button id="t1">📖 Explication</button><button id="t2">💬 Commentaires</button></div>
+ <div id="pan"></div>
+</div>
+<div class="col2">
+ <div class="card" style="margin-bottom:12px"><b>🏆 Mon score</b><div class="big" style="font-size:32px;color:var(--tx)"><span id="sc">0</span> / 100</div><div class="mu" id="msg">Bon courage !</div><div class="row" style="align-items:center"><span id="stk" style="flex:1;font-size:14px"></span><button id="snb" class="pill">🔊</button></div></div>
+ <div class="card" style="margin-bottom:12px"><b>📋 Liste des questions</b><div id="cats" style="margin-top:8px"></div><div class="grid" id="grid"></div></div>
+ <div class="card leg"><b>Légende</b><br><span style="background:#7b8797"></span>Non répondue<span style="background:var(--gold)"></span>En cours<br><span style="background:var(--ok);margin-left:0"></span>Bonne réponse<span style="background:var(--ko)"></span>Mauvaise réponse<p class="mu" style="margin:10px 0 0">🎯 Objectif : réponds à toutes les questions et atteins 100 points !</p></div>
+ <div class="card" style="margin-top:12px"><b>🏅 Meilleurs mathématiciens</b><div id="lb" style="margin:8px 0"></div><p class="mu" style="font-size:12px;margin:0">Classement local (questions de mathématiques). Il sera partagé quand la base de données sera en ligne et les comptes certifiés.</p></div>
+ <p style="text-align:center"><button class="lk" id="pvl">🔒 Politique de confidentialité</button></p>
+</div>
+</main>
+<div id="fx"><div id="dancer">🕺</div><div id="fxt"></div></div>
+<div id="toast"></div>
+<div class="modal" id="am"><div class="card"><h3 style="margin-top:0">👤 Mon compte</h3>
+<label class="mu" style="font-size:13px">Ton nom (un pseudo suffit, pas besoin de ton vrai nom)</label><input id="nm" maxlength="20" placeholder="Ex : Capitaine Léo" autocomplete="off">
+<div class="mu" style="font-size:13px;margin-top:10px">Ton avatar</div><div id="avs"></div>
+<div class="cert">⏳ <b>Compte non certifié (local).</b> Tes données restent sur cet appareil. Quand la base de données sera en ligne, ton compte pourra être certifié et ton nom apparaîtra dans le classement public.</div>
+<div style="font-size:14px" id="st"></div>
+<div class="row"><button class="btn b1" id="sv">Enregistrer</button><button class="btn b3" data-m="am" id="cx">Fermer</button></div>
+<div class="row"><button class="btn b3" id="ex" style="font-size:14px">📤 Exporter mes données</button><button class="btn b4" id="dl" style="font-size:14px">🗑️ Tout effacer</button></div>
+<textarea id="exo" readonly style="display:none;margin-top:8px"></textarea>
+<p style="text-align:center;margin:10px 0 0"><button class="lk" id="pv2">🔒 Politique de confidentialité</button></p></div></div>
+<div class="modal" id="pm"><div class="card pol"><h3 style="margin-top:0">🔒 Politique de confidentialité</h3><p class="mu">Version locale — 20 octobre 2026</p>
+<h4>Ce qu’on enregistre</h4><p>Ton nom ou pseudo, ton avatar, tes réponses, ton score, ta série et tes commentaires. Rien d’autre : ni e-mail, ni téléphone, ni position.</p>
+<h4>Où sont tes données</h4><p>Pour l’instant, uniquement dans ton navigateur (stockage local de cet appareil). Rien n’est envoyé sur Internet. Ces données ne sont pas chiffrées sur l’appareil : n’y écris rien de personnel.</p>
+<h4>Plus tard : base de données</h4><ul><li>Les données seront chiffrées pendant le transfert et au repos.</li><li>Un compte certifié sera nécessaire pour apparaître dans le classement.</li><li>Le classement public n’affichera que ton pseudo, ton avatar et ton score.</li><li>Tu seras prévenu et tu devras donner ton accord avant tout envoi de tes données.</li></ul>
+<h4>Ce qu’on ne fait pas</h4><p>Pas de publicité, pas de pistage, pas de vente ni de partage de tes données.</p>
+<h4>Tes droits</h4><p>Tu peux à tout moment consulter, exporter ou effacer tes données depuis « Mon compte ».</p>
+<h4>Conseil</h4><p>Utilise un pseudo plutôt que ton vrai nom, surtout si tu es mineur.</p>
+<button class="btn b1" data-m="pm" id="cp" style="width:100%;margin-top:12px">J’ai compris</button></div></div>
+<div id="bil"><div class="card"><div style="font-size:50px">🏝️</div><h2>Traversée terminée !</h2><div class="big" id="bs"></div><div id="bn" style="font-size:22px;margin:6px 0"></div><p id="bm" class="mu"></p><div id="bc" style="text-align:left;font-size:14px"></div><button class="btn b1" id="rs" style="width:100%;margin-top:12px">🔄 Recommencer</button></div></div>
+<script>
+const CATS=[["Mathématiques","🧮"],["Logique","🧠"],["Programmation","💻"],["Algorithmes","🔀"],["Informatique","🛡️"]];
+const Q=[];
+function mk(c,q,r,w,e){const pos=Q.length%4;const o=[];w.forEach(x=>{if(x!==r&&!o.includes(x))o.push(x)});let k=1;while(o.length<3){const x=r+k*3;if(!o.includes(x))o.push(x);k++}o.length=3;o.splice(pos,0,r);Q.push({c,q,o:o.map(String),a:pos,e})}
+// Mathématiques (20)
+[[125,275,2],[40,12,5],[60,8,7],[15,25,4],[90,30,3]].forEach(([a,b,c])=>{const r=a+b*c;mk(0,`Calcule : ${a} + ${b} × ${c}.`,r,[(a+b)*c,a+b+c,a*b+c,r+10],`On fait d’abord la multiplication, puis l’addition.<br>1. ${b} × ${c} = ${b*c}<br>2. ${a} + ${b*c} = ${r}`)});
+[[200,15,6],[150,12,9],[99,7,8],[500,45,5],[80,6,4]].forEach(([a,b,c])=>{const r=a-b*c;mk(0,`Calcule : ${a} − ${b} × ${c}.`,r,[(a-b)*c,a-b-c,a-b+c,r+10],`La multiplication est prioritaire sur la soustraction.<br>1. ${b} × ${c} = ${b*c}<br>2. ${a} − ${b*c} = ${r}`)});
+[[12,8,5],[7,13,6],[25,15,2],[9,11,4],[30,20,3]].forEach(([a,b,c])=>{const r=(a+b)*c;mk(0,`Calcule : (${a} + ${b}) × ${c}.`,r,[a+b*c,a*b+c,a+b+c,r+c],`Les parenthèses sont prioritaires.<br>1. ${a} + ${b} = ${a+b}<br>2. ${a+b} × ${c} = ${r}`)});
+[[10,250],[25,80],[50,46],[20,150],[15,200]].forEach(([p,n])=>{const r=p*n/100;mk(0,`Combien font ${p} % de ${n} ?`,r,[r+5,r*2,n-r,r+10],`${p} % de ${n} = ${n} × ${p} ÷ 100 = ${r}.`)});
+// Logique (20)
+[[2,3],[5,4],[10,7],[3,5],[1,6],[20,-2],[100,-5]].forEach(([s,d])=>{const r=s+4*d;mk(1,`Complète la suite : ${s}, ${s+d}, ${s+2*d}, ${s+3*d}, ?`,r,[r+d,r-d,r+1,r-1],`C’est une suite où l’on ajoute ${d} à chaque fois.<br>${s+3*d} + (${d}) = ${r}`)});
+[[2,2],[3,3],[1,5],[4,2],[5,2],[2,4],[1,10]].forEach(([s,m])=>{const t=[s,s*m,s*m*m,s*m**3],r=s*m**4;mk(1,`Complète la suite : ${t.join(", ")}, ?`,r,[r+s,r-s,r+1,r*2],`On multiplie par ${m} à chaque étape.<br>${t[3]} × ${m} = ${r}`)});
+[1,2,3,4,5,6].forEach(n=>{const r=(n+4)**2;mk(1,`Complète la suite : ${n*n}, ${(n+1)**2}, ${(n+2)**2}, ${(n+3)**2}, ?`,r,[r+1,r-1,r+3,r-5],`Ce sont les carrés des entiers qui se suivent : ${n}², ${n+1}², ${n+2}², ${n+3}², puis ${n+4}² = ${r}.`)});
+// Questions rédigées : question|A|B|C|D|bonne(0-3)|explication
+function P(c,s){s.trim().split("\n").forEach(l=>{const p=l.split("|");Q.push({c,q:p[0],o:p.slice(1,5),a:+p[5],e:p[6]})})}
+P(2,`En JavaScript, que renvoie typeof null ?|«null»|«object»|«undefined»|«number»|1|Bug historique du langage : typeof null donne «object».
+En Python, que vaut len([1,2,3]) ?|2|3|4|Erreur|1|La liste contient 3 éléments.
+Quel mot-clé JS déclare une constante ?|var|let|const|static|2|const crée une liaison qu’on ne peut pas réassigner.
+En Python, 7 // 2 donne ?|3.5|3|4|2|1|// est la division entière : 3.
+En Python, 7 % 3 donne ?|1|2|3|0|0|% donne le reste : 7 = 2×3 + 1.
+En JavaScript, 2 + «2» donne ?|4|«22»|NaN|Erreur|1|Le nombre est converti en texte : concaténation, donc «22».
+Quel symbole commence un commentaire en Python ?|//|#|/*|--|1|# commente jusqu’à la fin de la ligne.
+En JavaScript, === compare…|la valeur seule|la valeur et le type|l’adresse mémoire|rien|1|=== exige la même valeur ET le même type.
+Quelle boucle s’exécute au moins une fois ?|for|while|do…while|foreach|2|do…while teste la condition après le corps de la boucle.
+En Python, «ab» * 3 donne ?|«ababab»|«ab3»|Erreur|«aaabbb»|0|Multiplier une chaîne la répète.
+Que fait console.log() en JavaScript ?|Affiche dans la console|Supprime une variable|Ouvre un fichier|Crée une fonction|0|Il affiche une valeur dans la console.
+En Python, type(3.0) est…|int|float|str|bool|1|3.0 est un nombre décimal : float.
+En JavaScript, [1,2,3,4].length vaut ?|3|4|5|undefined|1|Le tableau contient 4 éléments.
+Quel est l’indice du premier élément d’un tableau ?|1|0|-1|Aucun|1|Les indices commencent à 0.
+En Python, bool(0) vaut ?|True|False|None|Erreur|1|Le nombre 0 est considéré comme faux.
+Quel mot-clé définit une fonction en Python ?|function|def|fun|func|1|On écrit def nom(): puis le corps indenté.
+En JavaScript, parseInt(«42px») donne ?|NaN|42|«42»|Erreur|1|parseInt lit les chiffres du début et s’arrête à «px».
+En Python, [1,2,3][-1] donne ?|1|3|Erreur|None|1|L’indice -1 désigne le dernier élément.
+En JavaScript, !!«» donne ?|true|false|undefined|null|1|Une chaîne vide est «falsy», donc !!«» vaut false.
+En Python, «abc».upper() donne ?|«ABC»|«abc»|«Abc»|Erreur|0|upper() met tout en majuscules.`);
+P(3,`Quelle est la complexité de la recherche dichotomique ?|O(n)|O(log n)|O(n²)|O(1)|1|On divise l’espace de recherche par 2 à chaque étape.
+Le tri à bulles a pour pire cas…|O(n)|O(n log n)|O(n²)|O(log n)|2|Deux boucles imbriquées : environ n × n comparaisons.
+Une pile (stack) suit la règle…|FIFO|LIFO|Aléatoire|Triée|1|LIFO : dernier entré, premier sorti.
+Une file (queue) suit la règle…|FIFO|LIFO|Aucune règle|Tri croissant|0|FIFO : premier entré, premier sorti.
+Quel parcours de graphe utilise une file ?|DFS (profondeur)|BFS (largeur)|Tri fusion|Dichotomie|1|Le BFS visite niveau par niveau grâce à une file.
+Fibonacci avec F(0)=0 et F(1)=1 : F(6) = ?|5|8|13|21|1|0, 1, 1, 2, 3, 5, 8 : F(6) = 8.
+Quelle est la complexité du tri fusion ?|O(n²)|O(n log n)|O(n)|O(log n)|1|On divise en deux (log n niveaux) puis on fusionne en O(n).
+Chercher un élément dans un tableau non trié, pire cas ?|O(1)|O(log n)|O(n)|O(n²)|2|Il faut parfois tout parcourir.
+Accéder à un élément d’un tableau par son indice coûte…|O(1)|O(n)|O(log n)|O(n²)|0|L’accès est direct, en temps constant.
+Combien vaut 5! (factorielle de 5) ?|25|120|60|720|1|5 × 4 × 3 × 2 × 1 = 120.
+Une fonction récursive a toujours besoin…|d’un cas de base|d’une boucle for|d’un tableau|d’une classe|0|Sans cas de base, elle s’appellerait à l’infini.
+Quel est le PGCD de 12 et 18 ?|3|6|9|2|1|Diviseurs communs : 1, 2, 3, 6. Le plus grand est 6.
+Quelle structure associe des clés à des valeurs ?|Pile|Table de hachage|File|Tableau trié|1|C’est le rôle d’une table de hachage (dictionnaire).
+Combien d’enfants au maximum dans un arbre binaire ?|1|2|3|Illimité|1|Binaire : chaque nœud a au plus 2 enfants.
+Lequel est un nombre premier ?|21|27|29|33|2|29 n’est divisible que par 1 et par lui-même.
+Un algorithme glouton…|choisit le meilleur choix local à chaque étape|teste toutes les solutions|divise toujours en deux|trie les données|0|Il ne revient jamais sur ses choix.
+Tri par sélection : après la 1re passe, en première position on a…|le plus grand|le plus petit|le médian|rien de changé|1|On place le minimum au début, puis on recommence.
+L’algorithme de Dijkstra sert à…|trier|trouver le plus court chemin|chiffrer|compresser|1|Il cherche les plus courts chemins dans un graphe pondéré positif.
+La dichotomie exige un tableau…|trié|vide|de chaînes|sans doublons|0|Sans tri, on ne peut pas éliminer la moitié des cases.
+Combien vaut 1 + 2 + … + 100 ?|5050|5000|5100|4950|0|n(n+1)/2 = 100 × 101 / 2 = 5050.`);
+P(4,`CPU signifie…|Central Processing Unit|Computer Personal Unit|Core Power Usage|Central Program Utility|0|C’est le processeur, le «cerveau» de l’ordinateur.
+Un octet contient…|4 bits|8 bits|16 bits|10 bits|1|1 octet = 8 bits.
+Le nombre binaire 101 vaut en décimal…|3|5|6|7|1|4 + 0 + 1 = 5.
+Le nombre décimal 10 s’écrit en binaire…|1010|1001|1100|0110|0|8 + 2 = 10, donc 1010.
+HTTPS ajoute à HTTP…|de la vitesse|du chiffrement|de la publicité|du stockage|1|Il chiffre les échanges grâce à TLS.
+Quelle mémoire est volatile ?|RAM|SSD|Disque dur|ROM|0|La RAM perd son contenu quand on éteint l’appareil.
+Quel langage structure une page web ?|CSS|HTML|SQL|Python|1|HTML décrit la structure, CSS le style.
+SQL sert à…|interroger des bases de données|dessiner|compiler du C|chiffrer le Wi-Fi|0|Structured Query Language : langage de requêtes.
+Une adresse IP identifie…|un utilisateur seulement|un appareil sur un réseau|un fichier|un mot de passe|1|Elle permet de localiser un appareil sur un réseau.
+Le phishing (hameçonnage) est…|un faux message pour voler des infos|une panne matérielle|un virus du disque|une mise à jour|0|Ne clique jamais sur un lien suspect.
+Quel est le meilleur mot de passe ?|123456|ton prénom|une phrase longue et unique|ta date de naissance|2|Long et unique, il est bien plus difficile à deviner.
+Lequel est un système d’exploitation ?|Android|Chrome|Excel|Python|0|Android est un OS ; Chrome est un navigateur.
+1 Mo vaut environ…|1 000 Ko|1 000 000 Ko|100 Ko|10 Ko|0|Mo = méga-octet = environ 1 000 Ko.
+Le DNS traduit…|les noms de domaine en adresses IP|les vidéos en MP3|le code en binaire|les mots de passe en hash|0|Il transforme «exemple.com» en adresse IP.
+Un pare-feu (firewall)…|filtre le trafic réseau|refroidit le PC|accélère le Wi-Fi|sauvegarde les fichiers|0|Il autorise ou bloque les connexions selon des règles.
+Git sert à…|versionner du code|éditer des photos|naviguer sur le web|chiffrer des disques|0|Il garde l’historique des modifications d’un projet.
+Quelle extension correspond à une image ?|.jpg|.exe|.sql|.js|0|.jpg est un format d’image compressé.
+Un compilateur…|traduit le code source en code machine|exécute des sites web|stocke des données|protège le réseau|0|Il convertit un programme en langage exécutable par la machine.
+Le cloud computing, c’est…|des services accessibles via Internet|un nuage météo|un antivirus|un écran|0|Stockage et calcul à distance, accessibles en ligne.
+Ethernet est une connexion…|filaire|sans fil|satellite|uniquement optique|0|Ethernet utilise un câble, contrairement au Wi-Fi.`);
+
+const $=id=>document.getElementById(id);
+let cur=0,sel=-1,tab='e',ans=Array(100).fill(null);
+try{const s=JSON.parse(localStorage.getItem('b100'));if(Array.isArray(s)&&s.length==100)ans=s}catch(e){}
+const save=()=>{try{localStorage.setItem('b100',JSON.stringify(ans))}catch(e){}};
+const U0=()=>({name:'',av:'🐳',mute:false,st:0,best:0});
+let U=U0();try{U=Object.assign(U,JSON.parse(localStorage.getItem('b100u')))}catch(e){}
+const saveU=()=>{try{localStorage.setItem('b100u',JSON.stringify(U))}catch(e){}};
+const AVS=['🐳','🐬','🦈','🐙','⚓','🏴‍☠️','🦜','🧑‍✈️'];let avSel=U.av,delArm=false;
+const openM=id=>$(id).style.display='flex',closeM=id=>$(id).style.display='none';
+const okc=i=>ans.slice(i*20,i*20+20).filter(x=>x&&x.ok).length;
+function ui(){$('ub').textContent=U.name?U.av+' '+U.name:'👤 Créer mon compte';$('stk').textContent='🔥 Série : '+(U.st||0)+' (record '+(U.best||0)+')';$('snb').textContent=U.mute?'🔇':'🔊';
+ $('lb').innerHTML=`<div class="lbr first"><span>🥇 ${U.av} ${esc(U.name||'Invité')}</span><span>${okc(0)}/20 <i class="bdg">non certifié</i></span></div>`+[2,3,4,5].map(i=>`<div class="lbr mu"><span>${i}. place libre</span><span>—</span></div>`).join('')}
+function drawAv(){$('avs').innerHTML=AVS.map(a=>`<button class="av${a==avSel?' on':''}" data-a="${a}">${a}</button>`).join('')}
+function openAcc(){$('nm').value=U.name;avSel=U.av;drawAv();$('exo').style.display='none';delArm=false;$('dl').textContent='🗑️ Tout effacer';$('st').innerHTML='<b>Mes scores</b><br>'+CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/20</b>`).join('<br>');openM('am')}
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gc=()=>{try{return JSON.parse(localStorage.getItem('c'+cur))||[]}catch(e){return[]}};
+function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',1800)}
+function render(){
+ const q=Q[cur],a=ans[cur],done=ans.filter(Boolean).length,sc=ans.filter(x=>x&&x.ok).length;
+ $('sc').textContent=sc;ui();$('bar').style.width=done+'%';$('boat').style.left=Math.max(done,3)+'%';
+ $('msg').textContent=done==0?'Bon courage !':sc>=done*.7?'Bravo, continue comme ça !':'Courage, relis les explications !';
+ $('cat').textContent=CATS[q.c][1]+' '+CATS[q.c][0];$('num').textContent=cur+1;$('q').textContent=q.q;
+ $('opts').innerHTML=q.o.map((t,i)=>{let c='opt';if(a){if(i==q.a)c+=' good';else if(i==a.s)c+=' bad'}else if(i==sel)c+=' on';return `<button class="${c}" data-i="${i}"><b>${'ABCD'[i]}.</b> ${t}</button>`}).join('');
+ $('val').textContent=a?'Question suivante ▶':'▶ Valider ma réponse';
+ $('t1').className=tab=='e'?'act':'';$('t2').className=tab=='c'?'act':'';
+ if(tab=='e')$('pan').innerHTML=a?`<h4>💡 Explication de la question ${cur+1}</h4><p>${q.e}</p><p class="okt">✅ Réponse correcte : ${'ABCD'[q.a]}. ${q.o[q.a]}</p>`:`<p class="mu">Réponds d’abord, ou clique sur « Voir l’explication » (la question ne rapportera alors aucun point).</p>`;
+ else{const L=gc();$('pan').innerHTML=`<textarea id="ct" placeholder="Écris ici ton commentaire, ton raisonnement ou pose une question…"></textarea><button class="btn b1" id="pc" style="width:100%;margin:8px 0">✈️ Publier un commentaire</button>`+(L.length?L.map(c=>`<div class="cm"><b>${esc(c.n||'Moi')}</b> <span class="mu">${esc(c.d)}</span><br>${esc(c.t)}</div>`).join(''):'<p class="mu">Aucun commentaire pour le moment.</p>');
+  $('pc').onclick=()=>{const t=$('ct').value.trim();if(!t)return;const L=gc();L.push({t,n:U.name||'Moi',d:new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});try{localStorage.setItem('c'+cur,JSON.stringify(L))}catch(e){}render()}}
+ $('cats').innerHTML=CATS.map((c,i)=>{const n=ans.slice(i*20,i*20+20).filter(Boolean).length;return `<button class="cat" data-c="${i}"><span>${c[1]} ${c[0]}</span><span class="mu">${n}/20</span></button>`}).join('');
+ $('grid').innerHTML=ans.map((x,i)=>`<button data-g="${i}" class="${i==cur?'cur':x?(x.ok?'g':'r'):''}">${i+1}</button>`).join('');
+}
+let ac;
+function snd(ok,c){if(U.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const M=[[523,659,784,1047,784,1047,1319],[392,523,659,784,659,784,1047],[440,554,659,880,659,880,1109],[587,740,880,1175,880,1175,1480],[494,622,740,988,740,988,1245]][c],N=ok?M:[196,165,131];N.forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type=ok?'triangle':'sawtooth';o.frequency.value=f;o.connect(g);g.connect(ac.destination);const t=ac.currentTime+i*(ok?.14:.22);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.25,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.start(t);o.stop(t+.32)})}catch(e){}}
+function fx(ok){snd(ok,Q[cur].c);const f=$('fx');if(!ok){toast('😅 Oups ! Lis bien l’explication.');return}
+ $('dancer').textContent=['🕺','💃'][cur%2];$('fxt').textContent='🎶 Bonne réponse ! 🎶';
+ f.querySelectorAll('.stu').forEach(e=>e.remove());
+ ['🧑‍🎓 Bravo !','👩‍🎓 Super !','🧑‍🎓 Génial !'].forEach((t,i)=>{const s=document.createElement('div');s.className='stu';s.textContent=t;s.style.bottom=(10+i*9)+'%';s.style.animationDelay=(i*.4)+'s';f.appendChild(s)});
+ f.style.display='flex';setTimeout(()=>f.style.display='none',3000)}
+function bilan(){const sc=ans.filter(x=>x.ok).length,n=(sc/5).toFixed(1).replace('.',',');
+ $('bs').textContent=sc+' / 100';$('bn').textContent='Note : '+n+' / 20';
+ $('bm').textContent=sc>=90?'Capitaine légendaire ! 🏴‍☠️':sc>=70?'Excellent marin, bravo !':sc>=50?'Bonne traversée, continue à t’entraîner.':'Tu as survécu à la tempête : relis les explications et réessaie !';
+ $('bc').innerHTML=CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${ans.slice(i*20,i*20+20).filter(x=>x.ok).length}/20</b>`).join('<br>');$('bil').style.display='flex'}
+const go=i=>{cur=i;sel=-1;tab='e';render();$('qc').scrollIntoView({behavior:'smooth'})};
+$('opts').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ans[cur]){sel=+b.dataset.i;render()}};
+$('val').onclick=()=>{if(ans[cur])return go((cur+1)%100);if(sel<0)return toast('Choisis une réponse d’abord');const ok=sel==Q[cur].a;ans[cur]={s:sel,ok};save();U.st=ok?(U.st||0)+1:0;U.best=Math.max(U.best||0,U.st);saveU();tab='e';render();fx(ok);if(ans.every(Boolean))setTimeout(bilan,3200)};
+$('see').onclick=()=>{if(!ans[cur]){ans[cur]={s:-1,ok:false};save()}tab='e';render();if(ans.every(Boolean))setTimeout(bilan,1500)};
+$('t1').onclick=()=>{tab='e';render()};$('t2').onclick=()=>{tab='c';render()};
+$('cats').onclick=e=>{const b=e.target.closest('.cat');if(b)go(b.dataset.c*20)};
+$('grid').onclick=e=>{const b=e.target.closest('button');if(b)go(+b.dataset.g)};
+$('rs').onclick=()=>{ans=Array(100).fill(null);save();$('bil').style.display='none';go(0)};
+$('ub').onclick=openAcc;$('snb').onclick=()=>{U.mute=!U.mute;saveU();ui()};
+$('avs').onclick=e=>{const b=e.target.closest('.av');if(b){avSel=b.dataset.a;drawAv()}};
+$('sv').onclick=()=>{const n=$('nm').value.trim().replace(/[<>&"]/g,'').slice(0,20);if(n.length<2)return toast('Entre ton nom (2 lettres minimum)');U.name=n;U.av=avSel;saveU();closeM('am');render();toast('Bienvenue à bord, '+n+' !')};
+['cx','cp'].forEach(i=>$(i).onclick=()=>closeM($(i).dataset.m));
+$('pvl').onclick=$('pv2').onclick=()=>openM('pm');
+$('ex').onclick=()=>{const t=JSON.stringify({compte:U,reponses:ans},null,1),o=$('exo');o.style.display='block';o.value=t;o.select();try{navigator.clipboard.writeText(t);toast('Données copiées')}catch(e){toast('Copie le texte affiché')}};
+$('dl').onclick=()=>{if(!delArm){delArm=true;$('dl').textContent='⚠️ Confirmer l’effacement';return}try{localStorage.clear()}catch(e){}ans=Array(100).fill(null);U=U0();avSel=U.av;closeM('am');go(0);openAcc()};
+render();if(!U.name)openAcc();
+</script></body></html>

@@ -53,14 +53,15 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 .pol h4{margin:12px 0 2px}.pol p,.pol li{font-size:14px;margin:2px 0}.cert{background:#3a2d00;border:1px solid var(--gold);border-radius:10px;padding:10px;font-size:13px;margin:10px 0}
 .b3{background:#27406b}.b4{background:var(--ko)}
 </style></head><body>
-<header><div class="top2"><button id="ub" class="pill">👤 Créer mon compte</button></div>
+<header><div class="top2" style="gap:8px"><button id="inf" class="pill">🎮 Défi infini</button><button id="ub" class="pill">👤 Créer mon compte</button></div>
 <h1>🚢 Le Bateau des <span>100 Questions</span></h1>
 <div class="mu" style="font-size:13px">Apprendre • Réfléchir • Progresser</div>
 <div class="sea"><div id="bar"></div><div id="boat">⛵</div></div></header>
 <main>
 <div class="card" id="qc">
  <div class="top"><span id="cat"></span><span>Question <i id="num">1</i> / 100</span></div>
- <div id="q"></div><div id="opts"></div>
+ <div id="tmw" style="height:6px;background:#0a2a58;border-radius:3px;margin-bottom:4px"><div id="tm" style="height:6px;border-radius:3px;width:100%;background:var(--ok)"></div></div><div id="tl" class="mu" style="font-size:13px;text-align:right"></div><div id="qi"></div><div id="q"></div><div id="opts"></div>
+ <div class="row" style="align-items:center"><button class="pill" id="j5">✂️ 50/50 (<span id="jf"></span>)</button><button class="pill" id="jh">💡 Indice (<span id="jhn"></span>)</button><span id="hn" class="okt" style="font-size:13px"></span></div>
  <div class="row"><button class="btn b1" id="val">▶ Valider ma réponse</button><button class="btn b2" id="see">💡 Voir l’explication</button></div>
 </div>
 <div class="card">
@@ -68,14 +69,16 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
  <div id="pan"></div>
 </div>
 <div class="col2">
- <div class="card" style="margin-bottom:12px"><b>🏆 Mon score</b><div class="big" style="font-size:32px;color:var(--tx)"><span id="sc">0</span> / 100</div><div class="mu" id="msg">Bon courage !</div><div class="row" style="align-items:center"><span id="stk" style="flex:1;font-size:14px"></span><button id="snb" class="pill">🔊</button></div></div>
+ <div class="card" style="margin-bottom:12px"><b>🏆 Mon score</b><div class="big" style="font-size:32px;color:var(--tx)"><span id="sc">0</span> / 100</div><div class="mu" id="msg">Bon courage !</div><div id="pts" style="font-size:14px;margin-top:4px"></div><div class="row" style="align-items:center"><span id="stk" style="flex:1;font-size:14px"></span><button id="vcb" class="pill">🗣️</button><button id="snb" class="pill">🔊</button></div><button class="pill" id="rv" style="margin-top:8px">🔁 Revoir mes erreurs (<span id="rvn">0</span>)</button></div>
  <div class="card" style="margin-bottom:12px"><b>📋 Liste des questions</b><div id="cats" style="margin-top:8px"></div><div class="grid" id="grid"></div></div>
  <div class="card leg"><b>Légende</b><br><span style="background:#7b8797"></span>Non répondue<span style="background:var(--gold)"></span>En cours<br><span style="background:var(--ok);margin-left:0"></span>Bonne réponse<span style="background:var(--ko)"></span>Mauvaise réponse<p class="mu" style="margin:10px 0 0">🎯 Objectif : réponds à toutes les questions et atteins 100 points !</p></div>
  <div class="card" style="margin-top:12px"><b>🏅 Meilleurs mathématiciens</b><div id="lb" style="margin:8px 0"></div><p class="mu" style="font-size:12px;margin:0">Classement local (questions de mathématiques). Il sera partagé quand la base de données sera en ligne et les comptes certifiés.</p></div>
  <p style="text-align:center"><button class="lk" id="pvl">🔒 Politique de confidentialité</button></p>
+ <p class="mu" style="text-align:center;font-size:12px;margin:0">Édité par AbouDev Labs · <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">Contact</a></p>
 </div>
 </main>
 <div id="fx"><div id="dancer">🕺</div><div id="fxt"></div></div>
+<div class="modal" id="wl"><div class="card" style="text-align:center"><div style="font-size:60px">🚢</div><h2 style="margin:4px 0">Le Bateau des 100 Questions</h2><p class="mu" style="margin:0 0 12px">Choisis ta difficulté avant la traversée</p><div class="row" id="wlv"><button class="pill" data-l="1" style="flex:1">⭐ Facile</button><button class="pill" data-l="2" style="flex:1">⭐⭐ Moyen</button><button class="pill" data-l="3" style="flex:1">⭐⭐⭐ Difficile</button></div><p class="mu" style="font-size:13px">30 secondes par question · 2 jokers 50/50 · 2 indices · points bonus pour les réponses rapides</p><button class="btn b1" id="wgo" style="width:100%;margin-top:6px">⛵ Commencer la traversée</button></div></div>
 <div id="toast"></div>
 <div class="modal" id="am"><div class="card"><h3 style="margin-top:0">👤 Mon compte</h3>
 <label class="mu" style="font-size:13px">Ton nom (un pseudo suffit, pas besoin de ton vrai nom)</label><input id="nm" maxlength="20" placeholder="Ex : Capitaine Léo" autocomplete="off">
@@ -86,12 +89,14 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 <div class="row"><button class="btn b3" id="ex" style="font-size:14px">📤 Exporter mes données</button><button class="btn b4" id="dl" style="font-size:14px">🗑️ Tout effacer</button></div>
 <textarea id="exo" readonly style="display:none;margin-top:8px"></textarea>
 <p style="text-align:center;margin:10px 0 0"><button class="lk" id="pv2">🔒 Politique de confidentialité</button></p></div></div>
+<div class="modal" id="im"><div class="card"><h3 style="margin-top:0">🎮 Défi infini</h3><p class="mu" style="margin:0 0 8px;font-size:13px" id="is"></p><div class="row" id="isr" style="margin:0 0 8px"><button class="pill" data-s="gen">♾️ Calcul</button><button class="pill" data-s="bank">📚 Banque</button><button class="pill" data-s="daily">📅 Défi du jour</button></div><div class="row" id="ilv" style="margin:0 0 8px"><button class="pill" data-l="1">⭐ Facile</button><button class="pill" data-l="2">⭐⭐ Moyen</button><button class="pill" data-l="3">⭐⭐⭐ Difficile</button></div><div id="iq" style="font-size:20px;font-weight:700;margin:6px 0 10px"></div><div id="io"></div><div id="ie" style="font-size:14px"></div><div class="row"><button class="btn b1" id="inx" style="display:none">Question suivante ▶</button><button class="btn b3" id="icl">Fermer</button></div></div></div>
 <div class="modal" id="pm"><div class="card pol"><h3 style="margin-top:0">🔒 Politique de confidentialité</h3><p class="mu">Version locale — 20 octobre 2026</p>
 <h4>Ce qu’on enregistre</h4><p>Ton nom ou pseudo, ton avatar, tes réponses, ton score, ta série et tes commentaires. Rien d’autre : ni e-mail, ni téléphone, ni position.</p>
 <h4>Où sont tes données</h4><p>Pour l’instant, uniquement dans ton navigateur (stockage local de cet appareil). Rien n’est envoyé sur Internet. Ces données ne sont pas chiffrées sur l’appareil : n’y écris rien de personnel.</p>
 <h4>Plus tard : base de données</h4><ul><li>Les données seront chiffrées pendant le transfert et au repos.</li><li>Un compte certifié sera nécessaire pour apparaître dans le classement.</li><li>Le classement public n’affichera que ton pseudo, ton avatar et ton score.</li><li>Tu seras prévenu et tu devras donner ton accord avant tout envoi de tes données.</li></ul>
 <h4>Ce qu’on ne fait pas</h4><p>Pas de publicité, pas de pistage, pas de vente ni de partage de tes données.</p>
 <h4>Tes droits</h4><p>Tu peux à tout moment consulter, exporter ou effacer tes données depuis « Mon compte ».</p>
+<h4>Éditeur et contact</h4><p>Site édité par AbouDev Labs. Pour toute question ou demande concernant tes données : <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">daboujohan-hub.github.io</a></p>
 <h4>Conseil</h4><p>Utilise un pseudo plutôt que ton vrai nom, surtout si tu es mineur.</p>
 <button class="btn b1" data-m="pm" id="cp" style="width:100%;margin-top:12px">J’ai compris</button></div></div>
 <div id="bil"><div class="card"><div style="font-size:50px">🏝️</div><h2>Traversée terminée !</h2><div class="big" id="bs"></div><div id="bn" style="font-size:22px;margin:6px 0"></div><p id="bm" class="mu"></p><div id="bc" style="text-align:left;font-size:14px"></div><button class="btn b1" id="rs" style="width:100%;margin-top:12px">🔄 Recommencer</button></div></div>
@@ -171,40 +176,48 @@ Un compilateur…|traduit le code source en code machine|exécute des sites web|
 Le cloud computing, c’est…|des services accessibles via Internet|un nuage météo|un antivirus|un écran|0|Stockage et calcul à distance, accessibles en ligne.
 Ethernet est une connexion…|filaire|sans fil|satellite|uniquement optique|0|Ethernet utilise un câble, contrairement au Wi-Fi.`);
 
+const Z=[20,20,20,20,20],S=[0,20,40,60,80];
+[[3,2,4],[5,3,2],[7,4,3],[4,5,2],[9,6,7]].forEach(([x,a,b])=>{const c=a*x+b;mk(0,`Résous : ${a}x + ${b} = ${c}`,x,[x+1,x-1,x+2,c-b],`On isole x : ${a}x = ${c} − ${b} = ${c-b}, donc x = ${c-b} ÷ ${a} = ${x}.`)});
+[7,12,15].forEach(n=>mk(0,`Combien vaut ${n}² ?`,n*n,[2*n,n*n+n,n*n-n,n*n+10],`${n}² = ${n} × ${n} = ${n*n}.`));
+[64,121].forEach(m=>{const r=Math.sqrt(m);mk(0,`Quelle est la racine carrée de ${m} ?`,r,[r+1,r-1,m/2,r+2],`${r} × ${r} = ${m}, donc √${m} = ${r}.`)});
+[[8,5],[12,4],[9,6],[15,3],[10,7]].forEach(([L,l],i)=>i%2?mk(0,`Quel est le périmètre d’un rectangle de ${L} cm sur ${l} cm ?`,2*(L+l),[L*l,L+l,2*L*l,2*(L+l)+2],`Périmètre = 2 × (${L} + ${l}) = ${2*(L+l)} cm.`):mk(0,`Quelle est l’aire d’un rectangle de ${L} cm sur ${l} cm ?`,L*l,[2*(L+l),L+l,L*l+L,L*l-l],`Aire = ${L} × ${l} = ${L*l} cm².`));
+[[8,12,10],[14,16,18,20],[5,9,7]].forEach(t=>{const s=t.reduce((x,y)=>x+y,0),r=s/t.length;mk(0,`Quelle est la moyenne de ${t.join(", ")} ?`,r,[r+1,r-1,s,Math.max(...t)],`Somme = ${s}, divisée par ${t.length} = ${r}.`)});
+[[3,4,20],[2,5,35]].forEach(([a,b,n])=>{const r=n/b*a;mk(0,`Combien font ${a}/${b} de ${n} ?`,r,[r+a,r-a,n/b,r*2],`${n} ÷ ${b} = ${n/b}, puis × ${a} = ${r}.`)});
+const ALL=Q.splice(0);{const n=[0,0,0,0,0],t=[0,0,0,0,0];ALL.forEach(q=>t[q.c]++);ALL.forEach(q=>{q.d=1+Math.min(2,Math.floor(n[q.c]++*3/t[q.c]))})}
 const $=id=>document.getElementById(id);
-let cur=0,sel=-1,tab='e',ans=Array(100).fill(null);
-try{const s=JSON.parse(localStorage.getItem('b100'));if(Array.isArray(s)&&s.length==100)ans=s}catch(e){}
-const save=()=>{try{localStorage.setItem('b100',JSON.stringify(ans))}catch(e){}};
-const U0=()=>({name:'',av:'🐳',mute:false,st:0,best:0});
+let cur=0,sel=-1,tab='e',ans=Array(100).fill(null),started=false;
+try{const s=JSON.parse(localStorage.getItem('b100v3'));if(s&&s.Q&&s.Q.length==100&&s.ans&&s.ans.length==100){Q.splice(0,Q.length,...s.Q);ans=s.ans;started=true}}catch(e){}
+const save=()=>{try{localStorage.setItem('b100v3',JSON.stringify({Q,ans}))}catch(e){}};
+const U0=()=>({name:'',av:'🐳',mute:false,st:0,best:0,jf:2,jh:2,L:1,voice:true,bd:{}});
 let U=U0();try{U=Object.assign(U,JSON.parse(localStorage.getItem('b100u')))}catch(e){}
 const saveU=()=>{try{localStorage.setItem('b100u',JSON.stringify(U))}catch(e){}};
 const AVS=['🐳','🐬','🦈','🐙','⚓','🏴‍☠️','🦜','🧑‍✈️'];let avSel=U.av,delArm=false;
 const openM=id=>$(id).style.display='flex',closeM=id=>$(id).style.display='none';
-const okc=i=>ans.slice(i*20,i*20+20).filter(x=>x&&x.ok).length;
-function ui(){$('ub').textContent=U.name?U.av+' '+U.name:'👤 Créer mon compte';$('stk').textContent='🔥 Série : '+(U.st||0)+' (record '+(U.best||0)+')';$('snb').textContent=U.mute?'🔇':'🔊';
- $('lb').innerHTML=`<div class="lbr first"><span>🥇 ${U.av} ${esc(U.name||'Invité')}</span><span>${okc(0)}/20 <i class="bdg">non certifié</i></span></div>`+[2,3,4,5].map(i=>`<div class="lbr mu"><span>${i}. place libre</span><span>—</span></div>`).join('')}
+const okc=i=>ans.slice(S[i],S[i]+Z[i]).filter(x=>x&&x.ok).length;
+function ui(){$('ub').textContent=U.name?U.av+' '+U.name:'👤 Créer mon compte';$('stk').textContent='🔥 Série : '+(U.st||0)+' (record '+(U.best||0)+')';$('snb').textContent=U.mute?'🔇':'🔊';$('pts').textContent='⭐ Points : '+(U.pts||0);$('jf').textContent=U.jf;$('jhn').textContent=U.jh;$('vcb').style.opacity=U.voice?1:.4;$('rvn').textContent=ans.filter(x=>x&&!x.ok).length;
+ $('lb').innerHTML=`<div class="lbr first"><span>🥇 ${U.av} ${esc(U.name||'Invité')}</span><span>${U.mp||0} pts <i class="bdg">non certifié</i></span></div>`+[2,3,4,5].map(i=>`<div class="lbr mu"><span>${i}. place libre</span><span>—</span></div>`).join('')}
 function drawAv(){$('avs').innerHTML=AVS.map(a=>`<button class="av${a==avSel?' on':''}" data-a="${a}">${a}</button>`).join('')}
-function openAcc(){$('nm').value=U.name;avSel=U.av;drawAv();$('exo').style.display='none';delArm=false;$('dl').textContent='🗑️ Tout effacer';$('st').innerHTML='<b>Mes scores</b><br>'+CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/20</b>`).join('<br>');openM('am')}
+function openAcc(){$('nm').value=U.name;avSel=U.av;drawAv();$('exo').style.display='none';delArm=false;$('dl').textContent='🗑️ Tout effacer';$('st').innerHTML='<b>Mes scores</b><br>'+CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>')+'<br><b>🏆 Badges</b><br>'+BD.map(b=>(U.bd&&U.bd[b[0]]?b[1]:'🔒')+' '+b[2]).join('<br>');openM('am')}
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const gc=()=>{try{return JSON.parse(localStorage.getItem('c'+cur))||[]}catch(e){return[]}};
 function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',1800)}
 function render(){
- const q=Q[cur],a=ans[cur],done=ans.filter(Boolean).length,sc=ans.filter(x=>x&&x.ok).length;
+ if(lc!==cur){lc=cur;t0=Date.now()}$('hn').textContent=HT[cur]||'';if(ans[cur])$('tl').textContent='';const q=Q[cur],a=ans[cur],done=ans.filter(Boolean).length,sc=ans.filter(x=>x&&x.ok).length;
  $('sc').textContent=sc;ui();$('bar').style.width=done+'%';$('boat').style.left=Math.max(done,3)+'%';
  $('msg').textContent=done==0?'Bon courage !':sc>=done*.7?'Bravo, continue comme ça !':'Courage, relis les explications !';
- $('cat').textContent=CATS[q.c][1]+' '+CATS[q.c][0];$('num').textContent=cur+1;$('q').textContent=q.q;
- $('opts').innerHTML=q.o.map((t,i)=>{let c='opt';if(a){if(i==q.a)c+=' good';else if(i==a.s)c+=' bad'}else if(i==sel)c+=' on';return `<button class="${c}" data-i="${i}"><b>${'ABCD'[i]}.</b> ${t}</button>`}).join('');
+ $('cat').textContent=CATS[q.c][1]+' '+CATS[q.c][0]+' · '+'⭐'.repeat(q.d||1);$('num').textContent=cur+1;$('qi').innerHTML=q.img?`<img src="${esc(q.img)}" alt="schéma" style="max-width:100%;border-radius:10px;background:#fff;margin:6px 0">`:'';$('q').textContent=q.q;
+ $('opts').innerHTML=q.o.map((t,i)=>{let c='opt';if(a){if(i==q.a)c+=' good';else if(i==a.s)c+=' bad'}else if(i==sel)c+=' on';return `<button class="${c}" data-i="${i}"${(H[cur]||[]).includes(i)?' disabled style="opacity:.2"':''}><b>${'ABCD'[i]}.</b> ${t}</button>`}).join('');
  $('val').textContent=a?'Question suivante ▶':'▶ Valider ma réponse';
  $('t1').className=tab=='e'?'act':'';$('t2').className=tab=='c'?'act':'';
  if(tab=='e')$('pan').innerHTML=a?`<h4>💡 Explication de la question ${cur+1}</h4><p>${q.e}</p><p class="okt">✅ Réponse correcte : ${'ABCD'[q.a]}. ${q.o[q.a]}</p>`:`<p class="mu">Réponds d’abord, ou clique sur « Voir l’explication » (la question ne rapportera alors aucun point).</p>`;
  else{const L=gc();$('pan').innerHTML=`<textarea id="ct" placeholder="Écris ici ton commentaire, ton raisonnement ou pose une question…"></textarea><button class="btn b1" id="pc" style="width:100%;margin:8px 0">✈️ Publier un commentaire</button>`+(L.length?L.map(c=>`<div class="cm"><b>${esc(c.n||'Moi')}</b> <span class="mu">${esc(c.d)}</span><br>${esc(c.t)}</div>`).join(''):'<p class="mu">Aucun commentaire pour le moment.</p>');
   $('pc').onclick=()=>{const t=$('ct').value.trim();if(!t)return;const L=gc();L.push({t,n:U.name||'Moi',d:new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});try{localStorage.setItem('c'+cur,JSON.stringify(L))}catch(e){}render()}}
- $('cats').innerHTML=CATS.map((c,i)=>{const n=ans.slice(i*20,i*20+20).filter(Boolean).length;return `<button class="cat" data-c="${i}"><span>${c[1]} ${c[0]}</span><span class="mu">${n}/20</span></button>`}).join('');
+ $('cats').innerHTML=CATS.map((c,i)=>{const n=ans.slice(S[i],S[i]+Z[i]).filter(Boolean).length;return `<button class="cat" data-c="${i}"><span>${c[1]} ${c[0]}</span><span class="mu">${n}/${Z[i]}</span></button>`}).join('');
  $('grid').innerHTML=ans.map((x,i)=>`<button data-g="${i}" class="${i==cur?'cur':x?(x.ok?'g':'r'):''}">${i+1}</button>`).join('');
 }
 let ac;
 function snd(ok,c){if(U.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const M=[[523,659,784,1047,784,1047,1319],[392,523,659,784,659,784,1047],[440,554,659,880,659,880,1109],[587,740,880,1175,880,1175,1480],[494,622,740,988,740,988,1245]][c],N=ok?M:[196,165,131];N.forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type=ok?'triangle':'sawtooth';o.frequency.value=f;o.connect(g);g.connect(ac.destination);const t=ac.currentTime+i*(ok?.14:.22);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.25,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.start(t);o.stop(t+.32)})}catch(e){}}
-function fx(ok){snd(ok,Q[cur].c);const f=$('fx');if(!ok){toast('😅 Oups ! Lis bien l’explication.');return}
+function fx(ok){snd(ok,Q[cur].c);say(ok?['Bravo !','Excellent !','Bien joué, matelot !'][rn(0,2)]:'Oups ! Lis bien l’explication.');const f=$('fx');if(!ok){toast('😅 Oups ! Lis bien l’explication.');return}
  $('dancer').textContent=['🕺','💃'][cur%2];$('fxt').textContent='🎶 Bonne réponse ! 🎶';
  f.querySelectorAll('.stu').forEach(e=>e.remove());
  ['🧑‍🎓 Bravo !','👩‍🎓 Super !','🧑‍🎓 Génial !'].forEach((t,i)=>{const s=document.createElement('div');s.className='stu';s.textContent=t;s.style.bottom=(10+i*9)+'%';s.style.animationDelay=(i*.4)+'s';f.appendChild(s)});
@@ -212,15 +225,15 @@ function fx(ok){snd(ok,Q[cur].c);const f=$('fx');if(!ok){toast('😅 Oups ! Lis 
 function bilan(){const sc=ans.filter(x=>x.ok).length,n=(sc/5).toFixed(1).replace('.',',');
  $('bs').textContent=sc+' / 100';$('bn').textContent='Note : '+n+' / 20';
  $('bm').textContent=sc>=90?'Capitaine légendaire ! 🏴‍☠️':sc>=70?'Excellent marin, bravo !':sc>=50?'Bonne traversée, continue à t’entraîner.':'Tu as survécu à la tempête : relis les explications et réessaie !';
- $('bc').innerHTML=CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${ans.slice(i*20,i*20+20).filter(x=>x.ok).length}/20</b>`).join('<br>');$('bil').style.display='flex'}
-const go=i=>{cur=i;sel=-1;tab='e';render();$('qc').scrollIntoView({behavior:'smooth'})};
+ $('bc').innerHTML=CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>');$('bil').style.display='flex'}
+const go=i=>{cur=i;sel=-1;tab='e';render();$('qc').scrollIntoView({behavior:'smooth'});sayQ()};
 $('opts').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ans[cur]){sel=+b.dataset.i;render()}};
-$('val').onclick=()=>{if(ans[cur])return go((cur+1)%100);if(sel<0)return toast('Choisis une réponse d’abord');const ok=sel==Q[cur].a;ans[cur]={s:sel,ok};save();U.st=ok?(U.st||0)+1:0;U.best=Math.max(U.best||0,U.st);saveU();tab='e';render();fx(ok);if(ans.every(Boolean))setTimeout(bilan,3200)};
+$('val').onclick=()=>{if(ans[cur])return go((cur+1)%100);if(sel<0)return toast('Choisis une réponse d’abord');const ok=sel==Q[cur].a,sp=(Date.now()-t0)/1000,rv=REV[cur];ans[cur]={s:sel,ok};if(!rv){U.st=ok?(U.st||0)+1:0;U.best=Math.max(U.best||0,U.st)}if(ok&&!rv){const fast=sp<=10?2:sp<=20?1:0,p=(Q[cur].d||1)+fast+(U.st>=3?1:0);ans[cur].p=p;U.fc=(U.fc||0)+(fast==2?1:0);award(p,Q[cur].c);toast('+'+p+' pts'+(fast?' ⚡':'')+(U.st>=3?' 🔥':''))}delete REV[cur];save();saveU();badges();tab='e';render();fx(ok);if(ans.every(Boolean))setTimeout(bilan,3200)};
 $('see').onclick=()=>{if(!ans[cur]){ans[cur]={s:-1,ok:false};save()}tab='e';render();if(ans.every(Boolean))setTimeout(bilan,1500)};
 $('t1').onclick=()=>{tab='e';render()};$('t2').onclick=()=>{tab='c';render()};
-$('cats').onclick=e=>{const b=e.target.closest('.cat');if(b)go(b.dataset.c*20)};
+$('cats').onclick=e=>{const b=e.target.closest('.cat');if(b)go(S[b.dataset.c])};
 $('grid').onclick=e=>{const b=e.target.closest('button');if(b)go(+b.dataset.g)};
-$('rs').onclick=()=>{ans=Array(100).fill(null);save();$('bil').style.display='none';go(0)};
+$('rs').onclick=()=>{$('bil').style.display='none';openWl()};
 $('ub').onclick=openAcc;$('snb').onclick=()=>{U.mute=!U.mute;saveU();ui()};
 $('avs').onclick=e=>{const b=e.target.closest('.av');if(b){avSel=b.dataset.a;drawAv()}};
 $('sv').onclick=()=>{const n=$('nm').value.trim().replace(/[<>&"]/g,'').slice(0,20);if(n.length<2)return toast('Entre ton nom (2 lettres minimum)');U.name=n;U.av=avSel;saveU();closeM('am');render();toast('Bienvenue à bord, '+n+' !')};
@@ -228,5 +241,48 @@ $('sv').onclick=()=>{const n=$('nm').value.trim().replace(/[<>&"]/g,'').slice(0,
 $('pvl').onclick=$('pv2').onclick=()=>openM('pm');
 $('ex').onclick=()=>{const t=JSON.stringify({compte:U,reponses:ans},null,1),o=$('exo');o.style.display='block';o.value=t;o.select();try{navigator.clipboard.writeText(t);toast('Données copiées')}catch(e){toast('Copie le texte affiché')}};
 $('dl').onclick=()=>{if(!delArm){delArm=true;$('dl').textContent='⚠️ Confirmer l’effacement';return}try{localStorage.clear()}catch(e){}ans=Array(100).fill(null);U=U0();avSel=U.av;closeM('am');go(0);openAcc()};
-render();if(!U.name)openAcc();
+const rn=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function mo(q,r,w,e){const o=[];w.forEach(x=>{if(x!==r&&!o.includes(x))o.push(x)});let k=1;while(o.length<3){const x=r+k*3;if(!o.includes(x))o.push(x);k++}o.length=3;const a=rn(0,3);o.splice(a,0,r);return{q,o:o.map(String),a,e}}
+function gen(L=1){const t=rn(0,L==3?9:7),f=L==1?1:L==2?3:9;let a=rn(20,99)*f,b=rn(2,20)*(L>1?2:1),c=rn(2,9+L*2),r;
+ if(t==8){const u=rn(6,15),v=rn(2,5);r=u*u-v*v;return mo(`Calcule : ${u}² − ${v}².`,r,[(u-v)*(u-v),u*u+v*v,r+u],`${u}² = ${u*u} et ${v}² = ${v*v}, donc ${u*u} − ${v*v} = ${r}.`)}
+ if(t==9){const x=rn(2,12),m=rn(2,9),n=rn(1,9),s=m*(x+n);return mo(`Résous : ${m}(x + ${n}) = ${s}`,x,[x+1,x-1,s/m],`${s} ÷ ${m} = ${x+n}, donc x = ${x+n} − ${n} = ${x}.`)}
+ if(t==0){r=a+b*c;return mo(`Calcule : ${a} + ${b} × ${c}.`,r,[(a+b)*c,a+b+c,r+10],`Multiplication d’abord : ${b} × ${c} = ${b*c}, puis ${a} + ${b*c} = ${r}.`)}
+ if(t==1){r=(a+b)*c;return mo(`Calcule : (${a} + ${b}) × ${c}.`,r,[a+b*c,a+b+c,r+c],`Parenthèses d’abord : ${a} + ${b} = ${a+b}, puis × ${c} = ${r}.`)}
+ if(t==2){const x=rn(2,12),m=rn(2,9),n=rn(1,15),s=m*x+n;return mo(`Résous : ${m}x + ${n} = ${s}`,x,[x+1,x-1,s-n],`${m}x = ${s} − ${n} = ${s-n}, donc x = ${s-n} ÷ ${m} = ${x}.`)}
+ if(t==3){const p=[10,20,25,50][rn(0,3)],n=20*rn(1,15);r=p*n/100;return mo(`Combien font ${p} % de ${n} ?`,r,[r+5,r*2,n-r],`${n} × ${p} ÷ 100 = ${r}.`)}
+ if(t==4){const d=[2,4,5,10][rn(0,3)],m=rn(1,d-1),n=d*rn(2,12);r=n/d*m;return mo(`Combien font ${m}/${d} de ${n} ?`,r,[r+m,n/d,r*2],`${n} ÷ ${d} = ${n/d}, puis × ${m} = ${r}.`)}
+ if(t==5){const n=rn(3,20);r=n*n;return mo(`Combien vaut ${n}² ?`,r,[2*n,r+n,r-n],`${n}² = ${n} × ${n} = ${r}.`)}
+ if(t==6){const L=rn(5,20),l=rn(2,L-1);return rn(0,1)?mo(`Aire d’un rectangle de ${L} cm sur ${l} cm ?`,L*l,[2*(L+l),L+l,L*l+L],`Aire = ${L} × ${l} = ${L*l} cm².`):mo(`Périmètre d’un rectangle de ${L} cm sur ${l} cm ?`,2*(L+l),[L*l,L+l,2*L*l],`Périmètre = 2 × (${L} + ${l}) = ${2*(L+l)} cm.`)}
+ a=b*c+rn(10,99);r=a-b*c;return mo(`Calcule : ${a} − ${b} × ${c}.`,r,[(a-b)*c,a-b-c,r+10],`Multiplication d’abord : ${b} × ${c} = ${b*c}, puis ${a} − ${b*c} = ${r}.`)}
+let ic=null,ia=false,il=1,src='gen',BANK=[];
+function iNew(){[...$('ilv').children].forEach(x=>x.style.borderColor=x.dataset.l==il?'var(--gold)':'');[...$('isr').children].forEach(x=>x.style.borderColor=x.dataset.s==src?'var(--gold)':'');if(src=='daily'){const D=dlist();if(!U.dd||U.dd.k!=D.k)U.dd={k:D.k,i:0,ok:0};if(U.dd.i>=5){$('iq').textContent='📅 Défi du jour terminé : '+U.dd.ok+'/5 · 🔥 série de '+((U.dc&&U.dc.s)||0)+' jour(s). Reviens demain !';$('io').innerHTML='';$('ie').innerHTML='';$('inx').style.display='none';return}ic=D.o[U.dd.i]}else if(src=='bank'){const P=BANK.filter(x=>x.d==il),pool=P.length?P:BANK;if(!pool.length){$('iq').textContent='Banque vide : place questions.json à côté de index.html.';$('io').innerHTML='';$('ie').innerHTML='';return}ic=pool[rn(0,pool.length-1)]}else ic=gen(il);ia=false;$('iq').textContent=ic.q;if(ic.img)$('iq').insertAdjacentHTML('afterbegin',`<img src="${esc(ic.img)}" alt="schéma" style="max-width:100%;border-radius:10px;background:#fff"><br>`);$('io').innerHTML=ic.o.map((t,i)=>`<button class="opt" data-i="${i}"><b>${'ABCD'[i]}.</b> ${t}</button>`).join('');$('ie').innerHTML='';$('inx').style.display='none';$('is').textContent='Bonnes réponses : '+(U.inf||0)}
+let lc=-1,t0=Date.now();
+function award(p,c){U.pts=(U.pts||0)+p;if(c==0)U.mp=(U.mp||0)+p;saveU();ui();badges()}
+$('inf').onclick=()=>{openM('im');iNew()};
+$('ilv').onclick=e=>{const b=e.target.closest('button');if(b){il=+b.dataset.l;iNew()}};
+$('isr').onclick=e=>{const b=e.target.closest('button');if(b){src=b.dataset.s;iNew()}};
+fetch('questions.json').then(r=>r.ok?r.json():null).then(j=>{if(!j||!Array.isArray(j.questions))return;BANK=j.questions.filter(x=>x&&x.q&&Array.isArray(x.o)&&x.o.length==4&&x.a>=0&&x.a<4);if(j.version!==U.qv){toast('📚 '+BANK.length+' questions chargées');U.qv=j.version;saveU()}}).catch(()=>{});$('inx').onclick=iNew;$('icl').onclick=()=>closeM('im');
+$('io').onclick=e=>{const b=e.target.closest('.opt');if(!b||ia)return;ia=true;const i=+b.dataset.i,ok=i==ic.a;[...$('io').children].forEach((x,k)=>{if(k==ic.a)x.classList.add('good');else if(k==i)x.classList.add('bad')});if(ok){U.inf=(U.inf||0)+1;award(ic.d||il,ic.c||0)}if(src=='daily'){U.dd.i++;if(ok)U.dd.ok++;saveU();if(U.dd.i>=5)finishDaily()}snd(ok,0);$('ie').innerHTML=(ok?'<p class="okt">✅ Bravo !</p>':'<p style="color:#ff8a8f">❌ Pas tout à fait.</p>')+'<p>'+ic.e+'</p>';$('inx').style.display='block';$('is').textContent='Bonnes réponses : '+(U.inf||0)};
+let H={},HT={},REV={},WL=1;
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+function build(L){const out=[];for(let c=0;c<5;c++){const P=shuf(ALL.concat(BANK).filter(q=>q.c==c)).sort((x,y)=>Math.abs(x.d-L)-Math.abs(y.d-L));const s=P.slice(0,c==0?10:20);while(c==0&&s.length<20){const g=gen(L);g.c=0;g.d=L;s.push(g)}s.sort((x,y)=>x.d-y.d);out.push(...s)}return out}
+function say(t){try{if(U.mute||!U.voice)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';speechSynthesis.speak(u)}catch(e){}}
+function sayQ(){const q=Q[cur];say(q.q.replace(/×/g,' fois ').replace(/−/g,' moins ')+'. '+q.o.map((t,i)=>'ABCD'[i]+'. '+t).join('. '))}
+const BD=[['first','🎯','Première bonne réponse',()=>(U.pts||0)>0],['s10','🔥','10 bonnes réponses d’affilée',()=>(U.best||0)>=10],['math','🧮','Maître des maths (18/20)',()=>okc(0)>=18],['ton','💯','Traversée terminée',()=>ans.every(Boolean)],['p100','⭐','100 points',()=>(U.pts||0)>=100],['fast','⚡','10 réponses éclair',()=>(U.fc||0)>=10],['dj','📅','3 jours de défi d’affilée',()=>U.dc&&U.dc.s>=3]];
+function badges(){BD.forEach(b=>{if(!(U.bd&&U.bd[b[0]])&&b[3]()){U.bd=U.bd||{};U.bd[b[0]]=1;saveU();toast('🏆 Badge : '+b[2])}})}
+const dk=d=>d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+function sr(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function dlist(){const k=dk(new Date()),R=sr(k),P=ALL.concat(BANK),o=[];while(o.length<5){const q=P[Math.floor(R()*P.length)];if(!o.includes(q))o.push(q)}return{k,o}}
+function finishDaily(){const k=dk(new Date()),y=dk(new Date(Date.now()-864e5)),c=U.dc||{l:0,s:0};c.s=c.l==y?c.s+1:c.l==k?c.s:1;c.l=k;U.dc=c;award(5,1);toast('📅 Défi terminé ! +5 pts · 🔥 '+c.s+' jour(s)')}
+const wlHi=()=>[...$('wlv').children].forEach(x=>x.style.borderColor=x.dataset.l==WL?'var(--gold)':'');
+function openWl(){WL=U.L||1;wlHi();openM('wl')}
+$('wlv').onclick=e=>{const b=e.target.closest('button');if(b){WL=+b.dataset.l;wlHi()}};
+$('wgo').onclick=()=>{U.L=WL;U.jf=2;U.jh=2;U.st=0;saveU();il=WL;Q.splice(0,Q.length,...build(WL));ans=Array(100).fill(null);H={};HT={};REV={};cur=0;sel=-1;tab='e';save();closeM('wl');render();sayQ();if(!U.name)openAcc()};
+$('j5').onclick=()=>{if(ans[cur])return;if(!U.jf||H[cur])return toast(U.jf?'Déjà utilisé ici':'Plus de 50/50 !');U.jf--;const w=shuf([0,1,2,3].filter(i=>i!=Q[cur].a)).slice(0,2);H[cur]=w;if(w.includes(sel))sel=-1;saveU();render()};
+$('jh').onclick=()=>{if(ans[cur])return;if(!U.jh||HT[cur])return toast(U.jh?'Indice déjà utilisé':'Plus d’indices !');U.jh--;HT[cur]='💡 La bonne réponse est parmi '+(Q[cur].a<2?'A et B':'C et D');saveU();render()};
+$('vcb').onclick=()=>{U.voice=!U.voice;saveU();ui();if(U.voice)say('Voix activée')};
+$('rv').onclick=()=>{const w=ans.map((x,i)=>x&&!x.ok?i:-1).filter(i=>i>=0);if(!w.length)return toast('Aucune erreur à revoir 🎉');w.forEach(i=>{ans[i]=null;REV[i]=1;delete H[i];delete HT[i]});save();go(w[0])};
+setInterval(()=>{if(!Q.length||ans[cur])return;if(document.hidden||[...document.querySelectorAll('.modal')].some(m=>m.style.display=='flex')){t0+=250;return}const l=30-(Date.now()-t0)/1000;$('tm').style.width=Math.max(0,l/30*100)+'%';$('tm').style.background=l>10?'var(--ok)':'var(--ko)';$('tl').textContent='⏱️ '+Math.max(0,Math.ceil(l))+' s';if(l<=0){ans[cur]={s:-1,ok:false,t:1};U.st=0;save();saveU();render();toast('⏱️ Temps écoulé !');if(ans.every(Boolean))setTimeout(bilan,1500)}},250);
+if(!Q.length)Q.push(...build(U.L||1));
+render();if(!started)openWl();else if(!U.name)openAcc();
 </script></body></html>

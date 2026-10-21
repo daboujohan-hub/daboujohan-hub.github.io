@@ -2,6 +2,7 @@
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Le Bateau des 100 Questions</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#06224a"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{color-scheme:dark;--bg:#06224a;--card:#0b2f63;--line:#1d5cb0;--ac:#1e7cff;--ok:#19c36b;--ko:#f0444b;--gold:#ffc83d;--tx:#eaf3ff;--mu:#9db9de;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -53,7 +54,7 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 .pol h4{margin:12px 0 2px}.pol p,.pol li{font-size:14px;margin:2px 0}.cert{background:#3a2d00;border:1px solid var(--gold);border-radius:10px;padding:10px;font-size:13px;margin:10px 0}
 .b3{background:#27406b}.b4{background:var(--ko)}
 </style></head><body>
-<header><div class="top2" style="gap:8px;flex-wrap:wrap"><button id="inf" class="pill">🎮 Défi infini</button><button id="inv" class="pill">📲 Partager</button><button id="ub" class="pill">👤 Créer mon compte</button></div>
+<header><div class="top2" style="gap:8px;flex-wrap:wrap"><button id="inf" class="pill">🎮 Défi infini</button><button id="inv" class="pill">📲 Partager</button><button id="ins" class="pill" style="display:none">⬇️ Installer</button><button id="ub" class="pill">👤 Créer mon compte</button></div>
 <h1>🚢 Le Bateau des <span>100 Questions</span></h1>
 <div class="mu" style="font-size:13px">Apprendre • Réfléchir • Progresser</div>
 <div class="sea"><div id="bar"></div><div id="boat">⛵</div></div></header>
@@ -74,7 +75,7 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
  <div class="card leg"><b>Légende</b><br><span style="background:#7b8797"></span>Non répondue<span style="background:var(--gold)"></span>En cours<br><span style="background:var(--ok);margin-left:0"></span>Bonne réponse<span style="background:var(--ko)"></span>Mauvaise réponse<p class="mu" style="margin:10px 0 0">🎯 Objectif : réponds à toutes les questions et atteins 100 points !</p></div>
  <div class="card" style="margin-top:12px"><b>🏅 Meilleurs mathématiciens</b><div id="lb" style="margin:8px 0"></div><p class="mu" style="font-size:12px;margin:0">Classement local (questions de mathématiques). Il sera partagé quand la base de données sera en ligne et les comptes certifiés.</p></div>
  <p style="text-align:center"><button class="lk" id="pvl">🔒 Politique de confidentialité</button></p>
- <p class="mu" style="text-align:center;font-size:12px;margin:0">Édité par AbouDev Labs · v3 · <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">Contact</a></p>
+ <p class="mu" style="text-align:center;font-size:12px;margin:0">Édité par AbouDev Labs · v4 · <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">Contact</a></p>
 </div>
 </main>
 <div id="fx"><div id="dancer">🕺</div><div id="fxt"></div></div>
@@ -299,6 +300,9 @@ function challenge(){const sc=ans.filter(x=>x&&x.ok).length;wa(`🤝 ${U.name||'
 $('bsh').onclick=$('shr').onclick=shareScore;$('inv').onclick=()=>{ans.some(Boolean)?shareScore():wa(`🚢 Viens jouer au Bateau des 100 Questions ! Maths, logique, code… 👉 ${base()}`)};$('tg').onclick=()=>{U.nt=!U.nt;saveU();ui()};$('bch').onclick=challenge;
 const CH=(()=>{try{const p=new URLSearchParams(location.hash.slice(1)),d=+p.get('d');if(p.get('d')!==null&&d>=0&&d<=100)return{d,n:(p.get('n')||'Un ami').replace(/[<>&"]/g,'').slice(0,20)}}catch(e){}return null})();
 if(CH){$('wch').style.display='block';$('wch').textContent='🤝 '+CH.n+' te défie : bats '+CH.d+'/100 !'}
+try{if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}
+let ip=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;$('ins').style.display=''});
+$('ins').onclick=()=>{if(ip){ip.prompt();ip=null;$('ins').style.display='none'}};
 if(!Q.length)Q.push(...build(U.L||1));
 render();if(!started)openWl();else if(!U.name)openAcc();
 </script></body></html>

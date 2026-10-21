@@ -53,7 +53,7 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 .pol h4{margin:12px 0 2px}.pol p,.pol li{font-size:14px;margin:2px 0}.cert{background:#3a2d00;border:1px solid var(--gold);border-radius:10px;padding:10px;font-size:13px;margin:10px 0}
 .b3{background:#27406b}.b4{background:var(--ko)}
 </style></head><body>
-<header><div class="top2" style="gap:8px"><button id="inf" class="pill">🎮 Défi infini</button><button id="ub" class="pill">👤 Créer mon compte</button></div>
+<header><div class="top2" style="gap:8px;flex-wrap:wrap"><button id="inf" class="pill">🎮 Défi infini</button><button id="inv" class="pill">📲 Partager</button><button id="ub" class="pill">👤 Créer mon compte</button></div>
 <h1>🚢 Le Bateau des <span>100 Questions</span></h1>
 <div class="mu" style="font-size:13px">Apprendre • Réfléchir • Progresser</div>
 <div class="sea"><div id="bar"></div><div id="boat">⛵</div></div></header>
@@ -69,16 +69,16 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
  <div id="pan"></div>
 </div>
 <div class="col2">
- <div class="card" style="margin-bottom:12px"><b>🏆 Mon score</b><div class="big" style="font-size:32px;color:var(--tx)"><span id="sc">0</span> / 100</div><div class="mu" id="msg">Bon courage !</div><div id="pts" style="font-size:14px;margin-top:4px"></div><div class="row" style="align-items:center"><span id="stk" style="flex:1;font-size:14px"></span><button id="vcb" class="pill">🗣️</button><button id="snb" class="pill">🔊</button></div><button class="pill" id="rv" style="margin-top:8px">🔁 Revoir mes erreurs (<span id="rvn">0</span>)</button></div>
+ <div class="card" style="margin-bottom:12px"><b>🏆 Mon score</b><div class="big" style="font-size:32px;color:var(--tx)"><span id="sc">0</span> / 100</div><div class="mu" id="msg">Bon courage !</div><div id="pts" style="font-size:14px;margin-top:4px"></div><div class="row" style="align-items:center"><span id="stk" style="flex:1;font-size:14px"></span><button id="vcb" class="pill">🗣️</button><button id="snb" class="pill">🔊</button></div><button class="pill" id="rv" style="margin-top:8px">🔁 Revoir mes erreurs (<span id="rvn">0</span>)</button> <button class="pill" id="shr" style="margin-top:8px">📲 Partager mon score</button></div>
  <div class="card" style="margin-bottom:12px"><b>📋 Liste des questions</b><div id="cats" style="margin-top:8px"></div><div class="grid" id="grid"></div></div>
  <div class="card leg"><b>Légende</b><br><span style="background:#7b8797"></span>Non répondue<span style="background:var(--gold)"></span>En cours<br><span style="background:var(--ok);margin-left:0"></span>Bonne réponse<span style="background:var(--ko)"></span>Mauvaise réponse<p class="mu" style="margin:10px 0 0">🎯 Objectif : réponds à toutes les questions et atteins 100 points !</p></div>
  <div class="card" style="margin-top:12px"><b>🏅 Meilleurs mathématiciens</b><div id="lb" style="margin:8px 0"></div><p class="mu" style="font-size:12px;margin:0">Classement local (questions de mathématiques). Il sera partagé quand la base de données sera en ligne et les comptes certifiés.</p></div>
  <p style="text-align:center"><button class="lk" id="pvl">🔒 Politique de confidentialité</button></p>
- <p class="mu" style="text-align:center;font-size:12px;margin:0">Édité par AbouDev Labs · <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">Contact</a></p>
+ <p class="mu" style="text-align:center;font-size:12px;margin:0">Édité par AbouDev Labs · v3 · <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">Contact</a></p>
 </div>
 </main>
 <div id="fx"><div id="dancer">🕺</div><div id="fxt"></div></div>
-<div class="modal" id="wl"><div class="card" style="text-align:center"><div style="font-size:60px">🚢</div><h2 style="margin:4px 0">Le Bateau des 100 Questions</h2><p class="mu" style="margin:0 0 12px">Choisis ta difficulté avant la traversée</p><div class="row" id="wlv"><button class="pill" data-l="1" style="flex:1">⭐ Facile</button><button class="pill" data-l="2" style="flex:1">⭐⭐ Moyen</button><button class="pill" data-l="3" style="flex:1">⭐⭐⭐ Difficile</button></div><p class="mu" style="font-size:13px">30 secondes par question · 2 jokers 50/50 · 2 indices · points bonus pour les réponses rapides</p><button class="btn b1" id="wgo" style="width:100%;margin-top:6px">⛵ Commencer la traversée</button></div></div>
+<div class="modal" id="wl"><div class="card" style="text-align:center"><div style="font-size:60px">🚢</div><h2 style="margin:4px 0">Le Bateau des 100 Questions</h2><p class="cert" id="wch" style="display:none"></p><p class="mu" style="margin:0 0 12px">Choisis ta difficulté avant la traversée</p><div class="row" id="wlv"><button class="pill" data-l="1" style="flex:1">⭐ Facile</button><button class="pill" data-l="2" style="flex:1">⭐⭐ Moyen</button><button class="pill" data-l="3" style="flex:1">⭐⭐⭐ Difficile</button></div><p class="mu" style="font-size:13px">30 secondes par question · 2 jokers 50/50 · 2 indices · points bonus pour les réponses rapides</p><button class="btn b1" id="wgo" style="width:100%;margin-top:6px">⛵ Commencer la traversée</button></div></div>
 <div id="toast"></div>
 <div class="modal" id="am"><div class="card"><h3 style="margin-top:0">👤 Mon compte</h3>
 <label class="mu" style="font-size:13px">Ton nom (un pseudo suffit, pas besoin de ton vrai nom)</label><input id="nm" maxlength="20" placeholder="Ex : Capitaine Léo" autocomplete="off">
@@ -86,6 +86,7 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 <div class="cert">⏳ <b>Compte non certifié (local).</b> Tes données restent sur cet appareil. Quand la base de données sera en ligne, ton compte pourra être certifié et ton nom apparaîtra dans le classement public.</div>
 <div style="font-size:14px" id="st"></div>
 <div class="row"><button class="btn b1" id="sv">Enregistrer</button><button class="btn b3" data-m="am" id="cx">Fermer</button></div>
+<div class="row"><button class="btn b3" id="tg" style="font-size:14px"></button></div>
 <div class="row"><button class="btn b3" id="ex" style="font-size:14px">📤 Exporter mes données</button><button class="btn b4" id="dl" style="font-size:14px">🗑️ Tout effacer</button></div>
 <textarea id="exo" readonly style="display:none;margin-top:8px"></textarea>
 <p style="text-align:center;margin:10px 0 0"><button class="lk" id="pv2">🔒 Politique de confidentialité</button></p></div></div>
@@ -99,7 +100,7 @@ textarea{width:100%;min-height:70px;border-radius:10px;border:1px solid var(--li
 <h4>Éditeur et contact</h4><p>Site édité par AbouDev Labs. Pour toute question ou demande concernant tes données : <a href="https://daboujohan-hub.github.io" target="_blank" rel="noopener" style="color:#7db7ff">daboujohan-hub.github.io</a></p>
 <h4>Conseil</h4><p>Utilise un pseudo plutôt que ton vrai nom, surtout si tu es mineur.</p>
 <button class="btn b1" data-m="pm" id="cp" style="width:100%;margin-top:12px">J’ai compris</button></div></div>
-<div id="bil"><div class="card"><div style="font-size:50px">🏝️</div><h2>Traversée terminée !</h2><div class="big" id="bs"></div><div id="bn" style="font-size:22px;margin:6px 0"></div><p id="bm" class="mu"></p><div id="bc" style="text-align:left;font-size:14px"></div><button class="btn b1" id="rs" style="width:100%;margin-top:12px">🔄 Recommencer</button></div></div>
+<div id="bil"><div class="card"><div style="font-size:50px">🏝️</div><h2>Traversée terminée !</h2><div class="big" id="bs"></div><div id="bn" style="font-size:22px;margin:6px 0"></div><p id="bm" class="mu"></p><div id="bc" style="text-align:left;font-size:14px"></div><div class="cert" id="bsec" style="text-align:left"></div><div class="row"><button class="btn b2" id="bsh">📲 Partager mon score</button></div><div class="row"><button class="btn b3" id="bch">🤝 Défier un ami</button></div><button class="btn b1" id="rs" style="width:100%;margin-top:12px">🔄 Recommencer</button></div></div>
 <script>
 const CATS=[["Mathématiques","🧮"],["Logique","🧠"],["Programmation","💻"],["Algorithmes","🔀"],["Informatique","🛡️"]];
 const Q=[];
@@ -194,10 +195,10 @@ const saveU=()=>{try{localStorage.setItem('b100u',JSON.stringify(U))}catch(e){}}
 const AVS=['🐳','🐬','🦈','🐙','⚓','🏴‍☠️','🦜','🧑‍✈️'];let avSel=U.av,delArm=false;
 const openM=id=>$(id).style.display='flex',closeM=id=>$(id).style.display='none';
 const okc=i=>ans.slice(S[i],S[i]+Z[i]).filter(x=>x&&x.ok).length;
-function ui(){$('ub').textContent=U.name?U.av+' '+U.name:'👤 Créer mon compte';$('stk').textContent='🔥 Série : '+(U.st||0)+' (record '+(U.best||0)+')';$('snb').textContent=U.mute?'🔇':'🔊';$('pts').textContent='⭐ Points : '+(U.pts||0);$('jf').textContent=U.jf;$('jhn').textContent=U.jh;$('vcb').style.opacity=U.voice?1:.4;$('rvn').textContent=ans.filter(x=>x&&!x.ok).length;
+function ui(){$('ub').textContent=U.name?U.av+' '+U.name:'👤 Créer mon compte';$('stk').textContent='🔥 Série : '+(U.st||0)+' (record '+(U.best||0)+')';$('snb').textContent=U.mute?'🔇':'🔊';$('pts').textContent='⭐ Points : '+(U.pts||0);$('jf').textContent=U.jf;$('jhn').textContent=U.jh;$('vcb').style.opacity=U.voice?1:.4;$('rvn').textContent=ans.filter(x=>x&&!x.ok).length;$('tg').textContent='⏱️ Chrono : '+(U.nt?'désactivé (touche pour activer)':'30 s (touche pour désactiver)');
  $('lb').innerHTML=`<div class="lbr first"><span>🥇 ${U.av} ${esc(U.name||'Invité')}</span><span>${U.mp||0} pts <i class="bdg">non certifié</i></span></div>`+[2,3,4,5].map(i=>`<div class="lbr mu"><span>${i}. place libre</span><span>—</span></div>`).join('')}
 function drawAv(){$('avs').innerHTML=AVS.map(a=>`<button class="av${a==avSel?' on':''}" data-a="${a}">${a}</button>`).join('')}
-function openAcc(){$('nm').value=U.name;avSel=U.av;drawAv();$('exo').style.display='none';delArm=false;$('dl').textContent='🗑️ Tout effacer';$('st').innerHTML='<b>Mes scores</b><br>'+CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>')+'<br><b>🏆 Badges</b><br>'+BD.map(b=>(U.bd&&U.bd[b[0]]?b[1]:'🔒')+' '+b[2]).join('<br>');openM('am')}
+function openAcc(){$('nm').value=U.name;avSel=U.av;drawAv();$('exo').style.display='none';delArm=false;$('dl').textContent='🗑️ Tout effacer';$('st').innerHTML='<b>Mes scores</b><br>'+CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>')+'<br><b>🏆 Badges</b><br>'+BD.map(b=>(U.bd&&U.bd[b[0]]?b[1]:'🔒')+' '+b[2]).join('<br>')+(U.secret?'<br><br><b>🤫 Mon message secret</b><br>'+U.secret.replace(/\n/g,'<br>'):'');openM('am')}
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const gc=()=>{try{return JSON.parse(localStorage.getItem('c'+cur))||[]}catch(e){return[]}};
 function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',1800)}
@@ -225,10 +226,10 @@ function fx(ok){snd(ok,Q[cur].c);say(ok?['Bravo !','Excellent !','Bien joué, ma
 function bilan(){const sc=ans.filter(x=>x.ok).length,n=(sc/5).toFixed(1).replace('.',',');
  $('bs').textContent=sc+' / 100';$('bn').textContent='Note : '+n+' / 20';
  $('bm').textContent=sc>=90?'Capitaine légendaire ! 🏴‍☠️':sc>=70?'Excellent marin, bravo !':sc>=50?'Bonne traversée, continue à t’entraîner.':'Tu as survécu à la tempête : relis les explications et réessaie !';
- $('bc').innerHTML=CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>');$('bil').style.display='flex'}
+ $('bc').innerHTML=CATS.map((c,i)=>`${c[1]} ${c[0]} : <b>${okc(i)}/${Z[i]}</b>`).join('<br>');U.secret=secret();U.title=ttl(sc);saveU();$('bsec').innerHTML='🤫 <b>Message secret</b><br>'+U.secret.replace(/\n/g,'<br>');$('bn').textContent+=' · '+U.title;if(CH)$('bm').textContent+=sc>CH.d?' 🏆 Tu as battu '+CH.n+' ('+CH.d+') !':sc==CH.d?' 🤝 Égalité avec '+CH.n+' !':' 💪 '+CH.n+' avait '+CH.d+', retente ta chance !';$('bil').style.display='flex'}
 const go=i=>{cur=i;sel=-1;tab='e';render();$('qc').scrollIntoView({behavior:'smooth'});sayQ()};
 $('opts').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ans[cur]){sel=+b.dataset.i;render()}};
-$('val').onclick=()=>{if(ans[cur])return go((cur+1)%100);if(sel<0)return toast('Choisis une réponse d’abord');const ok=sel==Q[cur].a,sp=(Date.now()-t0)/1000,rv=REV[cur];ans[cur]={s:sel,ok};if(!rv){U.st=ok?(U.st||0)+1:0;U.best=Math.max(U.best||0,U.st)}if(ok&&!rv){const fast=sp<=10?2:sp<=20?1:0,p=(Q[cur].d||1)+fast+(U.st>=3?1:0);ans[cur].p=p;U.fc=(U.fc||0)+(fast==2?1:0);award(p,Q[cur].c);toast('+'+p+' pts'+(fast?' ⚡':'')+(U.st>=3?' 🔥':''))}delete REV[cur];save();saveU();badges();tab='e';render();fx(ok);if(ans.every(Boolean))setTimeout(bilan,3200)};
+$('val').onclick=()=>{if(ans[cur])return go((cur+1)%100);if(sel<0)return toast('Choisis une réponse d’abord');const ok=sel==Q[cur].a,sp=(Date.now()-t0)/1000,rv=REV[cur];ans[cur]={s:sel,ok};if(!rv){U.st=ok?(U.st||0)+1:0;U.best=Math.max(U.best||0,U.st)}if(ok&&!rv){const fast=U.nt?0:sp<=10?2:sp<=20?1:0,p=(Q[cur].d||1)+fast+(U.st>=3?1:0);ans[cur].p=p;U.fc=(U.fc||0)+(fast==2?1:0);award(p,Q[cur].c);toast('+'+p+' pts'+(fast?' ⚡':'')+(U.st>=3?' 🔥':''))}delete REV[cur];save();saveU();badges();tab='e';render();fx(ok);if(ans.every(Boolean))setTimeout(bilan,3200)};
 $('see').onclick=()=>{if(!ans[cur]){ans[cur]={s:-1,ok:false};save()}tab='e';render();if(ans.every(Boolean))setTimeout(bilan,1500)};
 $('t1').onclick=()=>{tab='e';render()};$('t2').onclick=()=>{tab='c';render()};
 $('cats').onclick=e=>{const b=e.target.closest('.cat');if(b)go(S[b.dataset.c])};
@@ -282,7 +283,22 @@ $('j5').onclick=()=>{if(ans[cur])return;if(!U.jf||H[cur])return toast(U.jf?'Déj
 $('jh').onclick=()=>{if(ans[cur])return;if(!U.jh||HT[cur])return toast(U.jh?'Indice déjà utilisé':'Plus d’indices !');U.jh--;HT[cur]='💡 La bonne réponse est parmi '+(Q[cur].a<2?'A et B':'C et D');saveU();render()};
 $('vcb').onclick=()=>{U.voice=!U.voice;saveU();ui();if(U.voice)say('Voix activée')};
 $('rv').onclick=()=>{const w=ans.map((x,i)=>x&&!x.ok?i:-1).filter(i=>i>=0);if(!w.length)return toast('Aucune erreur à revoir 🎉');w.forEach(i=>{ans[i]=null;REV[i]=1;delete H[i];delete HT[i]});save();go(w[0])};
-setInterval(()=>{if(!Q.length||ans[cur])return;if(document.hidden||[...document.querySelectorAll('.modal')].some(m=>m.style.display=='flex')){t0+=250;return}const l=30-(Date.now()-t0)/1000;$('tm').style.width=Math.max(0,l/30*100)+'%';$('tm').style.background=l>10?'var(--ok)':'var(--ko)';$('tl').textContent='⏱️ '+Math.max(0,Math.ceil(l))+' s';if(l<=0){ans[cur]={s:-1,ok:false,t:1};U.st=0;save();saveU();render();toast('⏱️ Temps écoulé !');if(ans.every(Boolean))setTimeout(bilan,1500)}},250);
+setInterval(()=>{if(!Q.length||ans[cur]||U.nt){if(U.nt){$('tl').textContent='';$('tm').style.width='100%'}return}if(document.hidden||[...document.querySelectorAll('.modal')].some(m=>m.style.display=='flex')){t0+=250;return}const l=30-(Date.now()-t0)/1000;$('tm').style.width=Math.max(0,l/30*100)+'%';$('tm').style.background=l>10?'var(--ok)':'var(--ko)';$('tl').textContent='⏱️ '+Math.max(0,Math.ceil(l))+' s';if(l<=0){ans[cur]={s:-1,ok:false,t:1};U.st=0;save();saveU();render();toast('⏱️ Temps écoulé !');if(ans.every(Boolean))setTimeout(bilan,1500)}},250);
+const ttl=s=>s>=95?'Amiral ⚓':s>=80?'Capitaine 🧑‍✈️':s>=60?'Second 🧭':s>=40?'Quartier-maître 🔱':s>=20?'Matelot 🌊':'Mousse 🐚';
+function secret(){const sc=ans.filter(x=>x.ok).length,cs=CATS.map((c,i)=>okc(i)),mx=Math.max(...cs),mn=Math.min(...cs),bi=cs.indexOf(mx),wi=cs.indexOf(mn),n=U.name||'Matelot',L=['facile','moyen','difficile'][(U.L||1)-1];let h=0;for(const ch of n+sc+cs.join(''))h=(h*31+ch.charCodeAt(0))>>>0;
+ const p=(a,k)=>a[(h>>>k)%a.length],B=CATS[bi][0],W=CATS[wi][0],code='BATEAU-'+(h%46656).toString(36).toUpperCase().padStart(3,'0')+'-'+sc;
+ return [p([`Capitaine ${n}, la mer n’a presque plus de secret pour toi.`,`Psst ${n} ! Tu as traversé les 100 questions, peu de matelots y arrivent.`,`${n}, le vieux marin t’a observé pendant toute la traversée (niveau ${L}).`,`Bravo ${n} ! Le coffre du bateau s’ouvre enfin pour toi.`],0),
+ p([`Ton point fort : ${B} (${mx}/20).`,`En ${B}, tu as navigué comme un pro : ${mx}/20.`,`Le vent soufflait pour toi en ${B} : ${mx}/20 !`],3),
+ bi==wi?'Tu es régulier dans toutes les catégories : rare et précieux.':p([`Ton prochain cap : ${W} (${mn}/20). Utilise « Revoir mes erreurs ».`,`Il reste du trésor à trouver en ${W} (${mn}/20) : une seconde traversée ?`,`Pour devenir Amiral, travaille ${W} (${mn}/20) !`],5),
+ p(['Le vrai trésor, c’est ce que tu as appris. 🏴‍☠️','Partage le jeu : un bon marin n’explore jamais seul. ⚓','La prochaine traversée sera plus difficile… si tu l’oses. 🌊','Ce message a été écrit rien que pour tes résultats. ✨'],7),
+ '🔑 Code secret : '+code].join('\n')}
+function wa(t){const u='https://wa.me/?text='+encodeURIComponent(t);if(!window.open(u,'_blank'))location.href=u}
+const base=()=>location.href.split('#')[0];
+function shareScore(){const sc=ans.filter(x=>x&&x.ok).length;wa(`🚢 J’ai fait ${sc}/100 au Bateau des 100 Questions ! Titre : ${ttl(sc)} · ⭐ ${U.pts||0} points. Tu peux faire mieux ? 👉 ${base()}`)}
+function challenge(){const sc=ans.filter(x=>x&&x.ok).length;wa(`🤝 ${U.name||'Un ami'} te défie ! Bats mon score de ${sc}/100 au Bateau des 100 Questions 👉 ${base()}#d=${sc}&n=${encodeURIComponent(U.name||'Un ami')}`)}
+$('bsh').onclick=$('shr').onclick=shareScore;$('inv').onclick=()=>{ans.some(Boolean)?shareScore():wa(`🚢 Viens jouer au Bateau des 100 Questions ! Maths, logique, code… 👉 ${base()}`)};$('tg').onclick=()=>{U.nt=!U.nt;saveU();ui()};$('bch').onclick=challenge;
+const CH=(()=>{try{const p=new URLSearchParams(location.hash.slice(1)),d=+p.get('d');if(p.get('d')!==null&&d>=0&&d<=100)return{d,n:(p.get('n')||'Un ami').replace(/[<>&"]/g,'').slice(0,20)}}catch(e){}return null})();
+if(CH){$('wch').style.display='block';$('wch').textContent='🤝 '+CH.n+' te défie : bats '+CH.d+'/100 !'}
 if(!Q.length)Q.push(...build(U.L||1));
 render();if(!started)openWl();else if(!U.name)openAcc();
 </script></body></html>

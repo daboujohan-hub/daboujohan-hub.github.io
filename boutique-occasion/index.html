@@ -79,7 +79,7 @@ footer a{color:var(--acc);font-weight:700}
   function init(cfg, items) {
     document.title = cfg.nom;
     $('nom').textContent = cfg.nom;
-    $('slogan').textContent = cfg.slogan || '';
+    $('slogan').textContent = (cfg.slogan || '') + (cfg.livraison ? ' · ' + cfg.livraison : '');
     $('pied').textContent = cfg.nom + (cfg.ville ? ' · ' + cfg.ville : '') + ' · Articles d\'occasion, pièces uniques';
     NUM = String(cfg.whatsapp || '').replace(/\D/g, '');
     if (!/^\d{10,15}$/.test(NUM)) {
@@ -131,7 +131,7 @@ footer a{color:var(--acc);font-weight:700}
       b.appendChild(el('div', 'prix', fmt(p.prix)));
       if (!p.vendu) {
         var a1 = el('a', 'btn main', '💬 Je le veux');
-        a1.href = wa('Bonjour, je suis intéressé(e) par : ' + p.nom + ' (' + fmt(p.prix) + '). Est-il encore disponible ?');
+        a1.href = wa('Bonjour, je suis intéressé(e) par : ' + p.nom + ' (' + fmt(p.prix) + '). Est-il encore disponible ? Pour la livraison, je me trouve à : ');
         var a2 = el('a', 'btn', 'Discuter le prix');
         a2.href = wa('Bonjour, pour : ' + p.nom + ' (' + fmt(p.prix) + '). Puis-je discuter le prix ?');
         [a1, a2].forEach(function (a) { a.target = '_blank'; a.rel = 'noopener noreferrer'; b.appendChild(a); });

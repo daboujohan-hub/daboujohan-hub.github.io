@@ -19,6 +19,11 @@ elif len(a) == 2 and a[0] == "vendu":
         if p["id"] == int(a[1]):
             p["vendu"] = True
     print("marqué vendu :", a[1])
+elif len(a) == 3 and a[0] == "photo":
+    for p in d:
+        if p["id"] == int(a[1]):
+            p["photo"] = a[2]
+    print("photo changée")
 elif len(a) == 3 and a[0] == "prix":
     for p in d:
         if p["id"] == int(a[1]):

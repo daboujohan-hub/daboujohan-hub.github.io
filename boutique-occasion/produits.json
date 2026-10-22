@@ -1,58 +1,18 @@
 [
   {
     "id": 1,
-    "nom": "T-shirt (exemple)",
-    "prix": 1000,
-    "etat": "Bon état",
-    "photo": "",
+    "nom": "Ventilateur de processeur (grand modèle)",
+    "prix": 1550,
+    "etat": "Non testé, vendu pour pièces",
+    "photo": "ventilateur.jpg",
     "vendu": false
   },
   {
     "id": 2,
-    "nom": "Casquette (exemple)",
-    "prix": 2000,
-    "etat": "Comme neuve",
+    "nom": "Ventilateur de processeur (modèle moyen)",
+    "prix": 750,
+    "etat": "Non testé, vendu pour pièces",
     "photo": "",
-    "vendu": false
-  },
-  {
-    "id": 3,
-    "nom": "Chaussures (exemple)",
-    "prix": 2500,
-    "etat": "Bon état",
-    "photo": "",
-    "vendu": false
-  },
-  {
-    "id": 4,
-    "nom": "Sac à dos (exemple)",
-    "prix": 4000,
-    "etat": "Très bon état",
-    "photo": "",
-    "vendu": true
-  },
-  {
-    "id": 5,
-    "nom": "Écouteurs (exemple)",
-    "prix": 7500,
-    "etat": "Testés, fonctionnent",
-    "photo": "",
-    "vendu": false
-  },
-  {
-    "id": 6,
-    "nom": "Téléphone (exemple)",
-    "prix": 15000,
-    "etat": "Bon état",
-    "photo": "",
-    "vendu": true
-  },
-  {
-    "id": 7,
-    "nom": "Sac à main",
-    "prix": 3000,
-    "etat": "Bon état",
-    "photo": "sac1.jpg",
     "vendu": false
   }
 ]

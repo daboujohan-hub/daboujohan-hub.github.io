@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0f9d58">
+<meta name="color-scheme" content="light">
 <title>Boutique d'occasion</title>
 <style>
 :root{--bg:#f7f7f4;--card:#fff;--text:#1d2327;--muted:#6b7280;--line:#e5e7eb;--acc:#0f9d58;--on:#fff;--price:#c2410c}
@@ -37,16 +38,33 @@ h1{margin:0;font-size:1.5rem;letter-spacing:-.02em}
 footer{margin:30px 0 90px;padding:18px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;text-align:center}
 footer a{color:var(--acc);font-weight:700}
 .float{position:fixed;right:14px;bottom:14px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.7rem;border:2px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+
+:root{color-scheme:light}
+body{background:#f4f6f5}
+header{background:linear-gradient(135deg,#0b7a43,#0f9d58);color:#fff;border:0;padding:26px 0 22px}
+h1{font-size:1.9rem;letter-spacing:-.03em}
+.sl{color:rgba(255,255,255,.92);font-size:1rem;margin:4px 0 12px}
+.infos{display:flex;flex-wrap:wrap;gap:8px}
+.infos span{background:rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;font-size:.78rem}
+.infos span:empty{display:none}
+.bar input,.bar select{background:#fff;color:#1d2327}
+.bar select{padding:11px 12px;border-radius:12px;border:1px solid var(--line);font:inherit}
+.card{box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.ph{aspect-ratio:4/3}
+footer{margin-bottom:110px}
+.float{width:52px;height:52px;right:12px;bottom:14px}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <h1 id="nom">Boutique</h1>
   <p class="sl" id="slogan"></p>
+  <div class="infos"><span>🧩 Pièces uniques</span><span>💬 Commande sur WhatsApp</span><span id="livr"></span></div>
 </div></header>
 <main class="wrap">
   <div id="err" class="err" hidden></div>
-  <div class="bar"><input id="q" type="search" placeholder="Chercher un article…" aria-label="Chercher"></div>
+  <div class="bar"><input id="q" type="search" placeholder="Chercher un article…" aria-label="Chercher">
+    <select id="tri" aria-label="Trier"><option value="desc">Plus chers d'abord</option><option value="asc">Moins chers d'abord</option></select></div>
   <div class="chips" id="chips"></div>
   <div class="grid" id="liste"><div class="vide">Chargement…</div></div>
 </main>
@@ -60,7 +78,7 @@ footer a{color:var(--acc);font-weight:700}
 (function () {
   function $(i) { return document.getElementById(i); }
   function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x) e.textContent = x; return e; }
-  var NUM = '', DATA = [], tranche = 0;
+  var NUM = '', DATA = [], tranche = 0, ORDRE = 'desc';
   var TR = [
     { l: 'Tout', min: 0, max: 1e12 },
     { l: "Jusqu'à 2 000", min: 0, max: 2000 },
@@ -79,7 +97,7 @@ footer a{color:var(--acc);font-weight:700}
   function init(cfg, items) {
     document.title = cfg.nom;
     $('nom').textContent = cfg.nom;
-    $('slogan').textContent = (cfg.slogan || '') + (cfg.livraison ? ' · ' + cfg.livraison : '');
+    $('slogan').textContent = cfg.slogan || ''; $('livr').textContent = cfg.livraison ? '🚚 ' + cfg.livraison : '';
     $('pied').textContent = cfg.nom + (cfg.ville ? ' · ' + cfg.ville : '') + ' · Articles d\'occasion, pièces uniques';
     NUM = String(cfg.whatsapp || '').replace(/\D/g, '');
     if (!/^\d{10,15}$/.test(NUM)) {
@@ -99,6 +117,7 @@ footer a{color:var(--acc);font-weight:700}
       $('chips').appendChild(b);
     });
     $('q').oninput = draw;
+    $('tri').onchange = function () { ORDRE = this.value; draw(); };
     draw();
   }
 
@@ -107,7 +126,7 @@ footer a{color:var(--acc);font-weight:700}
     var L = DATA.filter(function (p) {
       return p.prix >= t.min && p.prix <= t.max && (!q || String(p.nom).toLowerCase().indexOf(q) !== -1);
     }).sort(function (a, b) {
-      return (a.vendu ? 1 : 0) - (b.vendu ? 1 : 0) || a.prix - b.prix;
+      return (a.vendu ? 1 : 0) - (b.vendu ? 1 : 0) || (ORDRE === 'asc' ? a.prix - b.prix : b.prix - a.prix);
     });
     var box = $('liste');
     box.textContent = '';

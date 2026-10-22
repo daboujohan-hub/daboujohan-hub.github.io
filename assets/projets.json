@@ -1,5 +1,12 @@
 [
   {
+    "nom": "DIG.DAG",
+    "icone": "📡",
+    "statut": "Bientôt",
+    "texte": "Messagerie conçue pour marcher sans internet : les téléphones proches se parlent directement. Démo dans le navigateur.",
+    "lien": "https://daboujohan-hub.github.io/dig-dag/"
+  },
+  {
     "nom": "DIOMANDÉ",
     "icone": "🏠",
     "statut": "En cours",

@@ -12,7 +12,7 @@
     "nom": "Ventilateur de processeur (modèle moyen)",
     "prix": 750,
     "etat": "Non testé, vendu pour pièces",
-    "photo": "",
+    "photo": "ventilateur.jpg",
     "vendu": false
   }
 ]

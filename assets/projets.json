@@ -1,5 +1,12 @@
 [
   {
+    "nom": "Le Bateau des 100 Questions",
+    "icone": "🚢",
+    "statut": "Disponible",
+    "texte": "Quiz de maths, logique, programmation et informatique, installable comme une application. 25 questions pour l'instant, d'autres arrivent.",
+    "lien": "https://daboujohan-hub.github.io/bateau-100-questions/"
+  },
+  {
     "nom": "DIG.DAG",
     "icone": "📡",
     "statut": "Bientôt",

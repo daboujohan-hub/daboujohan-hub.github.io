@@ -34,6 +34,9 @@ input{font:inherit;flex:1;min-width:0;padding:10px 12px;border:1px solid var(--l
 #setup p{margin:0;color:var(--mute);font-size:14px}
 .hide{display:none!important}
 </style>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <header>
@@ -212,5 +215,6 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)boot(false
   render();boot(true);
 })();
 </script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
 </body>
 </html>

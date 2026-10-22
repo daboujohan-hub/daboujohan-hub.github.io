@@ -1,6 +1,11 @@
 [
   {
     "date": "2026-10-22",
+    "titre": "Les démos s'installent comme des applications",
+    "texte": "Ouvre une démo dans Chrome, touche ⋮ puis « Installer l'application ». Le Bateau des Questions est disponible."
+  },
+  {
+    "date": "2026-10-22",
     "titre": "DIG.DAG : démo en ligne",
     "texte": "Messagerie sans internet pour téléphones proches. Touche le projet pour voir la démo."
   },

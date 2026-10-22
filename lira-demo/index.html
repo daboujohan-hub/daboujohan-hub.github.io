@@ -91,6 +91,9 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.88rem;text-align:center
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.rv,.rw{opacity:1;transform:none}}
 
 </style>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <div class="flag"><span></span><span></span><span></span></div>
@@ -171,5 +174,6 @@ document.getElementById('waFloat').href = wa("Bonjour DEV.D.A.J, je viens de la 
 document.getElementById('an').textContent = new Date().getFullYear();
 </script>
 <script src="demo.js?v=1"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
 </body>
 </html>

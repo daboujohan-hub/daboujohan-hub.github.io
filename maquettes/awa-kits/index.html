@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AWA KITS CI — Maquette | DEV.D.A.J</title>
   <link rel="stylesheet" href="style.css?v=3">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
   <div class="flag"><span></span><span></span><span></span></div>
@@ -126,5 +129,6 @@
     }, true);
   </script>
   <script src="demo.js?v=3"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>
 </body>
 </html>

@@ -1,5 +1,12 @@
 [
   {
+    "nom": "Base d'erreurs",
+    "icone": "🛡️",
+    "statut": "Disponible",
+    "texte": "51 erreurs expliquées simplement : téléphone, applications, Termux, et arnaques courantes (WhatsApp, Mobile Money). Recherche intégrée.",
+    "lien": "https://daboujohan-hub.github.io/erreurs/"
+  },
+  {
     "nom": "Le Bateau des 100 Questions",
     "icone": "🚢",
     "statut": "Disponible",

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liste de courses - DEV.D.A.J.</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; color: #222; }
+  .drapeau { display: flex; height: 8px; }
+  .drapeau span { flex: 1; }
+  .o { background: #f77f00; } .b { background: #fff; } .v { background: #009e60; }
+  header { background: #fff; padding: 16px; text-align: center; box-shadow: 0 1px 4px #0002; }
+  header h1 { font-size: 20px; }
+  header small { color: #666; }
+  main { max-width: 480px; margin: 0 auto; padding: 14px; }
+  form { display: flex; gap: 8px; margin-bottom: 12px; }
+  input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+  button { border: 0; border-radius: 8px; cursor: pointer; font-size: 16px; }
+  .ajout { background: #009e60; color: #fff; padding: 0 16px; }
+  .info { display: flex; justify-content: space-between; font-size: 14px; color: #555; margin-bottom: 8px; }
+  .info button { background: none; color: #d00; font-size: 14px; }
+  ul { list-style: none; }
+  li { display: flex; align-items: center; gap: 10px; background: #fff; padding: 12px; border-radius: 8px; margin-bottom: 8px; }
+  li.fait span { text-decoration: line-through; color: #999; }
+  li span { flex: 1; font-size: 16px; }
+  li input[type=checkbox] { width: 22px; height: 22px; flex: none; }
+  .sup { background: none; color: #d00; font-size: 20px; }
+  .vide { text-align: center; color: #888; padding: 20px; }
+  footer { text-align: center; font-size: 12px; color: #666; padding: 20px; }
+</style>
+</head>
+<body>
+  <div class="drapeau"><span class="o"></span><span class="b"></span><span class="v"></span></div>
+  <header>
+    <h1>🛒 Ma liste de courses</h1>
+    <small>DEV.D.A.J. · AbouDev</small>
+  </header>
+  <main>
+    <form id="form">
+      <input id="article" placeholder="Ajouter un article..." autocomplete="off" required>
+      <button class="ajout" type="submit">+</button>
+    </form>
+    <div class="info">
+      <span id="compte"></span>
+      <button id="effacer">Effacer les cochés</button>
+    </div>
+    <ul id="liste"></ul>
+  </main>
+  <footer>Fait à San Pedro, Côte d'Ivoire 🇨🇮<br>© DEV.D.A.J. – AbouDev Labs</footer>
+
+<script>
+  let articles = [];
+  try { articles = JSON.parse(localStorage.getItem("courses")) || []; } catch (e) {}
+
+  const liste = document.getElementById("liste");
+  const compte = document.getElementById("compte");
+
+  function sauver() {
+    try { localStorage.setItem("courses", JSON.stringify(articles)); } catch (e) {}
+  }
+
+  function afficher() {
+    liste.innerHTML = "";
+    if (articles.length === 0) {
+      liste.innerHTML = '<p class="vide">Ta liste est vide.</p>';
+    }
+    articles.forEach((a, i) => {
+      const li = document.createElement("li");
+      if (a.fait) li.className = "fait";
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = a.fait;
+      cb.onchange = () => { a.fait = cb.checked; sauver(); afficher(); };
+
+      const sp = document.createElement("span");
+      sp.textContent = a.nom;
+
+      const bt = document.createElement("button");
+      bt.className = "sup";
+      bt.textContent = "×";
+      bt.onclick = () => { articles.splice(i, 1); sauver(); afficher(); };
+
+      li.append(cb, sp, bt);
+      liste.appendChild(li);
+    });
+    const restants = articles.filter(a => !a.fait).length;
+    compte.textContent = restants + " à acheter sur " + articles.length;
+  }
+
+  document.getElementById("form").onsubmit = e => {
+    e.preventDefault();
+    const champ = document.getElementById("article");
+    const nom = champ.value.trim();
+    if (!nom) return;
+    articles.push({ nom: nom, fait: false });
+    champ.value = "";
+    sauver();
+    afficher();
+  };
+
+  document.getElementById("effacer").onclick = () => {
+    articles = articles.filter(a => !a.fait);
+    sauver();
+    afficher();
+  };
+
+  afficher();
+</script>
+</body>
+</html>

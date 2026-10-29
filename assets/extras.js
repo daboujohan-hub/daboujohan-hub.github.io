@@ -11,7 +11,7 @@ const CONFIG={
  LIRA_URL:'lira-demo/', COLLECTION_ORDERS:'commandes', COLLECTION_GUEST:'livre_or'
 };
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):e.setAttribute(x,v);k.flat().forEach(c=>e.append(c));return e};
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a))x==='class'?e.className=v:x.startsWith('on')?e.addEventListener(x.slice(2),v):e.setAttribute(x,v);k.flat(Infinity).forEach(c=>e.append(c));return e};
 const wa=$('a[href*="wa.me"],a[href*="whatsapp"]');
 const waLink=t=>{try{const u=new URL(wa.href);u.searchParams.set('text',t);return u.href}catch{return '#'}};
 const db=()=>{try{return window.firebase&&firebase.apps.length?firebase.firestore():null}catch{return null}};
@@ -21,7 +21,7 @@ let lang=localStorage.getItem('lang')||'fr';
 document.head.append(el('style',{},`
 .rv{opacity:0;transform:translateY(18px);transition:.6s}.rv.in{opacity:1;transform:none}
 #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:50}
-#dock{position:fixed;left:14px;bottom:82px;z-index:30;display:flex;flex-direction:column;gap:8px}
+#dock{position:fixed;left:14px;bottom:70px;z-index:30;display:none;flex-direction:column;gap:8px}#dock.o{display:flex}#dt{position:fixed;left:14px;bottom:18px;z-index:31;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer}
 #dock button,#top{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
 #top{position:fixed;right:18px;bottom:150px;z-index:30;display:none}
 .mod{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:60;display:grid;place-items:center;padding:16px}
@@ -38,8 +38,8 @@ details{border-bottom:1px solid var(--line);padding:10px 0}summary{cursor:pointe
 const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.1});
 $$('section .card,section h2').forEach(e=>{e.classList.add('rv');io.observe(e)});
 $$('img').forEach(i=>i.loading='lazy');
-const prog=el('div',{id:'prog'}),top=el('button',{id:'top','aria-label':'Haut',onclick:()=>scrollTo({top:0})},'↑');document.body.append(prog,top);
-addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=scrollY/(h.scrollHeight-innerHeight)*100+'%';top.style.display=scrollY>600?'block':'none'},{passive:true});
+const prog=el('div',{id:'prog'});document.body.append(prog);
+addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=scrollY/(h.scrollHeight-innerHeight)*100+'%'},{passive:true});
 
 /* 15 thème mémorisé */
 if(localStorage.getItem('theme')==='light')document.body.classList.add('light');
@@ -101,7 +101,7 @@ const share=()=>navigator.share?navigator.share({title:document.title,url:locati
 const order=()=>{const n=field('Ton nom'),p=field('Ton projet','textarea'),b=field('Budget (FCFA)'),d=field('Délai souhaité');modal('Commander',n,p,b,d,el('button',{class:'btn primary',onclick:()=>send(`Bonjour, je suis ${n.value}. Projet : ${p.value}. Budget : ${b.value}. Délai : ${d.value}.`)},'Envoyer ↗'))};
 const lira=()=>modal('Essayer LIRA',el('iframe',{src:CONFIG.LIRA_URL,style:'width:100%;height:60vh;border:0',loading:'lazy'}));
 const stats=()=>modal('Statistiques',...$$('.stat').map(s=>el('p',{},s.textContent.trim())));
-const dock=el('div',{id:'dock'},[['🔍','Recherche',search],['🌐','FR/EN',()=>setLang(lang==='fr'?'en':'fr')],['⭳','CV',cv],['↗','Partager',share],['✍','Commander',order],['🤖','LIRA',lira],['📊','Stats',stats]].map(([i,t,f])=>el('button',{title:t,'aria-label':t,onclick:f},i)));document.body.append(dock);
+const dock=el('div',{id:'dock'},[['🔍','Recherche',search],['🌐','FR/EN',()=>setLang(lang==='fr'?'en':'fr')],['📄','CV',cv],['↗','Partager',share],['✍','Commander',order],['🤖','LIRA',lira],['📊','Stats',stats]].map(([i,t,f])=>el('button',{title:t,'aria-label':t,onclick:f},i)));dock.onclick=()=>dock.classList.remove('o');document.body.append(dock,el('button',{id:'dt','aria-label':'Outils',onclick:()=>dock.classList.toggle('o')},'🧰'));
 addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();search()}});
 
 /* 18 terminal */
@@ -111,4 +111,27 @@ const hp=$('.hero-panel');if(hp){const o=el('div',{id:'tout'},'Tape « help »')
 
 /* 22 PWA */
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+document.head.append(el('style',{},`#mc{display:flex;align-items:flex-end;gap:10px;margin:0 0 18px}#mg{width:60px;flex:none;cursor:pointer;animation:bob 2s ease-in-out infinite}
+#mg.in{animation:walk 2.6s ease-out,bob 2s ease-in-out 2.6s infinite}.arm{transform-origin:40px 44px}.w .arm{animation:wr .35s ease-in-out infinite alternate}
+#mb{flex:1;background:#0f2a22;border:3px solid #8b6b3f;border-radius:10px;padding:8px 12px;font:.85rem/1.5 ui-monospace,monospace;color:#e8f5ec;min-height:62px;max-height:96px;overflow:hidden}
+#mb p{margin:0}#mb .c:after{content:'▍';animation:bl 1s steps(2) infinite}
+@keyframes walk{from{transform:translateX(-140px)}to{transform:none}}@keyframes bob{50%{transform:translateY(-3px)}}@keyframes wr{to{transform:rotate(-25deg)}}@keyframes bl{50%{opacity:0}}
+.ch p{margin:6px 0;padding:8px 10px;border-radius:10px;background:var(--surface-2)}.ch .u{background:var(--green);color:#062315;text-align:right}`));
+const MS=(()=>{const h=new Date().getHours(),g=h<12?'Bonjour':h<18?'Bon après-midi':'Bonsoir';return [g+' ! Nous sommes le '+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+'.','Ici, Abou transforme tes idées en outils : applis, sites et API.','Maintenant : explore les projets, commande, ou touche-moi pour poser une question.']})();
+const KB=[[/qui|abou|johan|d\.?a\.?j/i,'Diomandé Abou Johan (DEV.D.A.J), développeur ivoirien, fondateur d\'AbouDev Labs.'],[/projet|termchat|vite|lira|r[ée]alisation/i,'Les projets sont juste en dessous : touche une carte pour les détails.'],[/prix|co[uû]t|tarif|combien|devis/i,'Chaque projet a un devis. Utilise « Estimer mon projet » plus bas.'],[/contact|whatsapp|joindre|appel/i,'Le plus simple : le bouton WhatsApp vert, ou « Réserver un appel ».'],...CONFIG.FAQ.map(([q,a])=>[new RegExp(q.toLowerCase().split(/\W+/).filter(w=>w.length>4).join('|')||'^$','i'),a])];
+const ans=q=>(KB.find(([r])=>r.test(q))||[])[1];
+const bd=el('div',{id:'mb'}),mg=el('div',{id:'mg',title:'Pose-moi une question','aria-label':'Mascotte'});
+mg.innerHTML='<svg viewBox="0 0 64 90"><circle cx="30" cy="16" r="12" fill="#ffd9b0"/><path d="M18 13a12 12 0 0 1 24 0z" fill="#32d583"/><circle cx="26" cy="18" r="1.6" fill="#132033"/><circle cx="35" cy="18" r="1.6" fill="#132033"/><path d="M26 23q4 3 8 0" stroke="#132033" fill="none"/><rect x="19" y="28" width="22" height="30" rx="6" fill="#ff922b"/><path d="M24 58v22M36 58v22" stroke="#132033" stroke-width="4" stroke-linecap="round"/><g class="arm"><path d="M40 34l16-8" stroke="#ffd9b0" stroke-width="5" stroke-linecap="round"/><rect x="54" y="20" width="4" height="9" rx="1" fill="#fff" transform="rotate(30 56 24)"/></g><path d="M19 34l-8 14" stroke="#ffd9b0" stroke-width="5" stroke-linecap="round"/></svg>';
+const mc=el('div',{id:'mc'},mg,bd);const hc=$('.hero .container')||$('.hero');hc&&hc.prepend(mc);
+const sleep=t=>new Promise(r=>setTimeout(r,t));let busy=0;
+const write=async t=>{const p=el('p',{class:'c'});bd.append(p);while(bd.children.length>3)bd.firstChild.remove();mg.classList.add('w');for(const c of t){p.textContent+=c;await sleep(32)}mg.classList.remove('w');p.classList.remove('c');await sleep(1200)};
+const act=async()=>{try{const r=await fetch('assets/actus.json'),j=await r.json();return (Array.isArray(j)?j:j.actus||[]).slice(0,2).map(a=>'Nouveau : '+(a.titre||a.title||'')).filter(x=>x.length>10)}catch{return[]}};
+const run=async back=>{if(busy)return;busy=1;if(back){mg.classList.remove('in');void mg.offsetWidth;mg.classList.add('in');bd.replaceChildren();await sleep(2600)}
+ const all=[...(back?['Ça fait une semaine, je suis de retour !']:[]),...MS,...await act()];for(const m of all)await write(m);busy=0};
+const WK=6048e5,last=+localStorage.getItem('mascot_last')||0,first=!last||Date.now()-last>=WK;
+localStorage.setItem('mascot_last',Date.now());if(first)mg.classList.add('in');run(false);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-(+localStorage.getItem('mascot_last')||0)>=WK){localStorage.setItem('mascot_last',Date.now());run(true)}});
+mg.onclick=()=>{const l=el('div',{class:'ch'},el('p',{},'Salut ! Pose-moi une question sur le site.')),i=field('Ta question…');const go=q=>{if(!q)return;l.append(el('p',{class:'u'},q));const a=ans(q);l.append(el('p',{},a||'Je n\'ai pas la réponse. Je transmets à Abou sur WhatsApp ?'));if(!a)l.append(el('button',{class:'btn',onclick:()=>send('Question depuis le portfolio : '+q)},'Envoyer sur WhatsApp ↗'));i.value=''};
+ i.onkeydown=e=>e.key==='Enter'&&go(i.value.trim());modal('Le petit gardien',l,i,el('button',{class:'btn',onclick:lira},'Parler à LIRA 🤖'))};
 })();

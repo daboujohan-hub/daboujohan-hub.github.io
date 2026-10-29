@@ -112,26 +112,61 @@ const hp=$('.hero-panel');if(hp){const o=el('div',{id:'tout'},'Tape « help »')
 /* 22 PWA */
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
-document.head.append(el('style',{},`#mc{display:flex;align-items:flex-end;gap:10px;margin:0 0 18px}#mg{width:60px;flex:none;cursor:pointer;animation:bob 2s ease-in-out infinite}
-#mg.in{animation:walk 2.6s ease-out,bob 2s ease-in-out 2.6s infinite}.arm{transform-origin:40px 44px}.w .arm{animation:wr .35s ease-in-out infinite alternate}
-#mb{flex:1;background:#0f2a22;border:3px solid #8b6b3f;border-radius:10px;padding:8px 12px;font:.85rem/1.5 ui-monospace,monospace;color:#e8f5ec;min-height:62px;max-height:96px;overflow:hidden}
-#mb p{margin:0}#mb .c:after{content:'▍';animation:bl 1s steps(2) infinite}
-@keyframes walk{from{transform:translateX(-140px)}to{transform:none}}@keyframes bob{50%{transform:translateY(-3px)}}@keyframes wr{to{transform:rotate(-25deg)}}@keyframes bl{50%{opacity:0}}
-.ch p{margin:6px 0;padding:8px 10px;border-radius:10px;background:var(--surface-2)}.ch .u{background:var(--green);color:#062315;text-align:right}`));
-const MS=(()=>{const h=new Date().getHours(),g=h<12?'Bonjour':h<18?'Bon après-midi':'Bonsoir';return [g+' ! Nous sommes le '+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+'.','Ici, Abou transforme tes idées en outils : applis, sites et API.','Maintenant : explore les projets, commande, ou touche-moi pour poser une question.']})();
-const KB=[[/qui|abou|johan|d\.?a\.?j/i,'Diomandé Abou Johan (DEV.D.A.J), développeur ivoirien, fondateur d\'AbouDev Labs.'],[/projet|termchat|vite|lira|r[ée]alisation/i,'Les projets sont juste en dessous : touche une carte pour les détails.'],[/prix|co[uû]t|tarif|combien|devis/i,'Chaque projet a un devis. Utilise « Estimer mon projet » plus bas.'],[/contact|whatsapp|joindre|appel/i,'Le plus simple : le bouton WhatsApp vert, ou « Réserver un appel ».'],...CONFIG.FAQ.map(([q,a])=>[new RegExp(q.toLowerCase().split(/\W+/).filter(w=>w.length>4).join('|')||'^$','i'),a])];
-const ans=q=>(KB.find(([r])=>r.test(q))||[])[1];
-const bd=el('div',{id:'mb'}),mg=el('div',{id:'mg',title:'Pose-moi une question','aria-label':'Mascotte'});
-mg.innerHTML='<svg viewBox="0 0 64 90"><circle cx="30" cy="16" r="12" fill="#ffd9b0"/><path d="M18 13a12 12 0 0 1 24 0z" fill="#32d583"/><circle cx="26" cy="18" r="1.6" fill="#132033"/><circle cx="35" cy="18" r="1.6" fill="#132033"/><path d="M26 23q4 3 8 0" stroke="#132033" fill="none"/><rect x="19" y="28" width="22" height="30" rx="6" fill="#ff922b"/><path d="M24 58v22M36 58v22" stroke="#132033" stroke-width="4" stroke-linecap="round"/><g class="arm"><path d="M40 34l16-8" stroke="#ffd9b0" stroke-width="5" stroke-linecap="round"/><rect x="54" y="20" width="4" height="9" rx="1" fill="#fff" transform="rotate(30 56 24)"/></g><path d="M19 34l-8 14" stroke="#ffd9b0" stroke-width="5" stroke-linecap="round"/></svg>';
-const mc=el('div',{id:'mc'},mg,bd);const hc=$('.hero .container')||$('.hero');hc&&hc.prepend(mc);
+document.head.append(el('style',{},`#mc{margin:0 0 20px}#cast{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px}
+.ag{flex:1;max-width:86px;text-align:center;cursor:pointer;transition:transform .3s;animation:pop .7s backwards}.ag:nth-child(2){animation-delay:.15s}.ag:nth-child(3){animation-delay:.3s}.ag:nth-child(4){animation-delay:.45s}
+.ag svg{width:100%;height:auto;display:block;animation:bob 3s ease-in-out infinite}.ag:nth-child(even) svg{animation-delay:-1.4s}
+.ag small{display:block;font-size:.74rem;color:var(--muted)}.ag.talk{transform:translateY(-5px) scale(1.1)}.ag.talk small{color:var(--green);font-weight:800}
+.ag.talk .arm,.big .arm{animation:wr .4s ease-in-out infinite alternate}.arm{transform-origin:53px 60px}.eye{animation:blk 4s infinite;transform-box:fill-box;transform-origin:center}
+#mb{background:linear-gradient(160deg,#12352b,#0b211a);border:3px solid #8b6b3f;border-radius:14px;padding:10px 14px;font:.86rem/1.55 ui-monospace,monospace;color:#e8f5ec;min-height:78px;max-height:128px;overflow:hidden;box-shadow:inset 0 0 18px rgba(0,0,0,.4)}
+#mb p{margin:2px 0}#mb b{color:#ffd43b}#mb .c span:after{content:'▍';animation:bl 1s steps(2) infinite}
+.ch p{margin:6px 0;padding:8px 10px;border-radius:12px;background:var(--surface-2)}.ch .u{background:var(--green);color:#062315;text-align:right}
+.hd{display:flex;gap:14px;align-items:center}.hd svg{width:86px;flex:none}.mod ul,.card ul{padding-left:18px;margin:8px 0}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.6)}}@keyframes bob{50%{transform:translateY(-3px)}}@keyframes wr{to{transform:rotate(-28deg)}}@keyframes bl{50%{opacity:0}}@keyframes blk{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}`));
+const AVS=[
+{n:'Koffi',r:'Guide des projets',sk:'#8d5524',hr:'#1b1b1b',st:'short',cl:'#ff922b',cl2:'#26364d',g:0,adv:['Projets présentés honnêtement, avec leur état d\'avancement','Démos à voir et à écouter','Pensés pour la Côte d\'Ivoire']},
+{n:'Aya',r:'Devis & prix',sk:'#a9713f',hr:'#2a1a12',st:'buns',cl:'#32d583',cl2:'#0b8f55',g:1,adv:['Un devis pour chaque projet','Estimation indicative en ligne','Paiement à convenir sur WhatsApp']},
+{n:'Yao',r:'Technique',sk:'#6b4226',hr:'#22b8cf',st:'cap',cl:'#4c6ef5',cl2:'#26364d',g:0,ac:1,adv:['Python, JavaScript, React Native, Firebase','Applis, sites web et API','Des outils adaptés aux besoins réels']},
+{n:'Awa',r:'Contact & suivi',sk:'#c68642',hr:'#1b1b1b',st:'braids',cl:'#f76707',cl2:'#ffd43b',g:1,adv:['Réponse sur WhatsApp, message déjà écrit','Un seul contact du début à la fin','Appel sur rendez-vous']}];
+const svg=a=>{const{sk,hr,st,cl,cl2,g,ac}=a,e='#132033',cap='<path d="M19 34c0-14 9-21 21-21s21 7 21 21c-5-7-12-10-21-10s-16 3-21 10z" fill="'+hr+'"/>';
+const hair={short:'<path d="M19 34c0-14 9-21 21-21s21 7 21 21c-5-6-12-9-21-9s-16 3-21 9z" fill="'+hr+'"/>',
+cap:'<path d="M19 33c0-14 9-21 21-21s21 7 21 21z" fill="'+hr+'"/><rect x="38" y="29" width="28" height="5" rx="2.5" fill="'+hr+'"/>',
+buns:'<circle cx="21" cy="15" r="8" fill="'+hr+'"/><circle cx="59" cy="15" r="8" fill="'+hr+'"/>'+cap,
+braids:'<path d="M20 36q-7 22-2 40M60 36q7 22 2 40" stroke="'+hr+'" stroke-width="6" fill="none" stroke-linecap="round"/>'+cap}[st];
+const body=g?'<path d="M27 56h26l9 42H18z" fill="'+cl+'"/>'+[[30,80],[46,72],[38,90],[52,88]].map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="2.5" fill="'+cl2+'"/>').join(''):'<rect x="25" y="56" width="30" height="36" rx="12" fill="'+cl+'"/><rect x="27" y="82" width="26" height="20" rx="6" fill="'+cl2+'"/>';
+const leg=x=>'<rect x="'+x+'" y="'+(g?96:90)+'" width="8" height="'+(g?16:22)+'" rx="4" fill="'+(g?sk:cl2)+'"/><ellipse cx="'+(x+4)+'" cy="114" rx="8" ry="4" fill="'+e+'"/>';
+const arm='stroke="'+sk+'" stroke-width="6" fill="none" stroke-linecap="round"';
+return '<svg viewBox="0 0 80 122" aria-hidden="true">'+leg(29)+leg(43)+body+'<path d="M27 60q-9 10-8 24" '+arm+'/><g class="arm"><path d="M53 60q10 6 15-8" '+arm+'/></g><rect x="35" y="50" width="10" height="10" fill="'+sk+'"/><circle cx="40" cy="36" r="21" fill="'+sk+'"/><circle cx="19" cy="38" r="4" fill="'+sk+'"/><circle cx="61" cy="38" r="4" fill="'+sk+'"/>'+hair+'<g class="eye"><ellipse cx="32" cy="39" rx="3" ry="3.6" fill="'+e+'"/><ellipse cx="48" cy="39" rx="3" ry="3.6" fill="'+e+'"/><circle cx="33" cy="37.8" r="1" fill="#fff"/><circle cx="49" cy="37.8" r="1" fill="#fff"/></g><circle cx="27" cy="46" r="3.5" fill="#ff6b6b" opacity=".3"/><circle cx="53" cy="46" r="3.5" fill="#ff6b6b" opacity=".3"/><path d="M34 47q6 6 12 0" stroke="'+e+'" stroke-width="2" fill="none" stroke-linecap="round"/>'+(ac?'<g fill="none" stroke="'+e+'" stroke-width="1.6"><circle cx="32" cy="39" r="6.5"/><circle cx="48" cy="39" r="6.5"/><path d="M38.5 39h3"/></g>':'')+'</svg>'};
+const nz=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const KB=[['termchat','TermChat est une messagerie en terminal, chiffrée, créée par Abou.',0],['lira','LIRA est une « étudiante artificielle » : un assistant qui répond et apprend. Essaie-la avec 🧰 puis 🤖.',0],['vite','VITE API est une sandbox de paiement mobile (Wave, Orange, MTN, Moov) pour les développeurs africains. Regarde la carte du projet pour son état d\'avancement.',0],
+['projet|realisation|catalogue|demo','Les projets sont dans la section « Projets » : certains sont en cours, d\'autres arrivent bientôt. Touche « Voir la démo ».',0],
+['suivi|suivre','Pour suivre une commande, entre ton code dans « Suivi de commande ».',3],
+['prix|cout|tarif|combien|devis|budget|pay|wave|orange|mtn|moov','Chaque projet a un devis. Pour un ordre d\'idée, utilise « Estimer mon projet » ; le paiement mobile money se convient sur WhatsApp.',1],
+['delai|duree|quand|rapide','Le délai dépend du projet : Abou te le précise dans sa proposition.',1],
+['command','Choisis une idée dans « Commander » ou utilise ✍ : ta demande arrive sur WhatsApp, déjà écrite.',1],
+['techno|competence|langage|python|javascript|react|firebase|outil','Python, HTML/CSS, JavaScript, React Native/Expo, Firebase, API REST, Linux/Termux et de l\'IA (LIRA).',2],
+['applic|appli|mobile|android|site|web|api|boutique','Abou crée des applis mobiles, des sites web, des API et des outils d\'automatisation.',2],
+['installer|hors ligne|offline|ecran d\'accueil','Le site s\'installe comme une appli : menu du navigateur → « Ajouter à l\'écran d\'accueil ».',2],
+['contact|whatsapp|joindre|appel|rendez|mail','Le plus simple : le bouton WhatsApp vert. Tu peux aussi réserver un appel plus bas.',3],
+['qui|abou|johan|daj','Diomandé Abou Johan (DEV.D.A.J), développeur ivoirien basé à San Pedro, fondateur d\'AbouDev Labs.',3],
+['san pedro|adresse|ville|habite|localis','Abou est basé à San Pedro, en Côte d\'Ivoire.',3],
+['bonjour|salut|coucou|bonsoir|hello','Salut ! Dis-moi ce que tu cherches : projets, prix, technologies ou contact.',3],
+['merci','Avec plaisir !',3],
+...CONFIG.FAQ.map(([q,a])=>[nz(q).split(/\W+/).filter(w=>w.length>4).join('|')||'^$',a,1])];
+const reply=q=>{const n=nz(q),h=KB.find(([r])=>new RegExp(r).test(n));return h?{i:h[2],t:h[1]}:{i:3,t:'Je n\'ai pas la réponse, mais Abou répond lui-même sur WhatsApp.',f:1}};
+const SUG=['Quels projets ?','Combien ça coûte ?','Quelles technologies ?','Comment vous contacter ?','C\'est quoi LIRA ?'];
+const fiche=i=>{const a=AVS[i],l=el('div',{class:'ch'},el('p',{},el('b',{},a.n+' : '),'Salut ! Pose-moi une question.')),inp=field('Ta question…'),hd=el('div',{class:'hd big'});hd.innerHTML=svg(a);hd.append(el('div',{},el('b',{},a.r),el('ul',{},a.adv.map(x=>el('li',{},x)))));
+ const go=q=>{q=q.trim();if(!q)return;l.append(el('p',{class:'u'},q));const r=reply(q);l.append(el('p',{},el('b',{},AVS[r.i].n+' : '),r.t));if(r.f)l.append(el('button',{class:'btn',onclick:()=>send('Question depuis le portfolio : '+q)},'Envoyer sur WhatsApp ↗'));inp.value=''};
+ inp.onkeydown=e=>e.key==='Enter'&&go(inp.value);modal(a.n+' — '+a.r,hd,el('div',{class:'chips'},SUG.map(q=>el('button',{onclick:()=>go(q)},q))),l,inp,el('button',{class:'btn',onclick:lira},'Parler à LIRA 🤖'))};
+const cast=AVS.map((a,i)=>{const d=el('div',{class:'ag',title:a.n,onclick:()=>fiche(i)});d.innerHTML=svg(a)+'<small>'+a.n+'</small>';return d});
+const bd=el('div',{id:'mb'}),mc=el('div',{id:'mc'},el('div',{id:'cast'},cast),bd);const hc=$('.hero .container')||$('.hero');hc&&hc.prepend(mc);
+ct.prepend(el('h2',{},'Ton équipe'),el('div',{class:'g'},AVS.map((a,i)=>{const d=el('div',{style:'width:70px'});d.innerHTML=svg(a);const c=card(a.n+' — '+a.r,el('ul',{},a.adv.map(x=>el('li',{},x))),el('button',{class:'btn',onclick:()=>fiche(i)},'Poser une question'));c.prepend(d);return c})));
 const sleep=t=>new Promise(r=>setTimeout(r,t));let busy=0;
-const write=async t=>{const p=el('p',{class:'c'});bd.append(p);while(bd.children.length>3)bd.firstChild.remove();mg.classList.add('w');for(const c of t){p.textContent+=c;await sleep(32)}mg.classList.remove('w');p.classList.remove('c');await sleep(1200)};
-const act=async()=>{try{const r=await fetch('assets/actus.json'),j=await r.json();return (Array.isArray(j)?j:j.actus||[]).slice(0,2).map(a=>'Nouveau : '+(a.titre||a.title||'')).filter(x=>x.length>10)}catch{return[]}};
-const run=async back=>{if(busy)return;busy=1;if(back){mg.classList.remove('in');void mg.offsetWidth;mg.classList.add('in');bd.replaceChildren();await sleep(2600)}
- const all=[...(back?['Ça fait une semaine, je suis de retour !']:[]),...MS,...await act()];for(const m of all)await write(m);busy=0};
-const WK=6048e5,last=+localStorage.getItem('mascot_last')||0,first=!last||Date.now()-last>=WK;
-localStorage.setItem('mascot_last',Date.now());if(first)mg.classList.add('in');run(false);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-(+localStorage.getItem('mascot_last')||0)>=WK){localStorage.setItem('mascot_last',Date.now());run(true)}});
-mg.onclick=()=>{const l=el('div',{class:'ch'},el('p',{},'Salut ! Pose-moi une question sur le site.')),i=field('Ta question…');const go=q=>{if(!q)return;l.append(el('p',{class:'u'},q));const a=ans(q);l.append(el('p',{},a||'Je n\'ai pas la réponse. Je transmets à Abou sur WhatsApp ?'));if(!a)l.append(el('button',{class:'btn',onclick:()=>send('Question depuis le portfolio : '+q)},'Envoyer sur WhatsApp ↗'));i.value=''};
- i.onkeydown=e=>e.key==='Enter'&&go(i.value.trim());modal('Le petit gardien',l,i,el('button',{class:'btn',onclick:lira},'Parler à LIRA 🤖'))};
+const write=async(i,t)=>{const p=el('p',{class:'c'},el('b',{},AVS[i].n+' : ')),s=el('span',{});p.append(s);bd.append(p);while(bd.children.length>3)bd.firstChild.remove();cast[i].classList.add('talk');for(const c of t){s.textContent+=c;await sleep(28)}cast[i].classList.remove('talk');p.classList.remove('c');await sleep(1100)};
+const say=async L=>{if(busy)return;busy=1;for(const[i,t]of L)await write(i,t);busy=0};
+const act=async()=>{try{const j=await(await fetch('assets/actus.json')).json();return(Array.isArray(j)?j:j.actus||[]).slice(0,2).map(a=>[0,'Nouveau : '+(a.titre||a.title||'')]).filter(x=>x[1].length>12)}catch{return[]}};
+const MS=()=>{const h=new Date().getHours();return[[0,(h<12?'Bonjour':h<18?'Bon après-midi':'Bonsoir')+' ! Nous sommes le '+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+'.'],[0,'Ici, Abou transforme tes idées en outils.'],[1,'Chaque projet a son devis, rien n\'est caché.'],[3,'Touche l\'un de nous pour poser une question !']]};
+const DLG=[[[0,'Aya, tu as vu le catalogue ?'],[1,'Oui ! Chaque projet a son devis.'],[0,'C\'est ça qu\'on aime.']],[[2,'Awa, encore une question sur WhatsApp ?'],[3,'Oui, et Abou répond lui-même.'],[2,'Respect !']],[[1,'Koffi, tu dors ? Les démos sont prêtes !'],[0,'Je ne dors pas, je regarde les projets.'],[1,'Alors montre-les aux visiteurs !']],[[3,'Yao, c\'est quoi la techno du site ?'],[2,'HTML, CSS et JavaScript, bien simple.'],[3,'Et ça s\'installe comme une appli.']]];
+const WK=6048e5,last=+localStorage.getItem('mascot_last')||0,back=last&&Date.now()-last>=WK;localStorage.setItem('mascot_last',Date.now());
+(async()=>{await say([...(back?[[3,'Ça fait une semaine, on est de retour !']]:[]),...MS(),...await act()]);for(let k=0;;k++){await sleep(18e3+Math.random()*15e3);if(document.hidden||$('.mod'))continue;await say(DLG[k%DLG.length])}})();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-(+localStorage.getItem('mascot_last')||0)>=WK){localStorage.setItem('mascot_last',Date.now());cast.forEach(c=>{c.style.animation='none';void c.offsetWidth;c.style.animation=''});say([[3,'Ça fait une semaine, on est de retour !']])}});
 })();

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique DEV.D.A.J - Vendez en Ligne 🇨🇮</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                🇨🇮 <strong>DEV.D.A.J</strong><br>
+                <small>Boutiques en Ligne</small>
+            </div>
+            <div class="cart-icon" id="cartIcon">
+                🛒 <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNIÈRE -->
+    <section class="banner">
+        <h1>Bienvenue ! 👋</h1>
+        <p>Vends plus pendant tes lives — boutique en ligne 24h/24</p>
+    </section>
+
+    <!-- RECHERCHE + FILTRES -->
+    <section class="filters">
+        <div class="container">
+            <input type="text" id="searchInput" placeholder="Cherche un produit...">
+            <select id="filterSort">
+                <option value="">Trier par</option>
+                <option value="popular">Plus demandés ⭐</option>
+                <option value="price-low">Prix : moins cher</option>
+                <option value="price-high">Prix : plus cher</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- CATÉGORIES -->
+    <section class="categories">
+        <div class="container" id="categoriesList"></div>
+    </section>
+
+    <!-- PRODUITS -->
+    <section class="products">
+        <div class="container">
+            <div id="productsList" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- PANIER MODAL -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Panier 🛒</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <strong>Total : <span id="totalPrice">0</span> F</strong>
+            </div>
+            <div class="client-form">
+                <h3>Tes informations 📝</h3>
+                <input type="text" id="clientNom" placeholder="Ton nom">
+                <input type="tel" id="clientTel" placeholder="Ton numéro de téléphone">
+                <input type="text" id="clientVille" placeholder="Ville (ex: San Pedro)">
+                <input type="text" id="clientQuartier" placeholder="Quartier">
+            </div>
+            <button id="checkoutBtn" class="btn-primary">Commander sur WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- MODAL DÉTAIL PRODUIT -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="productDetail"></div>
+        </div>
+    </div>
+
+    <script src="produits.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
